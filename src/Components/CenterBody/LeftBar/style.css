@@ -1,7 +1,8 @@
 .left-bar {
   box-sizing: border-box;
   height: 85vh;
-  width: 15vw;
+  max-width: 15vw;
+  min-width: 15em;
   padding: 10px;
   background-color: #111;
   border-radius: 10px;
@@ -20,11 +21,13 @@
   .side-playlists {
     display: flex;
     flex-direction: column;
+    height: 100%;
 
     .side-playlist {
       box-sizing: border-box;
       display: flex;
       flex-direction: row;
+      height: 10%;
       gap: 0.5em;
       padding: 10px;
       border-radius: 5px;
@@ -34,14 +37,23 @@
       }
 
       .side-playlist-image {
-        width: 4em;
+        height: 100%;
         aspect-ratio: 1 / 1;
         border-radius: 5px;
         background-color: rebeccapurple;
       }
 
       .side-playlist-content {
+        width: 70%;
+
+        p {
+          box-sizing: border-box;
+          text-overflow: ellipsis;
+          max-width: 100%;
+        }
+
         .side-playlist-bottom {
+          box-sizing: border-box;
           display: flex;
           gap: 5px;
 

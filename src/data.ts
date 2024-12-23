@@ -5,7 +5,7 @@ export const playlists: Playlist[] = [
     name: "Liked Songs",
     image: "img",
     songs: [{ name: "song 1", mp3: "...", artist: "someone" }],
-    createdBy: "Polo",
+    createdBy: "Poloaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     isPinned: true,
   },
   {
