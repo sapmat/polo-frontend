@@ -1,6 +1,6 @@
 .left-bar {
   box-sizing: border-box;
-  height: 85vh;
+  height: 100%;
   max-width: 15vw;
   min-width: 15em;
   padding: 10px;
@@ -65,7 +65,14 @@
               box-sizing: border-box;
             }
           }
+          
+          .side-playlist-creator {
+            box-sizing: border-box;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
         }
+
       }
     }
   }

@@ -1,5 +1,6 @@
 export interface Song {
   name: string;
-  mp3: unknown;
-  artist: string;
+  audioSrc: string;
+  artists: string[];
+  image: string;
 }
