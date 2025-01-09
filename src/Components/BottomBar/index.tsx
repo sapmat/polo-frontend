@@ -1,14 +1,27 @@
 import { useRef, useState, useEffect } from "react";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import PauseCircleIcon from "@mui/icons-material/PauseCircle";
-import "./style.css";
+import SkipNextIcon from "@mui/icons-material/SkipNext";
+import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import { Song } from "../../Model/Song/songs";
+import "./style.css";
 
 const BottomBar = ({ song }: { song: Song }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [totalDuration, setTotalDuration] = useState(0);
+
+  useEffect(() => {
+    handleLoadedMetadata();
+  }, [song]);
+
+  useEffect(() => {
+    if (progress === 100) {
+      setProgress(0);
+      setIsPlaying(false);
+    }
+  }, [progress]);
 
   const togglePlayPause = () => {
     if (audioRef.current) {
@@ -51,9 +64,14 @@ const BottomBar = ({ song }: { song: Song }) => {
     return `${minutes}:${remainingSeconds < 10 ? "0" : ""}${remainingSeconds}`;
   };
 
-  useEffect(() => {
-    handleLoadedMetadata();
-  }, [song]);
+  const handleNext = () => {
+    return;
+  };
+
+  const handlePrev = () => {
+    if (progress > 1) setProgress(0);
+    return;
+  };
 
   return (
     <div className="bottom-bar">
@@ -68,8 +86,14 @@ const BottomBar = ({ song }: { song: Song }) => {
 
       <div className="player">
         <div className="buttons">
+          <button className="prev-button" onClick={handlePrev}>
+            <SkipPreviousIcon />
+          </button>
           <button className="play-button" onClick={togglePlayPause}>
             {isPlaying ? <PauseCircleIcon /> : <PlayCircleIcon />}
+          </button>
+          <button className="next-button" onClick={handleNext}>
+            <SkipNextIcon />
           </button>
         </div>
 
