@@ -1,9 +1,11 @@
+/** @jsxImportSource @emotion/react */
 import { useRef, useState, useEffect } from "react";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import PauseCircleIcon from "@mui/icons-material/PauseCircle";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import { Song } from "../../Model/Song/songs";
+import classes from "./style";
 import "./style.css";
 
 const BottomBar = ({ song }: { song: Song }) => {
@@ -75,30 +77,30 @@ const BottomBar = ({ song }: { song: Song }) => {
 
   return (
     <div className="bottom-bar">
-      <div className="song-info">
-        <div className="song-image">{song.image}</div>
-        <div className="details">
-          <p className="name">{song.name}</p>
-          <p className="artists">{song.artists.join(", ")}</p>
+      <div css={[classes.section, classes.songInfo]}>
+        <div css={classes.songImage}>{song.image}</div>
+        <div css={classes.details}>
+          <p css={classes.name}>{song.name}</p>
+          <p css={classes.artists}>{song.artists.join(", ")}</p>
         </div>
         //! ADD TO FAVORITES
       </div>
 
-      <div className="player">
-        <div className="buttons">
-          <button className="prev-button" onClick={handlePrev}>
+      <div className="bottom-bar-section player">
+        <div css={classes.buttons}>
+          <button onClick={handlePrev}>
             <SkipPreviousIcon />
           </button>
-          <button className="play-button" onClick={togglePlayPause}>
+          <button onClick={togglePlayPause}>
             {isPlaying ? <PauseCircleIcon /> : <PlayCircleIcon />}
           </button>
-          <button className="next-button" onClick={handleNext}>
+          <button onClick={handleNext}>
             <SkipNextIcon />
           </button>
         </div>
 
-        <div className="progress-bar">
-          <p className="current-time">
+        <div css={classes.progressBar}>
+          <p>
             {formatTime((progress / 100) * totalDuration)}
           </p>
 
@@ -111,7 +113,7 @@ const BottomBar = ({ song }: { song: Song }) => {
             style={{ "--progress": `${progress}` } as React.CSSProperties}
           />
 
-          <p className="duration">{formatTime(totalDuration)}</p>
+          <p>{formatTime(totalDuration)}</p>
         </div>
 
         <audio
@@ -122,7 +124,7 @@ const BottomBar = ({ song }: { song: Song }) => {
         />
       </div>
 
-      <div className="extra"></div>
+      <div css={classes.section}></div>
     </div>
   );
 };

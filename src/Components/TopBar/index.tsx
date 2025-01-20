@@ -1,21 +1,22 @@
+/** @jsxImportSource @emotion/react */
 import HomeButton from "./Components/HomeButton/HomeButton";
 import SearchBar from "./Components/SearchBar/SearchBar";
 import ThreeDots from "./Components/ThreeDots/ThreeDots";
-import "./style.css";
+import classes from "./style";
 
 const TopBar = () => {
   return (
-    <div className="top-bar">
-      <div className="left">
+    <div css={classes.topBar}>
+      <div>
         <ThreeDots />
       </div>
 
-      <div className="center">
+      <div css={classes.center}>
         <HomeButton />
         <SearchBar />
       </div>
 
-      <div className="right">dark-light * profile</div>
+      <div>dark-light * profile</div>
     </div>
   );
 };

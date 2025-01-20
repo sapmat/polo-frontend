@@ -1,6 +1,8 @@
+/** @jsxImportSource @emotion/react */
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useState } from "react";
 import ThreeDotOption from "./ThreeDotOption/ThreeDotOption";
+import classes from "../../style";
 
 const ThreeDots = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +12,7 @@ const ThreeDots = () => {
   };
 
   return (
-    <div className="three-dots">
+    <div css={classes.threeDots}>
       <button
         onClick={toggleMenu}
         style={{

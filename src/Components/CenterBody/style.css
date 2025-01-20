@@ -1,8 +1,0 @@
-.center-body {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  padding: 0 10px;
-  height: 100%;
-  width: 100%;
-}

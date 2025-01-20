@@ -1,20 +1,22 @@
+/** @jsxImportSource @emotion/react */
 import PushPinIcon from "@mui/icons-material/PushPin";
 import { Playlist } from "../../../../../Model/Playlist/playlist";
+import classes from "../../../style";
 
 const SidePlaylist = ({ playlist }: { playlist: Playlist }) => {
   return (
-    <div className="side-playlist">
-      <div className="side-playlist-image">{playlist.image}</div>
-      <div className="side-playlist-content">
-        <p className="side-playlist-name">{playlist.name}</p>
-        <div className="side-playlist-bottom">
+    <div css={classes.sidePlaylist}>
+      <div css={classes.sidePlaylistImage}>{playlist.image}</div>
+      <div css={classes.sidePlaylistContent}>
+        <p>{playlist.name}</p>
+        <div css={classes.sidePlaylistBottom}>
           <div
-            className="pin"
+            css={classes.pin}
             style={{ display: playlist.isPinned ? "" : "none" }}
           >
             <PushPinIcon sx={{ color: "#00ff00" }} />
           </div>
-          <p className="side-playlist-creator">{playlist.createdBy}</p>
+          <p css={classes.sidePlaylistCreator}>{playlist.createdBy}</p>
         </div>
       </div>
     </div>

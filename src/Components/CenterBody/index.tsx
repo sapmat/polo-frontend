@@ -1,9 +1,10 @@
+/** @jsxImportSource @emotion/react */
 import LeftBar from "./LeftBar";
-import "./style.css"
+import classes from "./style";
 
 const CenterBody = () => {
   return (
-    <div className="center-body">
+    <div css={classes.centerBody}>
       <LeftBar />
       {/* router page (main page / current playlist / profile) */}
       {/* right bar (current song / queue) */}

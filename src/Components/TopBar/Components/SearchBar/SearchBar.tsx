@@ -1,8 +1,10 @@
+/** @jsxImportSource @emotion/react */
 import SearchIcon from "@mui/icons-material/Search";
+import classes from "../../style";
 
 const SearchBar = () => {
   return (
-    <div className="search-bar">
+    <div css={classes.searchBar}>
       <button>
         <SearchIcon />
       </button>

@@ -1,6 +1,6 @@
 const Filter = () => {
   return (
-    <div className="left-filer">
+    <div>
       {/* search bar */}
       {/* sort order */}
     </div>

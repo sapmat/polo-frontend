@@ -1,9 +1,7 @@
-import { Song } from "../Song/songs";
-
 export interface Playlist {
   name: string;
   image: string;
-  songs: Song[];
+  songs: string[];
   createdBy: string;
   isPinned: boolean;
 }

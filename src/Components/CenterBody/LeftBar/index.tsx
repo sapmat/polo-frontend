@@ -1,15 +1,16 @@
+/** @jsxImportSource @emotion/react */
 import OpenBarButton from "./Components/OpenBarButton/OpenBarButton";
 import Filter from "./Components/Filter/Filter";
 import SidePlaylist from "./Components/Playlist/Playlist";
 import { playlists } from "../../../data";
-import "./style.css"
+import classes from "../style";
 
 const LeftBar = () => {
   return (
-    <div className="left-bar">
+    <div css={classes.leftBar}>
       <OpenBarButton />
       <Filter />
-      <div className="side-playlists">
+      <div css={classes.sidePlaylists}>
         {playlists.map((playlist, index) => (
           <SidePlaylist key={index} playlist={playlist} />
         ))}
