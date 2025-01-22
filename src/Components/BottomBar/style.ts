@@ -50,11 +50,56 @@ const classes = {
     button {
       display: flex;
       justify-content: center;
+      align-items: center;
+    }
+  `,
+  playButton: css`
+    opacity: 0.85;
 
-      svg {
-        height: 1.75em;
-        width: 1.75em;
-      }
+    &:hover {
+      opacity: 1;
+      scale: 1.1;
+    }
+
+    svg {
+      height: 1.7em;
+      width: 1.7em;
+    }
+  `,
+  skipButtons: css`
+    opacity: 0.75;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    svg {
+      height: 1.4em;
+      width: 1.5em;
+    }
+  `,
+  shuffleButton: css`
+    opacity: 0.75;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    svg {
+      height: 1.6em;
+      width: 1.5em;
+    }
+  `,
+  loopButton: css`
+    opacity: 0.75;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    svg {
+      height: 1.4em;
+      width: 1.5em;
     }
   `,
   progressBar: css`
