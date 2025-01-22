@@ -11,6 +11,7 @@ import { Song } from "../../../../Model/Song/songs";
 
 const Player = ({ song }: { song: Song }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
+  // in store
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [progress, setProgress] = useState<number>(0);
   const [totalDuration, setTotalDuration] = useState<number>(0);

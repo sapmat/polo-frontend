@@ -62,8 +62,8 @@ const classes = {
     }
   `,
   sidePlaylistImage: css`
-    height: 3.5em;
-    min-width: 3.5em;
+    height: 3.5em !important;
+    min-width: 3.5em !important;
     border-radius: 5px;
     background-color: rebeccapurple;
   `,
@@ -73,7 +73,6 @@ const classes = {
     p {
       box-sizing: border-box;
       text-overflow: ellipsis;
-      max-width: 100%;
     }
   `,
   sidePlaylistBottom: css`
@@ -89,12 +88,6 @@ const classes = {
     svg {
       box-sizing: border-box;
     }
-  `,
-
-  sidePlaylistCreator: css`
-    box-sizing: border-box;
-    text-overflow: ellipsis;
-    overflow: hidden;
   `,
 };
 

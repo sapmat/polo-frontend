@@ -2,11 +2,18 @@
 import PushPinIcon from "@mui/icons-material/PushPin";
 import { Playlist } from "../../../../Model/Playlist/playlist";
 import classes from "../../style";
+import PlaylistImage from "../../../Util/PlaylistImage/PlaylistImage";
 
-const SidePlaylist = ({ playlist, open }: { playlist: Playlist, open: boolean }) => {
+const SidePlaylist = ({
+  playlist,
+  open,
+}: {
+  playlist: Playlist;
+  open: boolean;
+}) => {
   return (
     <div css={classes.sidePlaylist}>
-      <div css={classes.sidePlaylistImage}>{playlist.image}</div>
+      <PlaylistImage playlist={playlist} cssclass={classes.sidePlaylistImage} />
       <div css={classes.sidePlaylistContent(open)}>
         <p>{playlist.name}</p>
         <div css={classes.sidePlaylistBottom}>
@@ -14,9 +21,9 @@ const SidePlaylist = ({ playlist, open }: { playlist: Playlist, open: boolean })
             css={classes.pin}
             style={{ display: playlist.isPinned ? "" : "none" }}
           >
-            <PushPinIcon sx={{ color: "#00ff00" }} />
+            <PushPinIcon sx={{ color: "rgb(153, 0, 255)" }} />
           </div>
-          <p css={classes.sidePlaylistCreator}>{playlist.createdBy}</p>
+          <p>{playlist.createdBy}</p>
         </div>
       </div>
     </div>

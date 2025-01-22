@@ -4,6 +4,7 @@ import TopBar from "./Components/TopBar";
 import classes from "./style";
 import LeftBar from "./Components/LeftBar";
 import { Song } from "./Model/Song/songs";
+import Home from "./Components/Pages/Home";
 
 function App() {
   // will be in store
@@ -19,6 +20,7 @@ function App() {
       <TopBar />
       <div css={classes.centerBody}>
         <LeftBar />
+        <Home />
       </div>
       <BottomBar song={currentSong} />
     </div>
