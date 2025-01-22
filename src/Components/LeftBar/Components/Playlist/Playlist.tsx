@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import PushPinIcon from "@mui/icons-material/PushPin";
-import { Playlist } from "../../../../../Model/Playlist/playlist";
-import classes from "../../../style";
+import { Playlist } from "../../../../Model/Playlist/playlist";
+import classes from "../../style";
 
 const SidePlaylist = ({ playlist }: { playlist: Playlist }) => {
   return (

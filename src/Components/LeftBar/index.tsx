@@ -2,8 +2,8 @@
 import OpenBarButton from "./Components/OpenBarButton/OpenBarButton";
 import Filter from "./Components/Filter/Filter";
 import SidePlaylist from "./Components/Playlist/Playlist";
-import { playlists } from "../../../data";
-import classes from "../style";
+import { playlists } from "../../data";
+import classes from "./style";
 
 const LeftBar = () => {
   return (

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
-import classes from "../../../style";
+import classes from "../../style";
 
 const OpenBarButton = () => {
   return (
