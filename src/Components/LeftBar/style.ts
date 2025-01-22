@@ -2,50 +2,38 @@
 import { css } from "@emotion/react";
 
 const classes = {
-  leftBar: css`
+  leftBar: (open: boolean) => css`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    max-width: 15vw;
-    min-width: 15em;
+    max-width: ${open ? "17vw" : ""};
+    min-width: ${open ? "15em" : ""};
     max-height: 100%;
     overflow: hidden;
-    padding: 10px;
+    padding: 10px 0 10px 10px;
     background-color: #111;
     border-radius: 10px;
-    gap: 0.4em;
-  `,
-  openBarButton: css`
-    display: flex;
-    opacity: 0.8;
-    font-size: large;
-
-    p {
-      font-weight: 600;
-    }
+    gap: 0.1em;
   `,
   sidePlaylists: css`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    max-height: 100%;
-    overflow: hidden;
-
-    &:hover {
-      overflow: auto;
-    }
+    overflow: scroll;
+    overflow-x: hidden;
+    gap: 10px;
 
     &::-webkit-scrollbar {
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
     }
 
     &::-webkit-scrollbar-track {
       background: none;
     }
 
-    &::-webkit-scrollbar-thumb {
+    &:hover&::-webkit-scrollbar-thumb {
       background: #444;
       opacity: 0.5;
     }
@@ -64,9 +52,8 @@ const classes = {
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    height: 7.5vh;
+    height: 6em;
     gap: 0.5em;
-    padding: 10px;
     border-radius: 5px;
 
     &:hover {
@@ -75,13 +62,13 @@ const classes = {
     }
   `,
   sidePlaylistImage: css`
-    height: 100%;
-    aspect-ratio: 1 / 1;
+    height: 3.5em;
+    min-width: 3.5em;
     border-radius: 5px;
     background-color: rebeccapurple;
   `,
-  sidePlaylistContent: css`
-    width: 70%;
+  sidePlaylistContent: (open: boolean) => css`
+    display: ${open ? "" : "none"};
 
     p {
       box-sizing: border-box;

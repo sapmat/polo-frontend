@@ -5,7 +5,7 @@ import ThreeDotOption from "./ThreeDotOption/ThreeDotOption";
 import classes from "../../style";
 
 const ThreeDots = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleMenu = () => {
     setIsOpen((prev) => !prev);

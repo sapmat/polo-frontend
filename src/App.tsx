@@ -1,10 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import BottomBar from "./Components/BottomBar";
 import TopBar from "./Components/TopBar";
-import "./App.css";
 import classes from "./style";
-import { Song } from "./Model/Song/songs";
 import LeftBar from "./Components/LeftBar";
+import { Song } from "./Model/Song/songs";
 
 function App() {
   // will be in store
@@ -16,7 +15,7 @@ function App() {
   };
 
   return (
-    <div className="app">
+    <div css={classes.app}>
       <TopBar />
       <div css={classes.centerBody}>
         <LeftBar />

@@ -11,12 +11,12 @@ import { Song } from "../../../../Model/Song/songs";
 
 const Player = ({ song }: { song: Song }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [totalDuration, setTotalDuration] = useState(0);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [progress, setProgress] = useState<number>(0);
+  const [totalDuration, setTotalDuration] = useState<number>(0);
 
-  const [isShuffle, setShuffle] = useState(false);
-  const [isLoop, setLoop] = useState(false);
+  const [isShuffle, setShuffle] = useState<boolean>(false);
+  const [isLoop, setLoop] = useState<boolean>(false);
 
   useEffect(() => {
     handleLoadedMetadata();

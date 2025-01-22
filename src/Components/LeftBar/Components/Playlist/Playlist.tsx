@@ -3,11 +3,11 @@ import PushPinIcon from "@mui/icons-material/PushPin";
 import { Playlist } from "../../../../Model/Playlist/playlist";
 import classes from "../../style";
 
-const SidePlaylist = ({ playlist }: { playlist: Playlist }) => {
+const SidePlaylist = ({ playlist, open }: { playlist: Playlist, open: boolean }) => {
   return (
     <div css={classes.sidePlaylist}>
       <div css={classes.sidePlaylistImage}>{playlist.image}</div>
-      <div css={classes.sidePlaylistContent}>
+      <div css={classes.sidePlaylistContent(open)}>
         <p>{playlist.name}</p>
         <div css={classes.sidePlaylistBottom}>
           <div

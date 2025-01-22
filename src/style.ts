@@ -2,6 +2,13 @@
 import { css } from "@emotion/react";
 
 const classes = {
+  app: css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+  `,
   centerBody: css`
     box-sizing: border-box;
     display: flex;
