@@ -4,26 +4,29 @@ import TopBar from "./Components/TopBar";
 import classes from "./style";
 import LeftBar from "./Components/LeftBar";
 import { Song } from "./Model/Song/songs";
-import Home from "./Components/Pages/Home";
+import RoutesComponent from "./Components/Routes/RoutesComponent";
+import { BrowserRouter as Router } from "react-router";
 
 function App() {
   // will be in store
   const currentSong: Song = {
     name: "The Weekend Whip",
     artists: ["The Fold"],
-    audioSrc: "Audio/The Fold - The Weekend Whip (Official Audio).mp3",
+    audioSrc: "/Audio/The Fold - The Weekend Whip (Official Audio).mp3",
     image: "TWW",
   };
 
   return (
-    <div css={classes.app}>
-      <TopBar />
-      <div css={classes.centerBody}>
-        <LeftBar />
-        <Home />
+    <Router>
+      <div css={classes.app}>
+        <TopBar />
+        <div css={classes.centerBody}>
+          <LeftBar />
+          <RoutesComponent />
+        </div>
+        <BottomBar song={currentSong} />
       </div>
-      <BottomBar song={currentSong} />
-    </div>
+    </Router>
   );
 }
 

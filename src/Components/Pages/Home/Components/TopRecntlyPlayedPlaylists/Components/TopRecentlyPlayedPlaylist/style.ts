@@ -21,6 +21,7 @@ const classes = {
     border-radius: 5px;
     height: 5em;
     background: rgba(77, 77, 77, 0.4);
+    cursor: pointer;
 
     &:hover {
       background: rgba(77, 77, 77, 0.6);
@@ -56,7 +57,7 @@ const classes = {
     width: 1.75em !important;
     height: 1.75em !important;
     color: black;
-    background-color: rgb(129, 4, 253);
+    background-color: rgb(162, 69, 255);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
     border-radius: 50em;
     padding: 2px;

@@ -3,6 +3,7 @@ import PushPinIcon from "@mui/icons-material/PushPin";
 import { Playlist } from "../../../../Model/Playlist/playlist";
 import classes from "../../style";
 import PlaylistImage from "../../../Util/PlaylistImage/PlaylistImage";
+import { useNavigate } from "react-router";
 
 const SidePlaylist = ({
   playlist,
@@ -11,8 +12,13 @@ const SidePlaylist = ({
   playlist: Playlist;
   open: boolean;
 }) => {
+  const navigate = useNavigate();
+
   return (
-    <div css={classes.sidePlaylist}>
+    <div
+      css={classes.sidePlaylist}
+      onClick={() => navigate(`/playlist/${playlist.id}`)}
+    >
       <PlaylistImage playlist={playlist} cssclass={classes.sidePlaylistImage} />
       <div css={classes.sidePlaylistContent(open)}>
         <p>{playlist.name}</p>

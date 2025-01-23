@@ -9,7 +9,6 @@ const classes = {
     box-sizing: border-box;
     flex-grow: 1;
     padding: 20px 40px;
-    background: linear-gradient(rgb(75, 8, 64), rgb(33, 2, 39));
     background: linear-gradient(
       rgba(75, 8, 64, 0.4) 15%,
       rgba(33, 2, 39, 0.4) 25%,

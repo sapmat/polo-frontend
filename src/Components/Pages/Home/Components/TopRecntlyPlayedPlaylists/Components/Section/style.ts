@@ -24,6 +24,7 @@ const classes = {
   playlist: css`
     box-sizing: border-box;
     width: 10em;
+    cursor: pointer;
   `,
   imageContainer: css`
     position: relative;
@@ -51,7 +52,7 @@ const classes = {
     width: 2em !important;
     height: 2em !important;
     color: black;
-    background-color: rgb(129, 4, 253);
+    background-color: rgb(162, 69, 255);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
     border-radius: 50em;
     padding: 2px;

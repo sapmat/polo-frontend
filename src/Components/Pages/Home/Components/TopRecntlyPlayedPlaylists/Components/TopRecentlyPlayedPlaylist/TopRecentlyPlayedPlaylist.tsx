@@ -3,10 +3,13 @@ import { Playlist } from "../../../../../../../Model/Playlist/playlist";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import classes from "./style";
 import PlaylistImage from "../../../../../../Util/PlaylistImage/PlaylistImage";
+import { useNavigate } from "react-router";
 
 const TopRecentlyPlayedPlaylist = ({ playlist }: { playlist: Playlist }) => {
+  const navigate = useNavigate();
+
   return (
-    <div css={classes.playlist}>
+    <div css={classes.playlist} onClick={() => navigate(`/playlist/${playlist.id}`)}>
       <PlaylistImage cssclass={classes.image} playlist={playlist} />
       <div css={classes.name}>{playlist.name}</div>
       <button css={classes.button}>

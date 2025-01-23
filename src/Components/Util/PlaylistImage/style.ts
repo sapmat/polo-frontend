@@ -9,7 +9,7 @@ const classes = {
     align-items: center;
     height: 100%;
     aspect-ratio: 1 / 1;
-    background-color: rebeccapurple;
+    background: linear-gradient(45deg, #401d64, #663399, #9986c2);
   `,
 };
 

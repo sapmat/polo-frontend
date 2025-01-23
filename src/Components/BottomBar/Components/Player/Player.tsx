@@ -9,7 +9,7 @@ import { SlLoop } from "react-icons/sl";
 import classes from "../../style";
 import { Song } from "../../../../Model/Song/songs";
 
-const Player = ({ song }: { song: Song }) => {
+const Player = ({ song }: { song: Song | null }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   // in store
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -29,6 +29,8 @@ const Player = ({ song }: { song: Song }) => {
       setIsPlaying(false);
     }
   }, [progress]);
+
+  if (!song) return <></>;
 
   const togglePlayPause = () => {
     if (audioRef.current) {
