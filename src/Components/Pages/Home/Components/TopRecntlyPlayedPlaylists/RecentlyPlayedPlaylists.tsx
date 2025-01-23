@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { playlists } from "../../../../../data";
 import { Playlist } from "../../../../../Model/Playlist/playlist";
-import TopRecentlyPlayedPlaylist from "./Components/Playlist/Playlist";
-import classes from "./style";
+import TopRecentlyPlayedPlaylist from "./Components/TopRecentlyPlayedPlaylist/TopRecentlyPlayedPlaylist";
+import classes from "./Components/TopRecentlyPlayedPlaylist/style";
 
 const TopRecentlyPlayedPlaylists = () => {
   return (

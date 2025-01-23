@@ -49,19 +49,21 @@ const classes = {
     justify-content: center;
     align-items: center;
     height: 100%;
-    right: 25px;
+    right: 30px;
   `,
   play: css`
     position: absolute;
     width: 1.75em !important;
     height: 1.75em !important;
     color: black;
-    background-color: rebeccapurple;
+    background-color: rgb(129, 4, 253);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
     border-radius: 50em;
     padding: 2px;
+    transition: scale 0.1s ease-in-out;
 
     &:hover {
-      background-color: rgb(129, 4, 253);
+      scale: 1.1;
     }
   `,
 };

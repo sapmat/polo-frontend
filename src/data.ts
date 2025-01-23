@@ -26,7 +26,7 @@ export const playlists: Playlist[] = [
     name: "PLaylist 1",
     image: "",
     songs: ["1"],
-    createdBy: "Me",
+    createdBy: "Me, me, me, me, me, me, me, me, you",
     isPinned: false,
   },
   {

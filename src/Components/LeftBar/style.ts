@@ -38,14 +38,16 @@ const classes = {
       opacity: 0.5;
     }
 
-    &::-webkit-scrollbar-thumb:hover {
-      background: #666;
-      opacity: 0.5;
-    }
+    &::-webkit-scrollbar-thumb {
+      &:hover {
+        background: #666;
+        opacity: 0.5;
+      }
 
-    &::-webkit-scrollbar-thumb:active {
-      background: #888;
-      opacity: 0.5;
+      &:active {
+        background: #888;
+        opacity: 0.5;
+      }
     }
   `,
   sidePlaylist: css`
@@ -73,6 +75,7 @@ const classes = {
     p {
       box-sizing: border-box;
       text-overflow: ellipsis;
+      white-space: nowrap;
     }
   `,
   sidePlaylistBottom: css`

@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { Playlist } from "../../../../../../../Model/Playlist/playlist";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import classes from "../../style";
+import classes from "./style";
 import PlaylistImage from "../../../../../../Util/PlaylistImage/PlaylistImage";
 
 const TopRecentlyPlayedPlaylist = ({ playlist }: { playlist: Playlist }) => {
