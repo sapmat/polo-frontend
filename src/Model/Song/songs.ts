@@ -3,4 +3,5 @@ export interface Song {
   audioSrc: string;
   artists: string[];
   image: string;
+  album: string;
 }

@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { Playlist } from "../../../../../../../Model/Playlist/playlist";
+import { Playlist } from "../../../../../Model/Playlist/playlist";
 import PlaylistBanner from "./Components/PlaylistBanner/PlaylistBanner";
 import classes from "./style";
 

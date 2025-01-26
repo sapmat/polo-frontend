@@ -7,7 +7,7 @@ const classes = {
     display: flex;
     flex-direction: column;
     max-width: ${open ? "17vw" : ""};
-    min-width: ${open ? "15em" : ""};
+    min-width: ${open ? "15em" : "5em"};
     max-height: 100%;
     overflow: hidden;
     padding: 10px 0 10px 10px;
@@ -15,7 +15,7 @@ const classes = {
     border-radius: 10px;
     gap: 0.1em;
   `,
-  sidePlaylists: css`
+  playlists: css`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -48,48 +48,6 @@ const classes = {
         background: #888;
         opacity: 0.5;
       }
-    }
-  `,
-  sidePlaylist: css`
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    height: 6em;
-    gap: 0.5em;
-    border-radius: 5px;
-
-    &:hover {
-      background-color: #333;
-      cursor: pointer;
-    }
-  `,
-  sidePlaylistImage: css`
-    height: 3.5em !important;
-    min-width: 3.5em !important;
-    border-radius: 5px;
-    background-color: rebeccapurple;
-  `,
-  sidePlaylistContent: (open: boolean) => css`
-    display: ${open ? "" : "none"};
-
-    p {
-      box-sizing: border-box;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-  `,
-  sidePlaylistBottom: css`
-    box-sizing: border-box;
-    display: flex;
-    gap: 5px;
-  `,
-
-  pin: css`
-    scale: 0.8;
-    rotate: 45deg;
-
-    svg {
-      box-sizing: border-box;
     }
   `,
 };

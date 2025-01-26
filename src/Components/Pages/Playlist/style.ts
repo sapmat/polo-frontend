@@ -34,9 +34,35 @@ const classes = {
       }
     }
   `,
+  mainHeader: (opacity: number) => css`
+    width: 100%;
+    padding: 1em 0;
+    position: fixed;
+    opacity: ${opacity};
+    transition: opacity 0.25s ease-in-out;
+  `,
+  playButton: css`
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  `,
+  play: css`
+    width: 2em !important;
+    height: 2em !important;
+    color: black;
+    background-color: rgb(162, 69, 255);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 50em;
+    padding: 2px;
+    transition: scale 0.1s ease-in-out;
+
+    &:hover {
+      scale: 1.1;
+    }
+  `,
   header: css`
     box-sizing: border-box;
-    position: fixed;
     display: flex;
     align-items: center;
     gap: 1em;
@@ -82,8 +108,33 @@ const classes = {
     background: linear-gradient(
       rgba(56, 5, 48, 0.4) 10%,
       rgba(33, 2, 39, 0.4) 20%,
-      rgba(43, 43, 43, 0.4) 55%
+      rgba(17, 17, 17, 0.4) 55%
     );
+    padding: 0 1.5em;
+  `,
+  contentTop: css`
+    padding: 15px 0;
+  `,
+  contentPlayButton: css`
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  `,
+  contentPlay: css`
+    width: 1.5em !important;
+    height: 1.5em !important;
+    color: black;
+    background-color: rgb(162, 69, 255);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 50em;
+    padding: 10px;
+    transition: scale 0.1s ease-in-out;
+
+    &:hover {
+      scale: 1.05;
+      background-color: rgb(187, 119, 255);
+    }
   `,
 };
 

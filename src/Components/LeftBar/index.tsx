@@ -17,7 +17,7 @@ const LeftBar = () => {
     <div css={classes.leftBar(open)}>
       <OpenBarButton open={open} setOpen={setOpen} />
       <Filter />
-      <div css={classes.sidePlaylists}>
+      <div css={classes.playlists}>
         {playlists.map((playlist, index) => (
           <SidePlaylist key={index} playlist={playlist} open={open} />
         ))}

@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { Playlist } from "../../../../../../../../../Model/Playlist/playlist";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import PlaylistImage from "../../../../../../../../Util/PlaylistImage/PlaylistImage";
 import classes from "../../style";
 import { useNavigate } from "react-router";
+import { Playlist } from "../../../../../../../Model/Playlist/playlist";
+import SongPlaylistImage from "../../../../../../Util/SongPlaylistImage/SongPlaylistImage";
 
 const PlaylistBanner = ({ playlist }: { playlist: Playlist }) => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const PlaylistBanner = ({ playlist }: { playlist: Playlist }) => {
       onClick={() => navigate(`/playlist/${playlist.id}`)}
     >
       <div css={classes.imageContainer}>
-        <PlaylistImage playlist={playlist} cssclass={classes.playlistImage} />
+        <SongPlaylistImage item={playlist} cssclass={classes.playlistImage} />
         <button css={classes.button}>
           <PlayArrowIcon
             style={{

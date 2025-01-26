@@ -4,7 +4,7 @@ import { Playlist } from "../../../../../Model/Playlist/playlist";
 import TopRecentlyPlayedPlaylist from "./Components/TopRecentlyPlayedPlaylist/TopRecentlyPlayedPlaylist";
 import classes from "./Components/TopRecentlyPlayedPlaylist/style";
 
-const TopRecentlyPlayedPlaylists = () => {
+const RecentlyPlayedPlaylists = () => {
   return (
     <div css={classes.playlists}>
       {playlists.slice(0, 8).map((playlist: Playlist) => (
@@ -14,4 +14,4 @@ const TopRecentlyPlayedPlaylists = () => {
   );
 };
 
-export default TopRecentlyPlayedPlaylists;
+export default RecentlyPlayedPlaylists;

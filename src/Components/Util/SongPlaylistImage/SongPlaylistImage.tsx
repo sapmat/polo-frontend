@@ -2,24 +2,25 @@
 import { Interpolation, Theme } from "@emotion/react";
 import { Playlist } from "../../../Model/Playlist/playlist";
 import classes from "./style";
+import { Song } from "../../../Model/Song/songs";
 
-const PlaylistImage = ({
-  playlist,
+const SongPlaylistImage = ({
+  item,
   cssclass,
 }: {
-  playlist: Playlist;
+  item: Playlist | Song;
   cssclass: Interpolation<Theme>;
 }) => {
   const getImage = () =>
-    playlist.name
+    item.name
       .split(" ")
       .map((word) => word.charAt(0))
       .slice(0, 4)
       .join("");
   return (
     <>
-      {playlist.image ? (
-        <img css={[cssclass, classes.image]} src={playlist.image} />
+      {item.image ? (
+        <img css={[cssclass, classes.image]} src={item.image} />
       ) : (
         <div css={[cssclass, classes.image]}>{getImage()}</div>
       )}
@@ -27,4 +28,4 @@ const PlaylistImage = ({
   );
 };
 
-export default PlaylistImage;
+export default SongPlaylistImage;

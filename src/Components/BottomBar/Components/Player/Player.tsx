@@ -6,7 +6,7 @@ import SkipNextIcon from "@mui/icons-material/SkipNext";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import { PiShuffleBold } from "react-icons/pi";
 import { SlLoop } from "react-icons/sl";
-import classes from "../../style";
+import classes from "./style";
 import { Song } from "../../../../Model/Song/songs";
 
 const Player = ({ song }: { song: Song | null }) => {

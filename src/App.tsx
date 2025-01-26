@@ -14,6 +14,7 @@ function App() {
     artists: ["The Fold"],
     audioSrc: "/Audio/The Fold - The Weekend Whip (Official Audio).mp3",
     image: "TWW",
+    album: "LEGO NINJAGO: For the Spinners"
   };
 
   return (

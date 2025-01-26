@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import PushPinIcon from "@mui/icons-material/PushPin";
 import { Playlist } from "../../../../Model/Playlist/playlist";
-import classes from "../../style";
-import PlaylistImage from "../../../Util/PlaylistImage/PlaylistImage";
+import classes from "./style";
+import SongPlaylistImage from "../../../Util/SongPlaylistImage/SongPlaylistImage";
 import { useNavigate } from "react-router";
 
 const SidePlaylist = ({
@@ -16,13 +16,13 @@ const SidePlaylist = ({
 
   return (
     <div
-      css={classes.sidePlaylist}
+      css={classes.playlist}
       onClick={() => navigate(`/playlist/${playlist.id}`)}
     >
-      <PlaylistImage playlist={playlist} cssclass={classes.sidePlaylistImage} />
+      <SongPlaylistImage item={playlist} cssclass={classes.image} />
       <div css={classes.sidePlaylistContent(open)}>
         <p>{playlist.name}</p>
-        <div css={classes.sidePlaylistBottom}>
+        <div css={classes.detailsBottom}>
           <div
             css={classes.pin}
             style={{ display: playlist.isPinned ? "" : "none" }}
