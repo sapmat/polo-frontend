@@ -15,6 +15,7 @@ const ScrollBarY = ({
 }) => {
   const [thumbHeight, setThumbHeight] = useState(maxHeight);
   const [thumbPosition, setThumbPosition] = useState(80);
+  const [isDragging, setIsDragging] = useState(false);
   const [cssClass, setCssClass] = useState({
     general: css``,
     track: css``,
@@ -75,9 +76,10 @@ const ScrollBarY = ({
         background: #666;
         opacity: 0.5;
         transition: background 0.3s, opacity 0.3s;
+        cursor: ${isDragging ? "grabbing" : "pointer"};
 
         ${generalHover
-          ? `
+          ? ` 
             display: flex;
             background: #666;
             opacity: 0.5;
@@ -95,12 +97,63 @@ const ScrollBarY = ({
           : `display: none;`}
       `,
     });
-  }, [generalHover, thumbHeight, thumbPosition, width]);
+  }, [generalHover, isDragging, thumbHeight, thumbPosition, width]);
+
+  const handleMouseDown = () => {
+    setIsDragging(true);
+    document.body.style.cursor = "grabbing";
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleMouseMove = (e: MouseEvent) => {
+    if (isDragging && scrollableElementRef.current) {
+      const { clientHeight, scrollHeight } = scrollableElementRef.current;
+      const deltaY = e.movementY;
+      const newThumbPosition = thumbPosition + deltaY;
+
+      if (
+        newThumbPosition >= 0 &&
+        newThumbPosition <= maxHeight - thumbHeight
+      ) {
+        setThumbPosition(newThumbPosition);
+
+        const scrollTop =
+          (newThumbPosition / (maxHeight - thumbHeight)) *
+          (scrollHeight - clientHeight);
+        scrollableElementRef.current.scrollTop = scrollTop;
+      }
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    document.body.style.cursor = "auto";
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [
+    isDragging,
+    thumbPosition,
+    maxHeight,
+    thumbHeight,
+    scrollableElementRef,
+    handleMouseMove,
+  ]);
 
   return (
     <div css={cssClass.general}>
       <div css={cssClass.track}>
-        <div css={cssClass.thumb} />
+        <div
+          css={cssClass.thumb}
+          onMouseDown={handleMouseDown} // Trigger drag on mouse down
+        />
       </div>
     </div>
   );
