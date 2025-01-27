@@ -12,10 +12,21 @@ const classes = {
     color: #aaa;
     padding: 0 30px;
   `,
-  playlists: css`
+  playlistsContainer: css`
+    position: relative;
     display: flex;
     gap: 1em;
     padding: 0 30px;
+    overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  `,
+  playlists: css`
+    position: relative;
+    display: flex;
+    gap: 1em;
     overflow-x: scroll;
 
     &::-webkit-scrollbar {
@@ -31,22 +42,25 @@ const classes = {
     position: relative;
 
     &:hover button {
-      display: flex;
+      opacity: 1;
     }
   `,
   playlistImage: css`
-    height: 10em !important;
+    height: 5em !important;
     border-radius: 5px;
+    font-size: 2em;
   `,
   button: css`
     box-sizing: border-box;
     position: absolute;
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
     right: 30px;
     bottom: -3em;
+    transition: opacity 0.1s ease-in-out;
+    opacity: 0;
   `,
   play: css`
     position: absolute;

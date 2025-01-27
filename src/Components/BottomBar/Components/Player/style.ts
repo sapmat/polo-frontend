@@ -38,7 +38,7 @@ const classes = {
     }
 
     svg {
-      height: 1.4em;
+      height: 1.5em;
       width: 1.5em;
     }
   `,

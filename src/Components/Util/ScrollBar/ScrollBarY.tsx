@@ -151,7 +151,7 @@ const ScrollBarY = ({
       <div css={cssClass.track}>
         <div
           css={cssClass.thumb}
-          onMouseDown={handleMouseDown} // Trigger drag on mouse down
+          onMouseDown={handleMouseDown}
         />
       </div>
     </div>
