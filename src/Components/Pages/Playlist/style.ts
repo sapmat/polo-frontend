@@ -2,44 +2,40 @@
 import { css } from "@emotion/react";
 
 const classes = {
+  general: css`
+    position: relative;
+    height: 100%;
+    width: 100%;
+  `,
   page: css`
     position: relative;
     flex-grow: 1;
     height: 100%;
     overflow-y: scroll;
+    border-radius: 10px;
+    z-index: 0;
 
     &::-webkit-scrollbar {
-      width: 10px;
-      height: 10px;
+      display: none;
     }
-
-    &::-webkit-scrollbar-track {
-      background: none;
-    }
-
-    &:hover&::-webkit-scrollbar-thumb {
-      background: #444;
-      opacity: 0.5;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      &:hover {
-        background: #666;
-        opacity: 0.5;
-      }
-
-      &:active {
-        background: #888;
-        opacity: 0.5;
-      }
-    }
+  `,
+  bigBackground: css`
+    box-sizing: content-box;
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    flex-grow: 1;
+    background: #121212;
+    z-index: -2;
+    border-radius: 10px;
   `,
   mainHeader: (opacity: number) => css`
     width: 100%;
-    padding: 1em 0;
+    padding: 0.75em 1em;
     position: fixed;
     opacity: ${opacity};
     transition: opacity 0.25s ease-in-out;
+    background: rgb(10, 1, 54);
   `,
   playButton: css`
     box-sizing: border-box;
@@ -68,9 +64,11 @@ const classes = {
     gap: 1em;
     width: 100%;
     height: 19em;
-    padding: 1.5em;
+    padding: 1.75em;
     border-radius: 10px 10px 0 0;
-    background: rgb(36, 2, 30);
+    background-color: rgb(80, 40, 32);
+    background-image: linear-gradient(transparent 0, rgba(0, 0, 0, 0.5) 100%),
+      url("/Images/noise.svg");
   `,
   image: css`
     border-radius: 5px;
@@ -99,18 +97,24 @@ const classes = {
     opacity: 0.6;
   `,
   content: css`
+    position: relative;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     height: calc(100% - 19em);
     width: 100%;
     border-radius: 0 0 10px 10px;
-    background: linear-gradient(
-      rgba(56, 5, 48, 0.4) 10%,
-      rgba(33, 2, 39, 0.4) 20%,
-      rgba(17, 17, 17, 0.4) 55%
-    );
-    padding: 0 1.5em;
+    padding: 0 1.75em;
+  `,
+  background: css`
+    position: absolute;
+    left: 0;
+    height: 232px;
+    z-index: -1;
+    width: 100%;
+    background-color: rgb(80, 40, 32);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6) 0%, #121212 100%),
+      url("/Images/noise.svg");
   `,
   contentTop: css`
     padding: 15px 0;

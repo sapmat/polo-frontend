@@ -4,4 +4,5 @@ export interface Song {
   artists: string[];
   image: string;
   album: string;
+  duration: string;
 }

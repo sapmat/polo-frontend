@@ -1,11 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import { useEffect, useState } from "react";
-import { IoTimeOutline } from "react-icons/io5";
 import { Song } from "../../../../../Model/Song/songs";
 import classes from "./style";
 import SongPlaylistImage from "../../../../Util/SongPlaylistImage/SongPlaylistImage";
+import { PlaylistSong } from "../../../../../Model/Playlist/playlist";
 
-const TableRow = ({ index, songId }: { index: number; songId: string }) => {
+const TableRow = ({
+  index,
+  playlistSong,
+}: {
+  index: number;
+  playlistSong: PlaylistSong;
+}) => {
   const [song, setSong] = useState<Song>();
 
   useEffect(() => {
@@ -15,22 +21,34 @@ const TableRow = ({ index, songId }: { index: number; songId: string }) => {
       artists: ["The Fold"],
       audioSrc: "/Audio/The Fold - The Weekend Whip (Official Audio).mp3",
       image: "",
-      album: "LEGO NINJAGO: For the Spinners"
+      album: "LEGO NINJAGO: For the Spinners",
+      duration: "3:30",
     });
   }, []);
 
   if (!song) return <></>;
 
+  const formatDate = () =>
+    new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "2-digit",
+      year: "numeric",
+    }).format(playlistSong.dateAdded);
+
   return (
-    <tr css={classes.row}>
-      <td css={classes.index}>{index + 1}</td>
-      <td css={classes.title}><SongPlaylistImage item={song} cssclass={{}} /></td>
-      <td css={classes.album}>{index}</td>
-      <td css={classes.dateAdded}>{index}</td>
-      <td css={classes.duration}>
-        <IoTimeOutline />
-      </td>
-    </tr>
+    <div css={classes.row}>
+      <div css={classes.index}>{index + 1}</div>
+      <div css={classes.title}>
+        <SongPlaylistImage item={song} cssclass={classes.image} />
+      </div>
+      <div css={classes.album}>{index}</div>
+      <div css={classes.dateAdded}>{formatDate()}</div>
+      <div css={classes.right}>
+        <div css={classes.addToList}></div>
+        <div css={classes.duration}>{song.duration}</div>
+        <div></div>
+      </div>
+    </div>
   );
 };
 
