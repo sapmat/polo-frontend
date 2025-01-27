@@ -29,7 +29,7 @@ const SidePlaylist = ({
           >
             <PushPinIcon sx={{ color: "rgb(153, 0, 255)" }} />
           </div>
-          <p>{playlist.createdBy}</p>
+          <p css={classes.createdBy}>{playlist.createdBy}</p>
         </div>
       </div>
     </div>

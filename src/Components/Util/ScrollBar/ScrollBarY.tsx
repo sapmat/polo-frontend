@@ -63,7 +63,6 @@ const ScrollBarY = ({
         right: 0px;
         height: 100%;
         z-index: 999;
-        border-radius: 0 10px 10px 0;
         overflow: hidden;
         padding-top: ${thumbPosition}px;
       `,

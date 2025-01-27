@@ -23,12 +23,6 @@ const classes = {
   `,
   sidePlaylistContent: (open: boolean) => css`
     display: ${open ? "" : "none"};
-
-    p {
-      box-sizing: border-box;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
   `,
   detailsBottom: css`
     box-sizing: border-box;
@@ -42,6 +36,12 @@ const classes = {
     svg {
       box-sizing: border-box;
     }
+  `,
+  createdBy: css`
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
   `,
 };
 

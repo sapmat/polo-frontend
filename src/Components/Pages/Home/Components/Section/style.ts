@@ -4,17 +4,18 @@ import { css } from "@emotion/react";
 const classes = {
   section: css`
     display: block;
-    max-width: 100%;
     height: 20em;
   `,
   name: css`
     font-size: 1.65em;
     font-weight: 550;
     color: #aaa;
+    padding: 0 30px;
   `,
   playlists: css`
     display: flex;
     gap: 1em;
+    padding: 0 30px;
     overflow-x: scroll;
 
     &::-webkit-scrollbar {
