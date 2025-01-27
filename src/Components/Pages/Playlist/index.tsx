@@ -76,6 +76,7 @@ const PlaylistPage = () => {
     >
       <ScrollBarY
         generalHover={hovering}
+        width={25}
         maxHeight={generalRef.current?.clientHeight || 0}
         scrollableElementRef={pageRef}
       />

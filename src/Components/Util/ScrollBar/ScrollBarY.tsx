@@ -3,10 +3,12 @@ import { css } from "@emotion/react";
 import React, { useEffect, useState } from "react";
 
 const ScrollBarY = ({
+  width,
   generalHover,
   maxHeight,
   scrollableElementRef,
 }: {
+  width: number;
   generalHover: boolean;
   maxHeight: number;
   scrollableElementRef: React.RefObject<HTMLElement>;
@@ -67,15 +69,15 @@ const ScrollBarY = ({
       track: css``,
       thumb: css`
         box-sizing: border-box;
-        width: 25px;
+        width: ${width}px;
         height: ${thumbHeight}px;
         background-clip: border-box;
         background: #666;
         opacity: 0.5;
         transition: background 0.3s, opacity 0.3s;
 
-        ${generalHover &&
-        `
+        ${generalHover
+          ? `
             display: flex;
             background: #666;
             opacity: 0.5;
@@ -89,10 +91,11 @@ const ScrollBarY = ({
               background: #aaa;
               opacity: 0.5;
             }
-          `}
+          `
+          : `display: none;`}
       `,
     });
-  }, [generalHover, thumbHeight, thumbPosition]);
+  }, [generalHover, thumbHeight, thumbPosition, width]);
 
   return (
     <div css={cssClass.general}>
