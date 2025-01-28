@@ -32,12 +32,20 @@ const classes = {
     border-radius: 10px;
   `,
   mainHeader: (opacity: number) => css`
+    display: flex;
+    align-items: center;
     width: 100%;
     padding: 0.75em 1em;
     position: fixed;
     opacity: ${opacity};
     transition: opacity 0.25s ease-in-out;
-    background: rgb(10, 1, 54);
+    background: rgb(69, 32, 80);
+    z-index: 1;
+    gap: 0.5em;
+  `,
+  headerName: css`
+    font-size: 2em;
+    font-weight: 700;
   `,
   playButton: css`
     box-sizing: border-box;
@@ -46,13 +54,13 @@ const classes = {
     height: 100%;
   `,
   play: css`
-    width: 2em !important;
-    height: 2em !important;
+    width: 1.6em !important;
+    height: 1.6em !important;
     color: black;
     background-color: rgb(162, 69, 255);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
     border-radius: 50em;
-    padding: 2px;
+    padding: 7px;
     transition: scale 0.1s ease-in-out;
 
     &:hover {
@@ -68,7 +76,7 @@ const classes = {
     height: 19em;
     padding: 1.75em;
     border-radius: 10px 10px 0 0;
-    background-color: rgb(80, 40, 32);
+    background-color: rgb(62, 32, 80);
     background-image: linear-gradient(transparent 0, rgba(0, 0, 0, 0.5) 100%),
       url("/Images/noise.svg");
   `,
@@ -114,7 +122,7 @@ const classes = {
     height: 232px;
     z-index: -1;
     width: 100%;
-    background-color: rgb(80, 40, 32);
+    background-color: rgb(66, 32, 80);
     background-image: linear-gradient(rgba(0, 0, 0, 0.6) 0%, #121212 100%),
       url("/Images/noise.svg");
   `,

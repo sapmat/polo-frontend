@@ -2,7 +2,7 @@
 import { css } from "@emotion/react";
 
 const classes = {
-  header: css`
+  header: (top: number) => css`
     width: 100%;
     display: grid;
     grid-template-columns:
@@ -10,7 +10,13 @@ const classes = {
       150px;
     color: #b3b3b3;
     padding-bottom: 10px;
-    border-bottom:rgb(109, 109, 109) solid 1px;
+    border-bottom: rgb(109, 109, 109) solid 1px;
+    position: sticky;
+    top: ${top}px;
+    z-index: 10;
+  `,
+  atTop: css`
+    background: white;
   `,
   row: css`
     display: grid;

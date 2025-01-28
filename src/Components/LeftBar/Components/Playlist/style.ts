@@ -9,17 +9,39 @@ const classes = {
     height: 6em;
     gap: 0.5em;
     border-radius: 5px;
+    padding: 5px;
 
     &:hover {
       background-color: #333;
       cursor: pointer;
     }
   `,
-  image: css`
+  imageContainer: css`
+    position: relative;
     height: 3.5em !important;
     min-width: 3.5em !important;
     border-radius: 5px;
+    overflow: hidden;
+  `,
+  image: css`
     background-color: rebeccapurple;
+  `,
+  imagePlay: (show: boolean) => css`
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.41);
+    transition: opacity 0.05s ease-in-out;
+    opacity: ${show ? "1" : "0"};
+    
+    svg {
+      width: 75%;
+      height: 75%;
+    }
   `,
   sidePlaylistContent: (open: boolean) => css`
     display: ${open ? "" : "none"};

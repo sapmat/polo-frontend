@@ -17,6 +17,7 @@ const PlaylistPage = () => {
   const generalRef = useRef<HTMLDivElement>(null);
   const pageRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
+  const mainHeaderRef = useRef<HTMLDivElement>(null);
 
   const [showMainHeader, setShowMainHeader] = useState<number>(0);
   const [hovering, setHovering] = useState<boolean>(false);
@@ -82,7 +83,7 @@ const PlaylistPage = () => {
       />
       <div css={classes.bigBackground} />
       <div className="page" ref={pageRef} css={classes.page}>
-        <header css={classes.mainHeader(showMainHeader)}>
+        <header ref={mainHeaderRef} css={classes.mainHeader(showMainHeader)}>
           <button css={classes.playButton}>
             <PlayArrowIcon
               style={{
@@ -91,6 +92,7 @@ const PlaylistPage = () => {
               css={classes.play}
             />
           </button>
+          <span css={classes.headerName}>{playlist.name}</span>
         </header>
         <div ref={headerRef}>
           <div css={classes.header}>
@@ -123,7 +125,7 @@ const PlaylistPage = () => {
             </button>
           </div>
           <div>
-            <TableHeader />
+            <TableHeader top={mainHeaderRef.current?.clientHeight || 0} />
             {playlist.songs.map((song, index) => (
               <TableRow key={index} index={index} playlistSong={song} />
             ))}

@@ -4,6 +4,7 @@ import { Song } from "../../../../../Model/Song/songs";
 import classes from "./style";
 import SongPlaylistImage from "../../../../Util/SongPlaylistImage/SongPlaylistImage";
 import { PlaylistSong } from "../../../../../Model/Playlist/playlist";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
 const TableRow = ({
   index,
@@ -13,6 +14,7 @@ const TableRow = ({
   playlistSong: PlaylistSong;
 }) => {
   const [song, setSong] = useState<Song>();
+  const [hovering, setHovering] = useState<boolean>(false);
 
   useEffect(() => {
     // TODO API GET SONG
@@ -36,8 +38,22 @@ const TableRow = ({
     }).format(playlistSong.dateAdded);
 
   return (
-    <div css={classes.row}>
-      <div css={classes.index}>{index + 1}</div>
+    <div
+      css={classes.row}
+      onMouseEnter={() => {
+        setHovering(true);
+      }}
+      onMouseLeave={() => {
+        setHovering(false);
+      }}
+    >
+      <div css={classes.index}>
+        {hovering ? (
+          <PlayArrowIcon style={{ color: "white" }} />
+        ) : (
+          <span>{index + 1}</span>
+        )}
+      </div>
       <div css={classes.title}>
         <SongPlaylistImage item={song} cssclass={classes.image} />
       </div>

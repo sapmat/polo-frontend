@@ -23,7 +23,6 @@ const classes = {
     flex-grow: 1;
     overflow-y: scroll;
     overflow-x: hidden;
-    gap: 10px;
 
     &::-webkit-scrollbar {
       display: none;
