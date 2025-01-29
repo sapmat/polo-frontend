@@ -1,47 +1,77 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Song } from "../Model/Song/songs";
-import { Playlist } from "../Model/Playlist/playlist";
 
-interface SongSlice {
-  queue: Song[];
-  playlist: Playlist | null;
-  playedList: Song[];
-  prev: Song | null;
-  song: Song | null;
-  next: Song | null;
-  isPLaying: boolean;
+export interface SongState {
+  currentSong: Song | null;
+  prevSong: Song | null;
+  nextSong: Song | null;
+  isPlaying: boolean;
+  onLoop: boolean;
+  onShuffle: boolean;
 }
 
-const initialState: SongSlice = {
-  queue: [],
-  playlist: null,
-  playedList: [],
-  prev: null,
-  song: null,
-  next: null,
-  isPLaying: false,
+const initialState: SongState = {
+  currentSong: null,
+  prevSong: null,
+  nextSong: null,
+  isPlaying: false,
+  onLoop: false,
+  onShuffle: false,
 };
 
 const songSlice = createSlice({
-  name: "currentSong",
+  name: "playingSong",
   initialState,
   reducers: {
-    changeCurrent: (
+    initStore: (
       state,
-      actions: PayloadAction<{ playlist: Playlist; song: Song }>
+      action: PayloadAction<{
+        songs: (Song | null)[];
+        isPlaying: boolean;
+        onLoop: boolean;
+        onShuffle: boolean;
+      }>
     ) => {
-      state.queue = [];
-      playlist;
+      const { songs, isPlaying, onLoop, onShuffle } = action.payload;
+      state.prevSong = songs[0];
+      state.currentSong = songs[1];
+      state.nextSong = songs[2];
+      state.isPlaying = isPlaying;
+      state.onLoop = onLoop;
+      state.onShuffle = onShuffle;
     },
-    nextSong: (state) => {},
-    prevSong: (state) => {},
+    setPrev: (state, action: PayloadAction<Song | null>) => {
+      const song = action.payload;
+      state.prevSong = song;
+    },
+    setCurrent: (state, action: PayloadAction<Song | null>) => {
+      const song = action.payload;
+      state.currentSong = song;
+    },
+    setNext: (state, action: PayloadAction<Song | null>) => {
+      const song = action.payload;
+      state.nextSong = song;
+    },
+    togglePlaying: (state) => {
+      state.isPlaying = !state.isPlaying;
+    },
+    toggleLoop: (state) => {
+      state.onLoop = !state.onLoop;
+    },
+    toggleShuffle: (state) => {
+      state.onShuffle = !state.onShuffle;
+    },
   },
 });
 
-export const { changeCurrent, nextSong, prevSong } = songSlice.actions;
+export const {
+  initStore,
+  setPrev,
+  setCurrent,
+  setNext,
+  togglePlaying,
+  toggleLoop,
+  toggleShuffle,
+} = songSlice.actions;
 
 export default songSlice.reducer;
-
-/*
-
-*/

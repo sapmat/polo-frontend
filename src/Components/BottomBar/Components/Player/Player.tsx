@@ -8,10 +8,9 @@ import { PiShuffleBold } from "react-icons/pi";
 import { SlLoop } from "react-icons/sl";
 import classes from "./style";
 import { Song } from "../../../../Model/Song/songs";
+import { useMovePointer } from "../../../../Util/LocalStorage/util";
 
 const Player = ({ song }: { song: Song | null }) => {
-  const audioRef = useRef<HTMLAudioElement>(null);
-  // in store
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [progress, setProgress] = useState<number>(0);
   const [totalDuration, setTotalDuration] = useState<number>(0);
@@ -19,18 +18,13 @@ const Player = ({ song }: { song: Song | null }) => {
   const [isShuffle, setShuffle] = useState<boolean>(false);
   const [isLoop, setLoop] = useState<boolean>(false);
 
+  const { movePlaybackPointer } = useMovePointer();
+
+  const audioRef = useRef<HTMLAudioElement>(null);
+
   useEffect(() => {
     handleLoadedMetadata();
   }, [song]);
-
-  useEffect(() => {
-    if (progress === 100) {
-      setProgress(0);
-      setIsPlaying(false);
-    }
-  }, [progress]);
-
-  if (!song) return <></>;
 
   const togglePlayPause = () => {
     if (audioRef.current) {
@@ -74,7 +68,7 @@ const Player = ({ song }: { song: Song | null }) => {
   };
 
   const handleNext = () => {
-    return;
+    movePlaybackPointer(1);
   };
 
   const handlePrev = () => {
@@ -84,9 +78,9 @@ const Player = ({ song }: { song: Song | null }) => {
         audio.currentTime = 0;
         setProgress(0);
       }
+    } else {
+      movePlaybackPointer(-1);
     }
-
-    return;
   };
 
   const handleShuffle = () => {
@@ -134,7 +128,7 @@ const Player = ({ song }: { song: Song | null }) => {
 
       <audio
         ref={audioRef}
-        src={song.audioSrc}
+        src={song ? song.audioSrc : ""}
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
       />

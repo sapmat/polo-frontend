@@ -3,20 +3,31 @@ import BottomBar from "./Components/BottomBar";
 import TopBar from "./Components/TopBar";
 import classes from "./style";
 import LeftBar from "./Components/LeftBar";
-import { Song } from "./Model/Song/songs";
 import RoutesComponent from "./Components/Routes/RoutesComponent";
 import { BrowserRouter as Router } from "react-router";
+import { useDispatch } from "react-redux";
+import { initStore } from "./Store/songSlice";
+import { useEffect } from "react";
+import SongService from "./api/songs";
+import { Song } from "./Model/Song/songs";
 
 function App() {
-  // will be in store
-  const currentSong: Song = {
-    name: "The Weekend Whip",
-    artists: ["The Fold"],
-    audioSrc: "/Audio/The Fold - The Weekend Whip (Official Audio).mp3",
-    image: "TWW",
-    album: "LEGO NINJAGO: For the Spinners",
-    duration: "3:30",
-  };
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    SongService.getSongById("1").then((s1: Song) => {
+      SongService.getSongById("2").then((s2: Song) => {
+        dispatch(
+          initStore({
+            songs: [null, s1, s2],
+            isPlaying: false,
+            onLoop: false,
+            onShuffle: false,
+          })
+        );
+      });
+    });
+  }, [dispatch]);
 
   return (
     <Router>
@@ -26,7 +37,7 @@ function App() {
           <LeftBar />
           <RoutesComponent />
         </div>
-        <BottomBar song={currentSong} />
+        <BottomBar />
       </div>
     </Router>
   );
