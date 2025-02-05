@@ -12,7 +12,6 @@ const TableHeader = ({ top }: { top: number }) => {
       if (headerRef.current) {
         // Check if TableHeader has reached the top of the viewport
         const rect = headerRef.current.getBoundingClientRect();
-        console.log(rect.top);
 
         setIsAtTop(rect.top <= top);
       }

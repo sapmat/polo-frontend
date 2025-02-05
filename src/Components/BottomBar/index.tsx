@@ -11,8 +11,6 @@ const BottomBar = () => {
     (state: any) => state.playback.currentSong
   );
 
-  console.log(currentSong);
-
   return (
     <div css={classes.bottomBar}>
       <div css={classes.section}>
