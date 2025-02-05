@@ -41,16 +41,13 @@ const songSlice = createSlice({
       state.onShuffle = onShuffle;
     },
     setPrev: (state, action: PayloadAction<Song | null>) => {
-      const song = action.payload;
-      state.prevSong = song;
+      state.prevSong = action.payload;
     },
     setCurrent: (state, action: PayloadAction<Song | null>) => {
-      const song = action.payload;
-      state.currentSong = song;
+      state.currentSong = action.payload;
     },
     setNext: (state, action: PayloadAction<Song | null>) => {
-      const song = action.payload;
-      state.nextSong = song;
+      state.nextSong = action.payload;
     },
     togglePlaying: (state) => {
       state.isPlaying = !state.isPlaying;

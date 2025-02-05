@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Playlist } from "../../Model/Playlist/playlist";
+import { useSelector } from "react-redux";
 
 const usePlaylist = () => {
   const [currentPlaylist, setPlaylist] = useState<Playlist>(() => {
@@ -10,6 +11,7 @@ const usePlaylist = () => {
   const [playlistPointer, setPlaylistPointer] = useState<number>(() => {
     return Number(localStorage.getItem("playlistPointer")) || 0;
   });
+  const onLoop: boolean = useSelector((state: any) => state.playback.onLoop);
 
   const updateState = () => {
     setPlaylist(
@@ -26,7 +28,7 @@ const usePlaylist = () => {
     updateState();
   };
 
-  const movePointer = (direction: 1 | -1, onLoop: boolean) => {
+  const movePointer = (direction: 1 | -1) => {
     if (!currentPlaylist) return;
 
     const current: number =

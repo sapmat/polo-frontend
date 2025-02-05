@@ -48,6 +48,7 @@ const Player = ({ song }: { song: Song | null }) => {
 
   const handleLoadedMetadata = () => {
     if (audioRef.current) {
+      setProgress(0);
       setTotalDuration(audioRef.current.duration);
     }
   };
@@ -103,10 +104,20 @@ const Player = ({ song }: { song: Song | null }) => {
         <button css={classes.playButton} onClick={togglePlayPause}>
           {isPlaying ? <PauseCircleIcon /> : <PlayCircleIcon />}
         </button>
-        <button css={classes.skipButtons} onClick={handleNext}>
+        <button
+          css={classes.skipButtons}
+          onClick={() => {
+            handleNext();
+          }}
+        >
           <SkipNextIcon />
         </button>
-        <button css={classes.loopButton} onClick={handleLoop}>
+        <button
+          css={classes.loopButton}
+          onClick={() => {
+            handleLoop();
+          }}
+        >
           <SlLoop color={isLoop ? "#00FF00" : ""} />
         </button>
       </div>

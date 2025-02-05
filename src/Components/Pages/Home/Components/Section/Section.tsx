@@ -31,8 +31,8 @@ const HomeSection = ({
         <ScrollButton playlistsRef={playlistsRef} show={show} isRight={false} />
         <ScrollButton playlistsRef={playlistsRef} show={show} isRight={true} />
         <div ref={playlistsRef} css={classes.playlists}>
-          {playlists.map((playlist) => (
-            <PlaylistBanner playlist={playlist} />
+          {playlists.map((playlist, key) => (
+            <PlaylistBanner key={key} playlist={playlist} />
           ))}
         </div>
       </div>

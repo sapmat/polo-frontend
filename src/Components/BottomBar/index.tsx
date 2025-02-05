@@ -7,7 +7,11 @@ import BottomSongDetails from "./Components/BottomSongDetails/BottomSongDetails"
 import { useSelector } from "react-redux";
 
 const BottomBar = () => {
-  const currentSong: Song = useSelector((state: any) => state.playback.currentSong);
+  const currentSong: Song = useSelector(
+    (state: any) => state.playback.currentSong
+  );
+
+  console.log(currentSong);
 
   return (
     <div css={classes.bottomBar}>

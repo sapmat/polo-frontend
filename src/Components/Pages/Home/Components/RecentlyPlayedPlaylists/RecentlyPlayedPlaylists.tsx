@@ -7,8 +7,8 @@ import classes from "./Components/TopRecentlyPlayedPlaylist/style";
 const RecentlyPlayedPlaylists = () => {
   return (
     <div css={classes.playlists}>
-      {playlists.slice(0, 8).map((playlist: Playlist) => (
-        <TopRecentlyPlayedPlaylist playlist={playlist} />
+      {playlists.slice(0, 8).map((playlist: Playlist, key) => (
+        <TopRecentlyPlayedPlaylist key={key} playlist={playlist} />
       ))}
     </div>
   );

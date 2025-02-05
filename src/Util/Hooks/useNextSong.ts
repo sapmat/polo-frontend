@@ -4,24 +4,30 @@ import { setPrev, setCurrent, setNext } from "../../Store/songSlice";
 import { Song } from "../../Model/Song/songs";
 import SongService from "../../api/songs";
 
-const useNextSong = (nextSongId: string | null) => {
+const useNextSong = () => {
   const dispatch = useDispatch();
-  const currentSong: Song = useSelector((state: any) => state.playback.currentSong);
+  const currentSong: Song = useSelector(
+    (state: any) => state.playback.currentSong
+  );
   const nextSong: Song = useSelector((state: any) => state.playback.nextSong);
 
-  const updateSongs = async () => {
-    try {
-      const nextSongDetails: Song | null = nextSongId ? await SongService.getSongById(nextSongId) : null;
+  const updateSongs = (nextSongId: string | null) => {
+    const nextSongDetailsPromise = nextSongId
+      ? SongService.getSongById(nextSongId)
+      : Promise.resolve(null);
 
-      dispatch(setPrev(currentSong));
-      dispatch(setCurrent(nextSong));
-      dispatch(setNext(nextSongDetails));
-    } catch (error) {
-      console.error("Error fetching songs:", error);
-    }
+    nextSongDetailsPromise
+      .then((nextSongDetails) => {
+        dispatch(setPrev(currentSong));
+        dispatch(setCurrent(nextSong));
+        dispatch(setNext(nextSongDetails));
+      })
+      .catch((error) => {
+        console.error("Error fetching songs:", error);
+      });
   };
 
-  updateSongs();
+  return { updateSongs };
 };
 
 export default useNextSong;
