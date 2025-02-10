@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import TableRow from "./Components/Table/TableRow";
 import TableHeader from "./Components/Table/TableHeader";
 import ScrollBarY from "../../Util/ScrollBar/ScrollBarY";
+import PlayButton from "../../Util/Buttons/PlayButton/PlayButton";
 
 const PlaylistPage = () => {
   const params = useParams();
@@ -114,7 +115,8 @@ const PlaylistPage = () => {
           <div css={classes.background}></div>
           <div css={classes.contentTop}>
             <button css={classes.contentPlayButton}>
-              <PlayArrowIcon css={classes.play} />
+              {/* <PlayArrowIcon css={classes.play} /> */}
+              <PlayButton cssClass={classes.play} />
             </button>
           </div>
           <div>

@@ -7,7 +7,7 @@ const classes = {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    max-width: ${open ? "18vw" : ""};
+    max-width: ${open ? "15.5vw" : ""};
     min-width: ${open ? "15em" : "5em"};
     max-height: 100%;
     overflow: hidden;

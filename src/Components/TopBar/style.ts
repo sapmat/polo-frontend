@@ -9,7 +9,7 @@ const classes = {
     justify-content: space-between;
     align-items: center;
     width: 100vw;
-    padding: 10px 2em;
+    padding: 8px 2em;
   `,
 
   threeDots: css`

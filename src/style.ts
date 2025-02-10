@@ -17,7 +17,7 @@ const classes = {
     width: 100%;
     flex-grow: 1;
     overflow: hidden;
-    gap: 1em;
+    gap: 0.5em;
   `,
 };
 

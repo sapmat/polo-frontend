@@ -45,26 +45,12 @@ const classes = {
     }
   `,
   shuffleButton: css`
-    opacity: 0.75;
-
-    &:hover {
-      opacity: 1;
-    }
-
     svg {
       height: 1.6em;
       width: 1.5em;
     }
   `,
-  loopButton: (isLoop: boolean) => css`
-    path {
-      fill: ${isLoop ? "red" : "#b3b3b3"};
-
-      &:hover {
-        color: white;
-      }
-    }
-
+  loopButton: css`
     svg {
       height: 1.4em;
       width: 1.5em;
