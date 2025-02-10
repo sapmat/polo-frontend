@@ -11,7 +11,7 @@ const usePlaylist = () => {
   const [playlistPointer, setPlaylistPointer] = useState<number>(() => {
     return Number(localStorage.getItem("playlistPointer")) || 0;
   });
-  const onLoop: boolean = useSelector((state: any) => state.playback.onLoop);
+  const isLoop: boolean = useSelector((state: any) => state.playback.isLoop);
 
   const updateState = () => {
     setPlaylist(
@@ -35,7 +35,7 @@ const usePlaylist = () => {
       Number(localStorage.getItem("playlistPointer")) || 0;
     let next;
 
-    if (onLoop) {
+    if (isLoop) {
       next = (current + direction) % currentPlaylist.songs.length;
       if (next < 0) next += currentPlaylist.songs.length;
     } else {

@@ -29,7 +29,7 @@ const SidePlaylist = ({
       }}
     >
       <div css={classes.imageContainer}>
-        <SongPlaylistImage item={playlist} cssclass={classes.image} />
+        <SongPlaylistImage item={playlist} cssClass={classes.image} />
         <div css={classes.imagePlay(hovering)}>
           <PlayArrowIcon
             style={{

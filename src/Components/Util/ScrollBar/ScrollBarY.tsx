@@ -16,7 +16,7 @@ const ScrollBarY = ({
   const [thumbHeight, setThumbHeight] = useState(maxHeight);
   const [thumbPosition, setThumbPosition] = useState(80);
   const [isDragging, setIsDragging] = useState(false);
-  const [cssClass, setCssClass] = useState({
+  const [cssClass, setcssClass] = useState({
     general: css``,
     track: css``,
     thumb: css``,
@@ -56,7 +56,7 @@ const ScrollBarY = ({
   }, [maxHeight, scrollableElementRef, thumbHeight]);
 
   useEffect(() => {
-    setCssClass({
+    setcssClass({
       general: css`
         box-sizing: border-box;
         position: absolute;
@@ -149,10 +149,7 @@ const ScrollBarY = ({
   return (
     <div css={cssClass.general}>
       <div css={cssClass.track}>
-        <div
-          css={cssClass.thumb}
-          onMouseDown={handleMouseDown}
-        />
+        <div css={cssClass.thumb} onMouseDown={handleMouseDown} />
       </div>
     </div>
   );

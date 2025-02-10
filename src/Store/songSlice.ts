@@ -6,8 +6,8 @@ export interface SongState {
   prevSong: Song | null;
   nextSong: Song | null;
   isPlaying: boolean;
-  onLoop: boolean;
-  onShuffle: boolean;
+  isLoop: boolean;
+  isShuffle: boolean;
 }
 
 const initialState: SongState = {
@@ -15,8 +15,8 @@ const initialState: SongState = {
   prevSong: null,
   nextSong: null,
   isPlaying: false,
-  onLoop: false,
-  onShuffle: false,
+  isLoop: false,
+  isShuffle: false,
 };
 
 const songSlice = createSlice({
@@ -28,17 +28,17 @@ const songSlice = createSlice({
       action: PayloadAction<{
         songs: (Song | null)[];
         isPlaying: boolean;
-        onLoop: boolean;
-        onShuffle: boolean;
+        isLoop: boolean;
+        isShuffle: boolean;
       }>
     ) => {
-      const { songs, isPlaying, onLoop, onShuffle } = action.payload;
+      const { songs, isPlaying, isLoop, isShuffle } = action.payload;
       state.prevSong = songs[0];
       state.currentSong = songs[1];
       state.nextSong = songs[2];
       state.isPlaying = isPlaying;
-      state.onLoop = onLoop;
-      state.onShuffle = onShuffle;
+      state.isLoop = isLoop;
+      state.isShuffle = isShuffle;
     },
     setPrev: (state, action: PayloadAction<Song | null>) => {
       state.prevSong = action.payload;
@@ -53,10 +53,10 @@ const songSlice = createSlice({
       state.isPlaying = !state.isPlaying;
     },
     toggleLoop: (state) => {
-      state.onLoop = !state.onLoop;
+      state.isLoop = !state.isLoop;
     },
     toggleShuffle: (state) => {
-      state.onShuffle = !state.onShuffle;
+      state.isShuffle = !state.isShuffle;
     },
   },
 });

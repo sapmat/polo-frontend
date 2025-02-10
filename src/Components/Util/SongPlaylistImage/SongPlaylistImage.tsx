@@ -6,10 +6,10 @@ import { Song } from "../../../Model/Song/songs";
 
 const SongPlaylistImage = ({
   item,
-  cssclass,
+  cssClass,
 }: {
   item: Playlist | Song;
-  cssclass: Interpolation<Theme>;
+  cssClass: Interpolation<Theme>;
 }) => {
   const getImage = () =>
     item.name
@@ -20,9 +20,9 @@ const SongPlaylistImage = ({
   return (
     <>
       {item.image ? (
-        <img css={[cssclass, classes.image]} src={item.image} />
+        <img css={[cssClass, classes.image]} src={item.image} />
       ) : (
-        <div css={[cssclass, classes.image]}>{getImage()}</div>
+        <div css={[cssClass, classes.image]}>{getImage()}</div>
       )}
     </>
   );

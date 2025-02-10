@@ -18,16 +18,18 @@ const classes = {
     }
   `,
   playButton: css`
-    opacity: 0.85;
+    box-sizing: border-box;
+    width: 1.4em !important;
+    height: 1.4em !important;
+    color: black;
+    background-color: #ddd;
+    border-radius: 50em;
+    padding: 3px;
+    transition: scale 0.1s ease-in-out;
 
     &:hover {
-      opacity: 1;
-      scale: 1.1;
-    }
-
-    svg {
-      height: 1.7em;
-      width: 1.7em;
+      scale: 1.05;
+      background-color: #fff;
     }
   `,
   skipButtons: css`
@@ -54,11 +56,13 @@ const classes = {
       width: 1.5em;
     }
   `,
-  loopButton: css`
-    opacity: 0.75;
+  loopButton: (isLoop: boolean) => css`
+    path {
+      fill: ${isLoop ? "red" : "#b3b3b3"};
 
-    &:hover {
-      opacity: 1;
+      &:hover {
+        color: white;
+      }
     }
 
     svg {

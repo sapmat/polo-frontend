@@ -1,7 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { useEffect, useRef, useState } from "react";
-import PlayCircleIcon from "@mui/icons-material/PlayCircle";
-import PauseCircleIcon from "@mui/icons-material/PauseCircle";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import { PiShuffleBold } from "react-icons/pi";
@@ -9,14 +7,21 @@ import { SlLoop } from "react-icons/sl";
 import classes from "./style";
 import { Song } from "../../../../Model/Song/songs";
 import { useMovePointer } from "../../../../Util/LocalStorage/util";
+import PlayButton from "../../../Util/PlayButton/PlayButton";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleLoop, toggleShuffle } from "../../../../Store/songSlice";
 
 const Player = ({ song }: { song: Song | null }) => {
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const dispatch = useDispatch();
   const [progress, setProgress] = useState<number>(0);
   const [totalDuration, setTotalDuration] = useState<number>(0);
-
-  const [isShuffle, setShuffle] = useState<boolean>(false);
-  const [isLoop, setLoop] = useState<boolean>(false);
+  const isPlaying: boolean = useSelector(
+    (state: any) => state.playback.isPlaying
+  );
+  const isShuffle: boolean = useSelector(
+    (state: any) => state.playback.isShuffle
+  );
+  const isLoop: boolean = useSelector((state: any) => state.playback.isLoop);
 
   const { movePlaybackPointer } = useMovePointer();
 
@@ -26,7 +31,7 @@ const Player = ({ song }: { song: Song | null }) => {
     handleLoadedMetadata();
   }, [song]);
 
-  const togglePlayPause = () => {
+  useEffect(() => {
     if (audioRef.current) {
       const audio = audioRef.current;
       if (isPlaying) {
@@ -34,9 +39,8 @@ const Player = ({ song }: { song: Song | null }) => {
       } else {
         audio.play();
       }
-      setIsPlaying(!isPlaying);
     }
-  };
+  }, [isPlaying]);
 
   const handleTimeUpdate = () => {
     if (audioRef.current) {
@@ -85,11 +89,11 @@ const Player = ({ song }: { song: Song | null }) => {
   };
 
   const handleShuffle = () => {
-    setShuffle((prev) => !prev);
+    dispatch(toggleShuffle());
   };
 
   const handleLoop = () => {
-    setLoop((prev) => !prev);
+    dispatch(toggleLoop());
   };
 
   return (
@@ -101,8 +105,8 @@ const Player = ({ song }: { song: Song | null }) => {
         <button css={classes.skipButtons} onClick={handlePrev}>
           <SkipPreviousIcon />
         </button>
-        <button css={classes.playButton} onClick={togglePlayPause}>
-          {isPlaying ? <PauseCircleIcon /> : <PlayCircleIcon />}
+        <button>
+          <PlayButton cssClass={classes.playButton} />
         </button>
         <button
           css={classes.skipButtons}
@@ -113,12 +117,16 @@ const Player = ({ song }: { song: Song | null }) => {
           <SkipNextIcon />
         </button>
         <button
-          css={classes.loopButton}
+          css={classes.loopButton(isLoop)}
           onClick={() => {
             handleLoop();
           }}
         >
-          <SlLoop color={isLoop ? "#00FF00" : ""} />
+          <svg>
+            <path
+              d="M0 4.75A3.75 3.75 0 0 1 3.75 1h8.5A3.75 3.75 0 0 1 16 4.75v5a3.75 3.75 0 0 1-3.75 3.75H9.81l1.018 1.018a.75.75 0 1 1-1.06 1.06L6.939 12.75l2.829-2.828a.75.75 0 1 1 1.06 1.06L9.811 12h2.439a2.25 2.25 0 0 0 2.25-2.25v-5a2.25 2.25 0 0 0-2.25-2.25h-8.5A2.25 2.25 0 0 0 1.5 4.75v5A2.25 2.25 0 0 0 3.75 12H5v1.5H3.75A3.75 3.75 0 0 1 0 9.75v-5z"
+            />
+          </svg>
         </button>
       </div>
 

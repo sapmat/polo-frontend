@@ -19,7 +19,7 @@ const TopRecentlyPlayedPlaylist = ({ playlist }: { playlist: Playlist }) => {
       css={classes.playlist}
       onClick={() => navigate(`/playlist/${playlist.id}`)}
     >
-      <PlaylistImage cssclass={classes.image} item={playlist} />
+      <PlaylistImage cssClass={classes.image} item={playlist} />
       <div css={classes.name}>{playlist.name}</div>
       <button
         css={classes.button}

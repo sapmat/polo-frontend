@@ -82,21 +82,19 @@ const PlaylistPage = () => {
         scrollableElementRef={pageRef}
       />
       <div css={classes.bigBackground} />
-      <div className="page" ref={pageRef} css={classes.page}>
-        <header ref={mainHeaderRef} css={classes.mainHeader(showMainHeader)}>
+      <header ref={mainHeaderRef} css={classes.mainHeader(showMainHeader)}>
+        <div css={classes.headerPlay}>
           <button css={classes.playButton}>
-            <PlayArrowIcon
-              style={{
-                color: "black",
-              }}
-              css={classes.play}
-            />
+            <PlayArrowIcon css={classes.play} />
           </button>
           <span css={classes.headerName}>{playlist.name}</span>
-        </header>
+        </div>
+        <TableHeader isAtTop />
+      </header>
+      <div className="page" ref={pageRef} css={classes.page}>
         <div ref={headerRef}>
           <div css={classes.header}>
-            <PlaylistImage item={playlist} cssclass={classes.image} />
+            <PlaylistImage item={playlist} cssClass={classes.image} />
             <div css={classes.details}>
               <div>{`${
                 playlist.isPrivate ? "Private" : "Public"
@@ -116,16 +114,11 @@ const PlaylistPage = () => {
           <div css={classes.background}></div>
           <div css={classes.contentTop}>
             <button css={classes.contentPlayButton}>
-              <PlayArrowIcon
-                style={{
-                  color: "black",
-                }}
-                css={classes.contentPlay}
-              />
+              <PlayArrowIcon css={classes.play} />
             </button>
           </div>
           <div>
-            <TableHeader top={mainHeaderRef.current?.clientHeight || 0} />
+            <TableHeader isAtTop={false} />
             {playlist.songs.map((song, index) => (
               <TableRow key={index} index={index} playlistSong={song} />
             ))}

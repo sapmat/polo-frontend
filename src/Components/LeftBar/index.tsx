@@ -35,7 +35,7 @@ const LeftBar = () => {
         <ScrollBarY
           generalHover={hovering}
           width={15}
-          maxHeight={leftBarRef.current?.clientHeight || 0}
+          maxHeight={playlistsRef.current?.clientHeight || 0}
           scrollableElementRef={playlistsRef}
         />
         {playlists.map((playlist, index) => (

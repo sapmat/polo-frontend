@@ -14,7 +14,7 @@ const PlaylistBanner = ({ playlist }: { playlist: Playlist }) => {
       onClick={() => navigate(`/playlist/${playlist.id}`)}
     >
       <div css={classes.imageContainer}>
-        <SongPlaylistImage item={playlist} cssclass={classes.playlistImage} />
+        <SongPlaylistImage item={playlist} cssClass={classes.playlistImage} />
         <button css={classes.button}>
           <PlayArrowIcon
             style={{

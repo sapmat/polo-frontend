@@ -2,21 +2,17 @@
 import { css } from "@emotion/react";
 
 const classes = {
-  header: (top: number) => css`
+  header: (isAtTop: boolean) => css`
+    box-sizing: border-box;
     width: 100%;
     display: grid;
     grid-template-columns:
       3em minmax(120px, 6fr) minmax(120px, 4fr) minmax(120px, 3fr)
       150px;
     color: #b3b3b3;
-    padding-bottom: 10px;
+    padding: ${isAtTop ? "10px" : '0'} 0 10px 0;
     border-bottom: rgb(109, 109, 109) solid 1px;
-    position: sticky;
-    top: ${top}px;
-    z-index: 10;
-  `,
-  atTop: css`
-    background: white;
+    ${isAtTop && `background-color: #222`}
   `,
   row: css`
     display: grid;

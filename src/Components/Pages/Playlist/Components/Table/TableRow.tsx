@@ -55,7 +55,7 @@ const TableRow = ({
         )}
       </div>
       <div css={classes.title}>
-        <SongPlaylistImage item={song} cssclass={classes.image} />
+        <SongPlaylistImage item={song} cssClass={classes.image} />
       </div>
       <div css={classes.album}>{index}</div>
       <div css={classes.dateAdded}>{formatDate()}</div>

@@ -8,6 +8,8 @@ const classes = {
     width: 100%;
     border-radius: 10px;
     overflow: hidden;
+    display: flex; /* Add this */
+    flex-direction: column; /* Add this */
   `,
   page: css`
     position: relative;
@@ -22,7 +24,7 @@ const classes = {
     }
   `,
   bigBackground: css`
-    box-sizing: content-box;
+    box-sizing: border-box;
     position: absolute;
     width: 100%;
     min-height: 100%;
@@ -32,15 +34,21 @@ const classes = {
     border-radius: 10px;
   `,
   mainHeader: (opacity: number) => css`
+    box-sizing: border-box;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    opacity: ${opacity};
+    z-index: 10;
+    transition: opacity 0.25s ease-in-out;
+  `,
+  headerPlay: css`
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     width: 100%;
     padding: 0.75em 1em;
-    position: fixed;
-    opacity: ${opacity};
-    transition: opacity 0.25s ease-in-out;
     background: rgb(69, 32, 80);
-    z-index: 1;
     gap: 0.5em;
   `,
   headerName: css`
@@ -54,17 +62,16 @@ const classes = {
     height: 100%;
   `,
   play: css`
-    width: 1.6em !important;
-    height: 1.6em !important;
     color: black;
     background-color: rgb(162, 69, 255);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
     border-radius: 50em;
-    padding: 7px;
+    padding: 10px;
     transition: scale 0.1s ease-in-out;
 
     &:hover {
-      scale: 1.1;
+      scale: 1.05;
+      background-color: rgb(187, 119, 255);
     }
   `,
   header: css`
@@ -127,28 +134,13 @@ const classes = {
       url("/Images/noise.svg");
   `,
   contentTop: css`
-    padding: 15px 0;
+    padding: 0.75em 0;
   `,
   contentPlayButton: css`
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
     height: 100%;
-  `,
-  contentPlay: css`
-    width: 1.5em !important;
-    height: 1.5em !important;
-    color: black;
-    background-color: rgb(162, 69, 255);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
-    border-radius: 50em;
-    padding: 10px;
-    transition: scale 0.1s ease-in-out;
-
-    &:hover {
-      scale: 1.05;
-      background-color: rgb(187, 119, 255);
-    }
   `,
 };
 

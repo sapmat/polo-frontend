@@ -21,8 +21,8 @@ function App() {
           initStore({
             songs: [null, s1, s2],
             isPlaying: false,
-            onLoop: false,
-            onShuffle: false,
+            isLoop: false,
+            isShuffle: false,
           })
         );
       });
