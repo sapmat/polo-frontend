@@ -66,13 +66,16 @@ const classes = {
     background-color: rgb(162, 69, 255);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
     border-radius: 50em;
-    padding: 10px;
+    height: 1.5em;
+    width: 1.5em;
+    padding: 12px;
     transition: scale 0.1s ease-in-out;
 
     &:hover {
       scale: 1.05;
       background-color: rgb(187, 119, 255);
     }
+
   `,
   header: css`
     box-sizing: border-box;

@@ -1,29 +1,19 @@
 /** @jsxImportSource @emotion/react */
 import { useEffect, useRef, useState } from "react";
-import SkipNextIcon from "@mui/icons-material/SkipNext";
-import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
-import { PiShuffleBold } from "react-icons/pi";
 import classes from "./style";
 import { Song } from "../../../../Model/Song/songs";
 import { useMovePointer } from "../../../../Util/LocalStorage/util";
 import PlayButton from "../../../Util/Buttons/PlayButton/PlayButton";
-import { useDispatch, useSelector } from "react-redux";
-import { toggleLoop, toggleShuffle } from "../../../../Store/songSlice";
+import { useSelector } from "react-redux";
 import ShuffleButton from "../../../Util/Buttons/ShuffleButton/ShuffleButton";
 import LoopButton from "../../../Util/Buttons/LoopButton/LoopButton";
 
 const Player = ({ song }: { song: Song | null }) => {
-  const dispatch = useDispatch();
   const [progress, setProgress] = useState<number>(0);
   const [totalDuration, setTotalDuration] = useState<number>(0);
   const isPlaying: boolean = useSelector(
     (state: any) => state.playback.isPlaying
   );
-  const isShuffle: boolean = useSelector(
-    (state: any) => state.playback.isShuffle
-  );
-  const isLoop: boolean = useSelector((state: any) => state.playback.isLoop);
-
   const { movePlaybackPointer } = useMovePointer();
 
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -94,7 +84,9 @@ const Player = ({ song }: { song: Song | null }) => {
       <div css={classes.buttons}>
         <ShuffleButton cssClass={classes.shuffleButton} />
         <button css={classes.skipButtons} onClick={handlePrev}>
-          <SkipPreviousIcon />
+          <svg>
+            <path d="M3.3 1a.7.7 0 0 1 .7.7v5.15l9.95-5.744a.7.7 0 0 1 1.05.606v12.575a.7.7 0 0 1-1.05.607L4 9.149V14.3a.7.7 0 0 1-.7.7H1.7a.7.7 0 0 1-.7-.7V1.7a.7.7 0 0 1 .7-.7h1.6z" />
+          </svg>
         </button>
         <button>
           <PlayButton cssClass={classes.playButton} />
@@ -105,7 +97,9 @@ const Player = ({ song }: { song: Song | null }) => {
             handleNext();
           }}
         >
-          <SkipNextIcon />
+          <svg>
+            <path d="M12.7 1a.7.7 0 0 0-.7.7v5.15L2.05 1.107A.7.7 0 0 0 1 1.712v12.575a.7.7 0 0 0 1.05.607L12 9.149V14.3a.7.7 0 0 0 .7.7h1.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7h-1.6z" />
+          </svg>
         </button>
         <LoopButton cssClass={classes.loopButton} />
       </div>

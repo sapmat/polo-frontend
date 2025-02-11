@@ -11,7 +11,7 @@ const classes = {
     min-width: ${open ? "15em" : "5em"};
     max-height: 100%;
     overflow: hidden;
-    padding: 10px;
+    padding: 10px 10px 0 10px;
     background-color: #111;
     border-radius: 10px;
     gap: 0.1em;

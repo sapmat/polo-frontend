@@ -114,10 +114,9 @@ const PlaylistPage = () => {
         <div css={classes.content}>
           <div css={classes.background}></div>
           <div css={classes.contentTop}>
-            <button css={classes.contentPlayButton}>
-              {/* <PlayArrowIcon css={classes.play} /> */}
+            <div css={{ display: "flex" }}>
               <PlayButton cssClass={classes.play} />
-            </button>
+            </div>
           </div>
           <div>
             <TableHeader isAtTop={false} />

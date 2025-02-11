@@ -13,11 +13,12 @@ const classes = {
     height: 3.5em;
     min-width: 3.5em;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     padding: 0 10px;
     opacity: 0.75;
     gap: 1em;
+    transition: opacity 0.15s ease-in-out;
 
     &:hover {
       opacity: 1;
@@ -27,6 +28,7 @@ const classes = {
       height: 60%;
       aspect-ratio: 1 / 1;
       width: auto;
+      min-width: 3.5em;
     }
 
     p {

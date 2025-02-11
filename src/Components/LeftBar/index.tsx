@@ -19,22 +19,22 @@ const LeftBar = () => {
   };
 
   return (
-    <div
-      ref={leftBarRef}
-      css={classes.leftBar(open)}
-      onMouseEnter={() => {
-        setHovering(true);
-      }}
-      onMouseLeave={() => {
-        setHovering(false);
-      }}
-    >
+    <div ref={leftBarRef} css={classes.leftBar(open)}>
       <OpenBarButton open={open} setOpen={setOpen} />
       <Filter />
-      <div ref={playlistsRef} css={classes.playlists}>
+      <div
+        ref={playlistsRef}
+        css={classes.playlists}
+        onMouseEnter={() => {
+          setHovering(true);
+        }}
+        onMouseLeave={() => {
+          setHovering(false);
+        }}
+      >
         <ScrollBarY
           generalHover={hovering}
-          width={15}
+          width={12}
           maxHeight={playlistsRef.current?.clientHeight || 0}
           scrollableElementRef={playlistsRef}
         />

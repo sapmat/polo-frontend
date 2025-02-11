@@ -9,7 +9,7 @@ const classes = {
     justify-content: space-between;
     align-items: center;
     width: 100vw;
-    height: 8vh;
+    height: 20vh;
   `,
   section: css`
     flex: 1;

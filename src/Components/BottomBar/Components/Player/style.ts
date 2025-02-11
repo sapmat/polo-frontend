@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { theme } from "../../../../theme";
 
 const classes = {
   player: css`
@@ -10,7 +11,8 @@ const classes = {
     display: flex;
     flex-direction: row;
     justify-content: center;
-
+    gap: 1em;
+  
     button {
       display: flex;
       justify-content: center;
@@ -33,6 +35,7 @@ const classes = {
     }
   `,
   skipButtons: css`
+    padding: 0;
     opacity: 0.75;
 
     &:hover {
@@ -42,18 +45,22 @@ const classes = {
     svg {
       height: 1.5em;
       width: 1.5em;
+
+      path {
+        fill: ${theme.colors.default.buttons.default}
+      }
     }
   `,
   shuffleButton: css`
     svg {
-      height: 1.6em;
-      width: 1.5em;
+      height: 1.2em;
+      width: 1.2em;
     }
   `,
   loopButton: css`
     svg {
-      height: 1.4em;
-      width: 1.5em;
+      height: 1.2em;
+      width: 1.2em;
     }
   `,
   progressBar: css`
