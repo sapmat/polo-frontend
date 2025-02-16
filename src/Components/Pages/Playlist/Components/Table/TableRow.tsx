@@ -5,6 +5,7 @@ import classes from "./style";
 import SongPlaylistImage from "../../../../Util/SongPlaylistImage/SongPlaylistImage";
 import { PlaylistSong } from "../../../../../Model/Playlist/playlist";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import SongService from "../../../../../api/songs";
 
 const TableRow = ({
   index,
@@ -17,15 +18,7 @@ const TableRow = ({
   const [hovering, setHovering] = useState<boolean>(false);
 
   useEffect(() => {
-    // TODO API GET SONG
-    setSong({
-      name: "The Weekend Whip",
-      artists: ["The Fold"],
-      audioSrc: "/Audio/The Fold - The Weekend Whip (Official Audio).mp3",
-      image: "",
-      album: "LEGO NINJAGO: For the Spinners",
-      duration: "3:30",
-    });
+    SongService.getSongById(playlistSong.songId).then((song) => setSong(song));
   }, []);
 
   if (!song) return <></>;
@@ -57,7 +50,7 @@ const TableRow = ({
       <div css={classes.title}>
         <SongPlaylistImage item={song} cssClass={classes.image} />
       </div>
-      <div css={classes.album}>{index}</div>
+      <div css={classes.album}>{song.album}</div>
       <div css={classes.dateAdded}>{formatDate()}</div>
       <div css={classes.right}>
         <div css={classes.addToList}></div>

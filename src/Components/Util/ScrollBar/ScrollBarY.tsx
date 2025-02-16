@@ -73,8 +73,7 @@ const ScrollBarY = ({
         height: ${thumbHeight}px;
         background-clip: border-box;
         background: #666;
-        opacity: 0.5;
-        transition: background 0.3s, opacity 0.3s;
+        transition: background 0.3s ease-in-out, opacity 0.3s ease-in-out;
         cursor: ${isDragging ? "grabbing" : "pointer"};
 
         ${generalHover
@@ -93,7 +92,7 @@ const ScrollBarY = ({
               opacity: 0.5;
             }
           `
-          : `display: none;`}
+          : `opacity: 0;`}
       `,
     });
   }, [generalHover, isDragging, thumbHeight, thumbPosition, width]);

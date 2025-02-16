@@ -44,6 +44,8 @@ const useQueue = () => {
     const updatedQueue: Song[] = queue.filter((_, i) => i !== index);
     localStorage.setItem("queue", JSON.stringify(updatedQueue));
 
+    window.dispatchEvent(new Event("local-storage-queue-changed"));
+
     if (updatedQueue.length === 0) {
       localStorage.setItem("queuePointer", "-1");
     } else if (queuePointer >= updatedQueue.length) {
@@ -52,6 +54,9 @@ const useQueue = () => {
         (updatedQueue.length - 1).toString()
       );
     }
+
+    window.dispatchEvent(new Event("local-storage-queue-pointer-changed"));
+
 
     updateState();
   };
@@ -68,16 +73,46 @@ const useQueue = () => {
       localStorage.setItem("queuePointer", next.toString());
     }
 
+    window.dispatchEvent(new Event("local-storage-queue-pointer-changed"));
+
     updateState();
   };
 
   useEffect(() => {
-    const handleStorageChange = () => updateState();
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
+    const handleStorageChange = () => {
+      updateState();
+    };
+
+    window.addEventListener(
+      "local-storage-queue-changed",
+      handleStorageChange
+    );
+    window.addEventListener(
+      "local-storage-queue-pointer-changed",
+      handleStorageChange
+    );
+
+    return () => {
+      window.removeEventListener(
+        "local-storage-queue-changed",
+        handleStorageChange
+      );
+      window.removeEventListener(
+        "local-storage-queue-pointer-changed",
+        handleStorageChange
+      );
+    };
   }, []);
 
-  return { queue, queuePointer, addToQueue, removeFromQueue, moveQueuePointer };
+  return {
+    queue,
+    queuePointer,
+    setQueue,
+    setQueuePointer,
+    addToQueue,
+    removeFromQueue,
+    moveQueuePointer,
+  };
 };
 
 export default useQueue;

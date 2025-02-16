@@ -1,8 +1,3 @@
-export interface PlaylistSong {
-  songId: string;
-  dateAdded: Date;
-}
-
 export interface Playlist {
   id: string;
   name: string;
@@ -12,4 +7,14 @@ export interface Playlist {
   createdBy: string;
   isPinned: boolean;
   isPrivate: boolean;
+}
+
+export interface PlaylistSong {
+  songId: string;
+  dateAdded: Date;
+}
+
+export interface LocalStoragePlaylist {
+  id: string | undefined;
+  songs: PlaylistSong[];
 }

@@ -1,5 +1,6 @@
 import axios from "axios";
-import { Song } from "../Model/Song/songs";
+import { DefaultSong, Song } from "../Model/Song/songs";
+import { songs } from "../data";
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
@@ -15,25 +16,9 @@ class SongService {
     return axiosInstance.put(`/song`, { song });
   }
 
-  static async getSongById(id: string): Promise<Song> {
+  static async getSongById(id: string): Promise<Song | undefined> {
     // return axios.get(`/song/${id}`);
-    return id === "1"
-      ? {
-          name: "The Weekend Whip",
-          artists: ["The Fold"],
-          audioSrc: "/Audio/The Fold - The Weekend Whip (Official Audio).mp3",
-          image: "TWW",
-          album: "LEGO NINJAGO: For the Spinners",
-          duration: "3:30",
-        }
-      : {
-          name: "The Weekend Whip 2",
-          artists: ["The Fold"],
-          audioSrc: "/Audio/The Fold - The Weekend Whip (Official Audio).mp3",
-          image: "TWW",
-          album: "LEGO NINJAGO: For the Spinners",
-          duration: "3:30",
-        };
+    return songs.find((song) => song.id == id);
   }
 }
 

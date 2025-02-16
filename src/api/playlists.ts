@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Playlist } from "../Model/Playlist/playlist";
+import { playlists } from "../data";
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
@@ -11,12 +12,13 @@ const axiosInstance = axios.create({
 });
 
 class PlaylistService {
-  static async createPlaylist(playlist: Playlist) {
+  static async createPlaylist(playlist: Playlist): Promise<void> {
     return axiosInstance.put(`/playlist`, { playlist });
   }
 
-  static async getPlaylist(id: string) {
-    return axios.get(`/playlist/${id}`);
+  static async getPlaylist(id: string): Promise<Playlist | undefined> {
+    // return axios.get(`/playlist/${id}`);
+    return playlists.find((playlist) => playlist.id === id);
   }
 }
 

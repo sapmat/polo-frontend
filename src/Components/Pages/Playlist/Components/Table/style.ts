@@ -39,7 +39,8 @@ const classes = {
     align-items: center;
   `,
   image: css`
-    height: 1em;
+    max-height: 2.5em;
+    width: 2.5em;
     border-radius: 2px;
     color: white;
   `,

@@ -2,7 +2,7 @@
 import { Song } from "../../../../Model/Song/songs";
 import classes from "./style";
 
-const BottomSongDetails = ({ song }: { song: Song | null }) => {
+const BottomSongDetails = ({ song }: { song: Song | undefined }) => {
   if (!song) return <></>;
 
   return (

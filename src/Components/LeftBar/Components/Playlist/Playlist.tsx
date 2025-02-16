@@ -6,6 +6,10 @@ import SongPlaylistImage from "../../../Util/SongPlaylistImage/SongPlaylistImage
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useNavigate } from "react-router";
 import { useState } from "react";
+import usePlaylist from "../../../../Util/LocalStorage/usePlaylist";
+import useSong from "../../../../Util/LocalStorage/useSong";
+import { setPlaying, togglePlaying } from "../../../../Store/songSlice";
+import { useDispatch } from "react-redux";
 
 const SidePlaylist = ({
   playlist,
@@ -14,8 +18,25 @@ const SidePlaylist = ({
   playlist: Playlist;
   open: boolean;
 }) => {
-  const [hovering, setHovering] = useState<boolean>(false);
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
+  const [hovering, setHovering] = useState<boolean>(false);
+
+  const { currentPlaylist, setCurrentPlaylist } = usePlaylist();
+  const { updateCurrentSongId } = useSong();
+
+  const clickedImage = () => {
+    if (playlist.id === currentPlaylist?.id) {
+      dispatch(togglePlaying());
+    } else {
+      console.log(playlist.songs[0].songId);
+
+      setCurrentPlaylist(playlist);
+      updateCurrentSongId(playlist.songs[0].songId);
+      dispatch(setPlaying(true));
+    }
+  };
 
   return (
     <div
@@ -28,7 +49,13 @@ const SidePlaylist = ({
         setHovering(false);
       }}
     >
-      <div css={classes.imageContainer}>
+      <div
+        css={classes.imageContainer}
+        onClick={(e) => {
+          e.stopPropagation();
+          clickedImage();
+        }}
+      >
         <SongPlaylistImage item={playlist} cssClass={classes.image} />
         <div css={classes.imagePlay(hovering)}>
           <PlayArrowIcon

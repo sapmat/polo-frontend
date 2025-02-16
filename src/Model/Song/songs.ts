@@ -1,4 +1,5 @@
 export interface Song {
+  id: string;
   name: string;
   audioSrc: string;
   artists: string[];
@@ -6,3 +7,13 @@ export interface Song {
   album: string;
   duration: string;
 }
+
+export const DefaultSong = {
+  id: "Undefined",
+  name: "Undefined",
+  artists: ["Undefined"],
+  audioSrc: "",
+  image: "NUN",
+  album: "Undefined",
+  duration: "Undefined",
+};

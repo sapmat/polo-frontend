@@ -4,12 +4,21 @@ import { Song } from "../../Model/Song/songs";
 import classes from "./style";
 import Player from "./Components/Player/Player";
 import BottomSongDetails from "./Components/BottomSongDetails/BottomSongDetails";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import SongService from "../../api/songs";
+import useSong from "../../Util/LocalStorage/useSong";
 
 const BottomBar = () => {
-  const currentSong: Song = useSelector(
-    (state: any) => state.playback.currentSong
-  );
+  const { currentSongId } = useSong();
+  const [currentSong, setCurrentSong] = useState<Song>();
+
+  useEffect(() => {
+    console.log("hi", currentSongId);
+
+    SongService.getSongById(currentSongId || "").then((res) => {
+      setCurrentSong(res);
+    });
+  }, [currentSongId]);
 
   return (
     <div css={classes.bottomBar}>

@@ -26,7 +26,7 @@ const classes = {
     color: black;
     background-color: #ddd;
     border-radius: 50em;
-    padding: 3px;
+    padding: 5px;
     transition: scale 0.1s ease-in-out;
 
     &:hover {

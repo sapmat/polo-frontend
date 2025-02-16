@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { Playlist } from "../../Model/Playlist/playlist";
 import { useSelector } from "react-redux";
+import { LocalStoragePlaylist, Playlist } from "../../Model/Playlist/playlist";
 
 const usePlaylist = () => {
-  const [currentPlaylist, setPlaylist] = useState<Playlist>(() => {
+  const [currentPlaylist, setPlaylist] = useState<LocalStoragePlaylist>(() => {
     const storedPlaylist = localStorage.getItem("playlist");
     return storedPlaylist ? JSON.parse(storedPlaylist) : [];
   });
@@ -22,9 +22,16 @@ const usePlaylist = () => {
     setPlaylistPointer(Number(localStorage.getItem("playlistPointer")) || 0);
   };
 
-  const setCurrentPlaylist = (newPlaylist: Playlist, playlistPointer = 0) => {
-    localStorage.setItem("playlist", JSON.stringify(newPlaylist));
+  const setCurrentPlaylist = (
+    newPlaylist: Playlist | LocalStoragePlaylist,
+    playlistPointer = 0
+  ) => {
+    const { id, songs } = newPlaylist;
+    const filteredPlaylist: LocalStoragePlaylist = { id, songs };
+    localStorage.setItem("playlist", JSON.stringify(filteredPlaylist));
     localStorage.setItem("playlistPointer", playlistPointer.toString());
+    window.dispatchEvent(new Event("local-storage-playlist-changed"));
+    window.dispatchEvent(new Event("local-storage-playlist-pointer-changed"));
     updateState();
   };
 
@@ -46,16 +53,43 @@ const usePlaylist = () => {
     }
 
     localStorage.setItem("playlistPointer", next.toString());
+    window.dispatchEvent(new Event("local-storage-playlist-pointer-changed"));
     updateState();
   };
 
   useEffect(() => {
-    const handleStorageChange = () => updateState();
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
+    const handleStorageChange = () => {
+      updateState();
+    };
+
+    window.addEventListener(
+      "local-storage-playlist-changed",
+      handleStorageChange
+    );
+    window.addEventListener(
+      "local-storage-playlist-pointer-changed",
+      handleStorageChange
+    );
+
+    return () => {
+      window.removeEventListener(
+        "local-storage-playlist-changed",
+        handleStorageChange
+      );
+      window.removeEventListener(
+        "local-storage-playlist-pointer-changed",
+        handleStorageChange
+      );
+    };
   }, []);
 
-  return { currentPlaylist, playlistPointer, setCurrentPlaylist, movePointer };
+  return {
+    currentPlaylist,
+    playlistPointer,
+    setCurrentPlaylist,
+    setPlaylistPointer,
+    movePointer,
+  };
 };
 
 export default usePlaylist;

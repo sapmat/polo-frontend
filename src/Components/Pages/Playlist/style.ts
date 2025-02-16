@@ -14,7 +14,6 @@ const classes = {
   page: css`
     position: relative;
     flex-grow: 1;
-    height: 100%;
     overflow-y: scroll;
     border-radius: 10px;
     z-index: 0;
@@ -121,7 +120,6 @@ const classes = {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    height: calc(100% - 19em);
     width: 100%;
     border-radius: 0 0 10px 10px;
     padding: 0 1.75em;

@@ -2,21 +2,24 @@
 import { useEffect, useRef, useState } from "react";
 import classes from "./style";
 import { Song } from "../../../../Model/Song/songs";
-import { useMovePointer } from "../../../../Util/LocalStorage/util";
+import { useMovePointer } from "../../../../Util/Hooks/useMovePointer";
 import PlayButton from "../../../Util/Buttons/PlayButton/PlayButton";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ShuffleButton from "../../../Util/Buttons/ShuffleButton/ShuffleButton";
 import LoopButton from "../../../Util/Buttons/LoopButton/LoopButton";
+import { togglePlaying } from "../../../../Store/songSlice";
 
-const Player = ({ song }: { song: Song | null }) => {
+const Player = ({ song }: { song: Song | undefined }) => {
   const [progress, setProgress] = useState<number>(0);
   const [totalDuration, setTotalDuration] = useState<number>(0);
+  const dispatch = useDispatch();
   const isPlaying: boolean = useSelector(
     (state: any) => state.playback.isPlaying
   );
-  const { movePlaybackPointer } = useMovePointer();
 
   const audioRef = useRef<HTMLAudioElement>(null);
+
+  const { movePlaybackPointer } = useMovePointer();
 
   useEffect(() => {
     handleLoadedMetadata();
@@ -26,12 +29,12 @@ const Player = ({ song }: { song: Song | null }) => {
     if (audioRef.current) {
       const audio = audioRef.current;
       if (isPlaying) {
-        audio.pause();
-      } else {
         audio.play();
+      } else {
+        audio.pause();
       }
     }
-  }, [isPlaying]);
+  }, [isPlaying, song]);
 
   const handleTimeUpdate = () => {
     if (audioRef.current) {
@@ -79,6 +82,10 @@ const Player = ({ song }: { song: Song | null }) => {
     }
   };
 
+  const togglePlay = () => {
+    dispatch(togglePlaying());
+  };
+
   return (
     <div css={classes.player}>
       <div css={classes.buttons}>
@@ -89,7 +96,11 @@ const Player = ({ song }: { song: Song | null }) => {
           </svg>
         </button>
         <button>
-          <PlayButton cssClass={classes.playButton} />
+          <PlayButton
+            cssClass={classes.playButton}
+            isPlaying={isPlaying}
+            togglePlay={togglePlay}
+          />
         </button>
         <button
           css={classes.skipButtons}

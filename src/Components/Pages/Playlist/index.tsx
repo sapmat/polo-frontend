@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { useParams } from "react-router";
 import classes from "./style";
-import { playlists } from "../../../data";
 import PlaylistImage from "../../Util/SongPlaylistImage/SongPlaylistImage";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useEffect, useRef, useState } from "react";
@@ -9,11 +8,18 @@ import TableRow from "./Components/Table/TableRow";
 import TableHeader from "./Components/Table/TableHeader";
 import ScrollBarY from "../../Util/ScrollBar/ScrollBarY";
 import PlayButton from "../../Util/Buttons/PlayButton/PlayButton";
+import { useDispatch, useSelector } from "react-redux";
+import { togglePlaying, setPlaying } from "../../../Store/songSlice";
+import usePlaylist from "../../../Util/LocalStorage/usePlaylist";
+import { Playlist } from "../../../Model/Playlist/playlist";
+import PlaylistService from "../../../api/playlists";
+import useSong from "../../../Util/LocalStorage/useSong";
 
 const PlaylistPage = () => {
+  const dispatch = useDispatch();
   const params = useParams();
   const id: string = params.id || "";
-  const playlist = playlists.find((p) => p.id === id);
+  const [playlist, setPlaylist] = useState<Playlist>();
 
   const generalRef = useRef<HTMLDivElement>(null);
   const pageRef = useRef<HTMLDivElement>(null);
@@ -22,6 +28,17 @@ const PlaylistPage = () => {
 
   const [showMainHeader, setShowMainHeader] = useState<number>(0);
   const [hovering, setHovering] = useState<boolean>(false);
+
+  const { currentPlaylist, setCurrentPlaylist } = usePlaylist();
+  const { updateCurrentSongId } = useSong();
+
+  const isPlaying: boolean = useSelector(
+    (state: any) => state.playback.isPlaying
+  );
+
+  useEffect(() => {
+    PlaylistService.getPlaylist(id).then((res) => setPlaylist(res));
+  }, [id]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,6 +82,21 @@ const PlaylistPage = () => {
       playlist.songs.length > 1 ? "s" : ""
     }, ${formatDuration()}`;
 
+  const togglePlay = () => {
+    if (playlist.id === currentPlaylist?.id) {
+      dispatch(togglePlaying());
+    } else {
+      console.log(playlist.songs[0].songId);
+
+      setCurrentPlaylist(playlist);
+      updateCurrentSongId(playlist.songs[0].songId);
+      dispatch(setPlaying(true));
+    }
+  };
+
+  const isPlaylistPlaying = (): boolean =>
+    currentPlaylist.id === playlist.id && isPlaying;  
+
   return (
     <div
       ref={generalRef}
@@ -78,7 +110,7 @@ const PlaylistPage = () => {
     >
       <ScrollBarY
         generalHover={hovering}
-        width={25}
+        width={15}
         maxHeight={generalRef.current?.clientHeight || 0}
         scrollableElementRef={pageRef}
       />
@@ -115,14 +147,20 @@ const PlaylistPage = () => {
           <div css={classes.background}></div>
           <div css={classes.contentTop}>
             <div css={{ display: "flex" }}>
-              <PlayButton cssClass={classes.play} />
+              <PlayButton
+                cssClass={classes.play}
+                isPlaying={isPlaylistPlaying()}
+                togglePlay={togglePlay}
+              />
             </div>
           </div>
           <div>
             <TableHeader isAtTop={false} />
-            {playlist.songs.map((song, index) => (
-              <TableRow key={index} index={index} playlistSong={song} />
-            ))}
+            {playlist.songs.map((song, index) => {
+              return (
+                <TableRow key={song.songId} index={index} playlistSong={song} />
+              );
+            })}
           </div>
         </div>
       </div>
