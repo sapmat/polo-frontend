@@ -4,12 +4,13 @@ import { css } from "@emotion/react";
 const classes = {
   general: css`
     position: relative;
-    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    border-radius: 10px;
+    height: 100%;
     overflow: hidden;
-    display: flex; /* Add this */
-    flex-direction: column; /* Add this */
+    border-radius: 10px;
   `,
   page: css`
     position: relative;
@@ -74,7 +75,6 @@ const classes = {
       scale: 1.05;
       background-color: rgb(187, 119, 255);
     }
-
   `,
   header: css`
     box-sizing: border-box;

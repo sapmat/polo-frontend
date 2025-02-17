@@ -11,7 +11,6 @@ const LeftBar = () => {
   const [open, changeOpen] = useState<boolean>(true);
   const [hovering, setHovering] = useState<boolean>(false);
 
-  const leftBarRef = useRef<HTMLDivElement>(null);
   const playlistsRef = useRef<HTMLDivElement>(null);
 
   const setOpen = () => {
@@ -19,7 +18,7 @@ const LeftBar = () => {
   };
 
   return (
-    <div ref={leftBarRef} css={classes.leftBar(open)}>
+    <div css={classes.leftBar(open)}>
       <OpenBarButton open={open} setOpen={setOpen} />
       <Filter />
       <div

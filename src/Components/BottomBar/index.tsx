@@ -30,7 +30,11 @@ const BottomBar = () => {
         <Player song={currentSong} />
       </div>
 
-      <div css={classes.section}></div>
+      <div css={classes.section}>
+        //! view current song
+        //! view queue
+        //! volume
+      </div>
     </div>
   );
 };

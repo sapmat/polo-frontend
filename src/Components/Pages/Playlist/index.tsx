@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import classes from "./style";
 import PlaylistImage from "../../Util/SongPlaylistImage/SongPlaylistImage";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import TableRow from "./Components/Table/TableRow";
 import TableHeader from "./Components/Table/TableHeader";
 import ScrollBarY from "../../Util/ScrollBar/ScrollBarY";
@@ -14,6 +14,7 @@ import usePlaylist from "../../../Util/LocalStorage/usePlaylist";
 import { Playlist } from "../../../Model/Playlist/playlist";
 import PlaylistService from "../../../api/playlists";
 import useSong from "../../../Util/LocalStorage/useSong";
+import { v4 as uuidv4 } from "uuid";
 
 const PlaylistPage = () => {
   const dispatch = useDispatch();
@@ -26,8 +27,18 @@ const PlaylistPage = () => {
   const headerRef = useRef<HTMLDivElement>(null);
   const mainHeaderRef = useRef<HTMLDivElement>(null);
 
+  const [scrollbar, setScrollbar] = useState<JSX.Element>();
+
   const [showMainHeader, setShowMainHeader] = useState<number>(0);
   const [hovering, setHovering] = useState<boolean>(false);
+
+  const memoizedSongs = useMemo(
+    () =>
+      playlist?.songs.map((song, index) => (
+        <TableRow key={uuidv4()} index={index} playlistSong={song} />
+      )),
+    [playlist?.songs] 
+  );
 
   const { currentPlaylist, setCurrentPlaylist } = usePlaylist();
   const { updateCurrentSongId } = useSong();
@@ -67,7 +78,20 @@ const PlaylistPage = () => {
         scrollContainer.removeEventListener("scroll", handleScroll);
       }
     };
-  }, []);
+  }, [pageRef.current]);
+
+  useEffect(() => {
+    console.log(pageRef.current);
+
+    setScrollbar(
+      <ScrollBarY
+        generalHover={hovering}
+        width={15}
+        maxHeight={generalRef.current?.clientHeight || 0}
+        scrollableElementRef={pageRef}
+      />
+    );
+  }, [pageRef.current, hovering]);
 
   if (!playlist) return <></>;
 
@@ -95,7 +119,7 @@ const PlaylistPage = () => {
   };
 
   const isPlaylistPlaying = (): boolean =>
-    currentPlaylist.id === playlist.id && isPlaying;  
+    currentPlaylist.id === playlist.id && isPlaying;
 
   return (
     <div
@@ -108,12 +132,13 @@ const PlaylistPage = () => {
         setHovering(false);
       }}
     >
-      <ScrollBarY
+      {/* <ScrollBarY
         generalHover={hovering}
         width={15}
         maxHeight={generalRef.current?.clientHeight || 0}
         scrollableElementRef={pageRef}
-      />
+      /> */}
+      {scrollbar}
       <div css={classes.bigBackground} />
       <header ref={mainHeaderRef} css={classes.mainHeader(showMainHeader)}>
         <div css={classes.headerPlay}>
@@ -156,11 +181,7 @@ const PlaylistPage = () => {
           </div>
           <div>
             <TableHeader isAtTop={false} />
-            {playlist.songs.map((song, index) => {
-              return (
-                <TableRow key={song.songId} index={index} playlistSong={song} />
-              );
-            })}
+            {memoizedSongs}
           </div>
         </div>
       </div>
