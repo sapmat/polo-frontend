@@ -7,11 +7,13 @@ const ScrollBarY = ({
   generalHover,
   maxHeight,
   scrollableElementRef,
+  reload,
 }: {
   width: number;
   generalHover: boolean;
   maxHeight: number;
   scrollableElementRef: React.RefObject<HTMLElement>;
+  reload: any;
 }) => {
   const [thumbHeight, setThumbHeight] = useState(maxHeight);
   const [thumbPosition, setThumbPosition] = useState(80);
@@ -21,13 +23,21 @@ const ScrollBarY = ({
     track: css``,
     thumb: css``,
   });
+  const [noScroll, setNoScroll] = useState(false);
 
   useEffect(() => {
     if (scrollableElementRef.current) {
       const { clientHeight, scrollHeight } = scrollableElementRef.current;
       setThumbHeight((clientHeight / scrollHeight) * maxHeight);
+      setNoScroll(clientHeight / scrollHeight === 1);
     }
-  }, [maxHeight, scrollableElementRef.current]);
+  }, [
+    reload,
+    maxHeight,
+    scrollableElementRef.current,
+    scrollableElementRef.current?.clientHeight,
+    scrollableElementRef.current?.scrollHeight,
+  ]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,7 +86,7 @@ const ScrollBarY = ({
         transition: background 0.3s ease-in-out, opacity 0.3s ease-in-out;
         cursor: ${isDragging ? "grabbing" : "pointer"};
 
-        ${generalHover
+        ${!noScroll && generalHover
           ? ` 
             display: flex;
             background: #666;

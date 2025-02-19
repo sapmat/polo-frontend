@@ -37,11 +37,6 @@ const classes = {
     background: rgba(0, 0, 0, 0.41);
     transition: opacity 0.05s ease-in-out;
     opacity: ${show ? "1" : "0"};
-    
-    svg {
-      width: 75%;
-      height: 75%;
-    }
   `,
   sidePlaylistContent: (open: boolean) => css`
     display: ${open ? "" : "none"};

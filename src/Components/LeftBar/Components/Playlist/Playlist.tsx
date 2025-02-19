@@ -10,6 +10,7 @@ import usePlaylist from "../../../../Util/LocalStorage/usePlaylist";
 import useSong from "../../../../Util/LocalStorage/useSong";
 import { setPlaying, togglePlaying } from "../../../../Store/songSlice";
 import { useDispatch } from "react-redux";
+import PlayButton from "../../../Util/Buttons/PlayButton/PlayButton";
 
 const SidePlaylist = ({
   playlist,
@@ -26,7 +27,7 @@ const SidePlaylist = ({
   const { currentPlaylist, setCurrentPlaylist } = usePlaylist();
   const { updateCurrentSongId } = useSong();
 
-  const clickedImage = () => {
+  const togglePlay = () => {
     if (playlist.id === currentPlaylist?.id) {
       dispatch(togglePlaying());
     } else {
@@ -53,16 +54,11 @@ const SidePlaylist = ({
         css={classes.imageContainer}
         onClick={(e) => {
           e.stopPropagation();
-          clickedImage();
         }}
       >
         <SongPlaylistImage item={playlist} cssClass={classes.image} />
         <div css={classes.imagePlay(hovering)}>
-          <PlayArrowIcon
-            style={{
-              color: "white",
-            }}
-          />
+          <PlayButton isPlaying={true} togglePlay={togglePlay} />
         </div>
       </div>
       <div css={classes.sidePlaylistContent(open)}>

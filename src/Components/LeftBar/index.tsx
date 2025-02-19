@@ -36,6 +36,7 @@ const LeftBar = () => {
           width={12}
           maxHeight={playlistsRef.current?.clientHeight || 0}
           scrollableElementRef={playlistsRef}
+          reload={playlists.length}
         />
         {playlists.map((playlist, index) => (
           <SidePlaylist key={index} playlist={playlist} open={open} />

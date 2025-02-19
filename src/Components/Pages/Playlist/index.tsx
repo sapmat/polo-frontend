@@ -81,7 +81,7 @@ const PlaylistPage = () => {
   }, [pageRef.current]);
 
   useEffect(() => {
-    console.log(pageRef.current);
+    // console.log(pageRef.current);
 
     setScrollbar(
       <ScrollBarY
@@ -89,9 +89,10 @@ const PlaylistPage = () => {
         width={15}
         maxHeight={generalRef.current?.clientHeight || 0}
         scrollableElementRef={pageRef}
+        reload={id}
       />
     );
-  }, [pageRef.current, hovering]);
+  }, [id, pageRef.current, hovering]);
 
   if (!playlist) return <></>;
 
@@ -132,12 +133,6 @@ const PlaylistPage = () => {
         setHovering(false);
       }}
     >
-      {/* <ScrollBarY
-        generalHover={hovering}
-        width={15}
-        maxHeight={generalRef.current?.clientHeight || 0}
-        scrollableElementRef={pageRef}
-      /> */}
       {scrollbar}
       <div css={classes.bigBackground} />
       <header ref={mainHeaderRef} css={classes.mainHeader(showMainHeader)}>

@@ -6,13 +6,13 @@ import { Song } from "../../../../Model/Song/songs";
 import { Playlist } from "../../../../Model/Playlist/playlist";
 
 const PlayButton = ({
-  cssClass,
+  cssClass = {},
   isPlaying,
   togglePlay,
   song,
   playlist,
 }: {
-  cssClass: Interpolation<Theme>;
+  cssClass?: Interpolation<Theme>;
   isPlaying: boolean;
   togglePlay: () => void;
   song?: Song;
