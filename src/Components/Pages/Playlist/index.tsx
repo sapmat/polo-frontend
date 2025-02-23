@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { useParams } from "react-router";
 import classes from "./style";
-import PlaylistImage from "../../Util/SongPlaylistImage/SongPlaylistImage";
+import PlaylistImage from "../../Util/ItemImage/ItemImage";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useEffect, useMemo, useRef, useState } from "react";
 import TableRow from "./Components/Table/TableRow";
@@ -37,7 +37,7 @@ const PlaylistPage = () => {
       playlist?.songs.map((song, index) => (
         <TableRow key={uuidv4()} index={index} playlistSong={song} />
       )),
-    [playlist?.songs] 
+    [playlist?.songs]
   );
 
   const { currentPlaylist, setCurrentPlaylist } = usePlaylist();

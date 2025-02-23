@@ -38,6 +38,14 @@ const classes = {
     transition: opacity 0.05s ease-in-out;
     opacity: ${show ? "1" : "0"};
   `,
+  playButton: css`
+    color: white;
+    border-radius: 50em;
+    height: 1.5em;
+    width: 1.5em;
+    padding: 12px;
+    transition: scale 0.1s ease-in-out;
+  `,
   sidePlaylistContent: (open: boolean) => css`
     display: ${open ? "" : "none"};
   `,

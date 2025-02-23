@@ -2,14 +2,13 @@
 import PushPinIcon from "@mui/icons-material/PushPin";
 import { Playlist } from "../../../../Model/Playlist/playlist";
 import classes from "./style";
-import SongPlaylistImage from "../../../Util/SongPlaylistImage/SongPlaylistImage";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import ItemImage from "../../../Util/ItemImage/ItemImage";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import usePlaylist from "../../../../Util/LocalStorage/usePlaylist";
 import useSong from "../../../../Util/LocalStorage/useSong";
 import { setPlaying, togglePlaying } from "../../../../Store/songSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PlayButton from "../../../Util/Buttons/PlayButton/PlayButton";
 
 const SidePlaylist = ({
@@ -20,6 +19,9 @@ const SidePlaylist = ({
   open: boolean;
 }) => {
   const dispatch = useDispatch();
+  const isPlaying: boolean = useSelector(
+    (state: any) => state.playback.isPlaying
+  );
 
   const navigate = useNavigate();
   const [hovering, setHovering] = useState<boolean>(false);
@@ -31,12 +33,14 @@ const SidePlaylist = ({
     if (playlist.id === currentPlaylist?.id) {
       dispatch(togglePlaying());
     } else {
-      console.log(playlist.songs[0].songId);
-
       setCurrentPlaylist(playlist);
       updateCurrentSongId(playlist.songs[0].songId);
       dispatch(setPlaying(true));
     }
+  };
+
+  const checkPlaying = (): boolean => {
+    return currentPlaylist.id === playlist.id && isPlaying;
   };
 
   return (
@@ -50,15 +54,14 @@ const SidePlaylist = ({
         setHovering(false);
       }}
     >
-      <div
-        css={classes.imageContainer}
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-      >
-        <SongPlaylistImage item={playlist} cssClass={classes.image} />
+      <div css={classes.imageContainer}>
+        <ItemImage item={playlist} cssClass={classes.image} />
         <div css={classes.imagePlay(hovering)}>
-          <PlayButton isPlaying={true} togglePlay={togglePlay} />
+          <PlayButton
+            cssClass={classes.playButton}
+            isPlaying={checkPlaying()}
+            togglePlay={togglePlay}
+          />
         </div>
       </div>
       <div css={classes.sidePlaylistContent(open)}>

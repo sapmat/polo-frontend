@@ -25,7 +25,7 @@ const Home = () => {
     >
       <ScrollBarY
         generalHover={hovering}
-        width={25}
+        width={20}
         maxHeight={containerRef.current?.clientHeight || 0}
         scrollableElementRef={homeRef}
       />

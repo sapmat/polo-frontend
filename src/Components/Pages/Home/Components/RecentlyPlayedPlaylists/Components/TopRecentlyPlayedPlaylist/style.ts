@@ -53,17 +53,17 @@ const classes = {
     justify-content: center;
     align-items: center;
     height: 100%;
-    right: 30px;
+    right: 0px;
   `,
   play: css`
     position: absolute;
-    width: 1.75em !important;
-    height: 1.75em !important;
+    width: 1.5em !important;
+    height: 1.5em !important;
     color: black;
     background-color: rgb(162, 69, 255);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
     border-radius: 50em;
-    padding: 2px;
+    padding: 5px;
     transition: scale 0.1s ease-in-out;
 
     &:hover {

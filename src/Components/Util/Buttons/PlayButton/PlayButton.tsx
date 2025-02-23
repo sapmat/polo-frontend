@@ -4,6 +4,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import { Song } from "../../../../Model/Song/songs";
 import { Playlist } from "../../../../Model/Playlist/playlist";
+import classes from "./style";
 
 const PlayButton = ({
   cssClass = {},
@@ -21,7 +22,13 @@ const PlayButton = ({
   const pressPlay = () => {};
 
   return (
-    <div onClick={togglePlay}>
+    <div
+      css={classes.root}
+      onClick={(e) => {
+        e.stopPropagation();
+        togglePlay();
+      }}
+    >
       {isPlaying ? (
         <PauseIcon css={cssClass} />
       ) : (

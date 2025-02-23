@@ -6,7 +6,7 @@ import { Song } from "../../../Model/Song/songs";
 import { useEffect, useRef } from "react";
 import { getDominantColor } from "../../../Util/Colors/GetDominanteColor";
 
-const SongPlaylistImage = ({
+const ItemImage = ({
   item,
   cssClass,
 }: {
@@ -40,4 +40,4 @@ const SongPlaylistImage = ({
   );
 };
 
-export default SongPlaylistImage;
+export default ItemImage;

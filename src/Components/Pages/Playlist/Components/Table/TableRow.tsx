@@ -2,10 +2,10 @@
 import { useEffect, useState } from "react";
 import { Song } from "../../../../../Model/Song/songs";
 import classes from "./style";
-import SongPlaylistImage from "../../../../Util/SongPlaylistImage/SongPlaylistImage";
 import { PlaylistSong } from "../../../../../Model/Playlist/playlist";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import SongService from "../../../../../api/songs";
+import ItemImage from "../../../../Util/ItemImage/ItemImage";
 
 const TableRow = ({
   index,
@@ -48,7 +48,7 @@ const TableRow = ({
         )}
       </div>
       <div css={classes.title}>
-        <SongPlaylistImage item={song} cssClass={classes.image} />
+        <ItemImage item={song} cssClass={classes.image} />
       </div>
       <div css={classes.album}>{song.album}</div>
       <div css={classes.dateAdded}>{formatDate()}</div>

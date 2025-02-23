@@ -13,7 +13,7 @@ const ScrollBarY = ({
   generalHover: boolean;
   maxHeight: number;
   scrollableElementRef: React.RefObject<HTMLElement>;
-  reload: any;
+  reload?: any;
 }) => {
   const [thumbHeight, setThumbHeight] = useState(maxHeight);
   const [thumbPosition, setThumbPosition] = useState(80);

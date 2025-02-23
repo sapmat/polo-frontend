@@ -53,14 +53,19 @@ const classes = {
   button: css`
     box-sizing: border-box;
     position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100%;
-    right: 30px;
-    bottom: -3em;
+    right: 0;
+    bottom: 0;
     transition: opacity 0.1s ease-in-out;
     opacity: 0;
+
+    div {
+      box-sizing: border-box;
+      display: flex;
+      justify-content: end;
+      align-items: end;
+      padding: 1em;
+    }
   `,
   play: css`
     position: absolute;
