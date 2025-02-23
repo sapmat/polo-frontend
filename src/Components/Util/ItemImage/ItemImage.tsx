@@ -4,23 +4,29 @@ import { Playlist } from "../../../Model/Playlist/playlist";
 import classes from "./style";
 import { Song } from "../../../Model/Song/songs";
 import { useEffect, useRef } from "react";
-import { getDominantColor } from "../../../Util/Colors/GetDominanteColor";
+import { getDominantColor } from "../../../Util/Colors/GetDominantColor";
 
 const ItemImage = ({
   item,
   cssClass,
+  setDominantColor,
 }: {
   item: Playlist | Song;
   cssClass: Interpolation<Theme>;
+  setDominantColor?: (v: string) => void;
 }) => {
   const imageRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     // Ensure the image is loaded before trying to get the dominant color
-    if (imageRef.current) {
-      const dominantColor: string = getDominantColor(imageRef.current);
+    if (setDominantColor) {
+      if (imageRef.current) {
+        setDominantColor(getDominantColor(imageRef.current));
+      } else {
+        setDominantColor("#3e2050");
+      }
     }
-  }, []);
+  }, [item]);
 
   const getImage = () =>
     item.name

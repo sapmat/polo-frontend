@@ -6,11 +6,7 @@ const useShuffle = () => {
   });
 
   const updateState = (): void => {
-    const storedIsShuffle: boolean = JSON.parse(
-      localStorage.getItem("isShuffle") || "false"
-    );
-
-    setIsShuffle(storedIsShuffle);
+    localStorage.setItem("isShuffle", JSON.stringify(isShuffle));
   };
 
   const switchShuffle = () => {

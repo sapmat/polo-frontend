@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import classes from "../../style";
 import ItemImage from "../../../../../../Util/ItemImage/ItemImage";
 import PlayButton from "../../../../../../Util/Buttons/PlayButton/PlayButton";

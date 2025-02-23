@@ -39,6 +39,7 @@ const classes = {
     cursor: pointer;
   `,
   imageContainer: css`
+    box-sizing: border-box;
     position: relative;
 
     &:hover button {
@@ -53,7 +54,6 @@ const classes = {
   button: css`
     box-sizing: border-box;
     position: absolute;
-    height: 100%;
     right: 0;
     bottom: 0;
     transition: opacity 0.1s ease-in-out;
@@ -69,13 +69,15 @@ const classes = {
   `,
   play: css`
     position: absolute;
-    width: 2em !important;
-    height: 2em !important;
+    right: 10px;
+    bottom: 10px;
+    width: 1.5em !important;
+    height: 1.5em !important;
     color: black;
     background-color: rgb(162, 69, 255);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
     border-radius: 50em;
-    padding: 2px;
+    padding: 5px;
     transition: scale 0.1s ease-in-out;
 
     &:hover {

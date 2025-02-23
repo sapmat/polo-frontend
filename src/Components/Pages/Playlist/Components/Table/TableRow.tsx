@@ -2,20 +2,24 @@
 import { useEffect, useState } from "react";
 import { Song } from "../../../../../Model/Song/songs";
 import classes from "./style";
-import { PlaylistSong } from "../../../../../Model/Playlist/playlist";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import { Playlist, PlaylistSong } from "../../../../../Model/Playlist/playlist";
 import SongService from "../../../../../api/songs";
 import ItemImage from "../../../../Util/ItemImage/ItemImage";
+import PlayButton from "../../../../Util/Buttons/PlayButton/PlayButton";
+import { useDispatch, useSelector } from "react-redux";
+import useSong from "../../../../../Util/LocalStorage/useSong";
+import usePlaylist from "../../../../../Util/LocalStorage/usePlaylist";
+import { setPlaying, togglePlaying } from "../../../../../Store/songSlice";
 
-const TableRow = ({
-  index,
-  playlistSong,
-}: {
-  index: number;
-  playlistSong: PlaylistSong;
-}) => {
+const TableRow = ({ index, playlistSong, playlist }: { index: number; playlistSong: PlaylistSong; playlist: Playlist }) => {
+  const dispatch = useDispatch();
+  const isPlaying: boolean = useSelector((state: any) => state.playback.isPlaying);
+
   const [song, setSong] = useState<Song>();
   const [hovering, setHovering] = useState<boolean>(false);
+
+  const { currentPlaylist, setCurrentPlaylist } = usePlaylist();
+  const { updateCurrentSongId } = useSong();
 
   useEffect(() => {
     SongService.getSongById(playlistSong.songId).then((song) => setSong(song));
@@ -23,11 +27,25 @@ const TableRow = ({
 
   if (!song) return <></>;
 
+  const handlePlay = () => {
+    if (playlist.id === currentPlaylist?.id) {
+      dispatch(togglePlaying());
+    } else {
+      setCurrentPlaylist(playlist);
+      updateCurrentSongId(playlist.songs[0].songId);
+      dispatch(setPlaying(true));
+    }
+  };
+
+  const checkPlaying = (): boolean => {
+    return currentPlaylist.id === playlist.id && isPlaying;
+  };
+
   const formatDate = () =>
-    new Intl.DateTimeFormat("en-US", {
-      month: "short",
-      day: "2-digit",
-      year: "numeric",
+    new Intl.DateTimeFormat('en-US', {
+      month: 'short',
+      day: '2-digit',
+      year: 'numeric',
     }).format(playlistSong.dateAdded);
 
   return (
@@ -40,13 +58,7 @@ const TableRow = ({
         setHovering(false);
       }}
     >
-      <div css={classes.index}>
-        {hovering ? (
-          <PlayArrowIcon style={{ color: "white" }} />
-        ) : (
-          <span>{index + 1}</span>
-        )}
-      </div>
+      <div css={classes.index}>{hovering ? <PlayButton isPlaying={checkPlaying()} togglePlay={handlePlay} /> : <span>{index + 1}</span>}</div>
       <div css={classes.title}>
         <ItemImage item={song} cssClass={classes.image} />
       </div>

@@ -13,8 +13,6 @@ const BottomBar = () => {
   const [currentSong, setCurrentSong] = useState<Song>();
 
   useEffect(() => {
-    console.log("hi", currentSongId);
-
     SongService.getSongById(currentSongId || "").then((res) => {
       setCurrentSong(res);
     });

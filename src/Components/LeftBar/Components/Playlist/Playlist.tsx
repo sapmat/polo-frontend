@@ -56,7 +56,7 @@ const SidePlaylist = ({
     >
       <div css={classes.imageContainer}>
         <ItemImage item={playlist} cssClass={classes.image} />
-        <div css={classes.imagePlay(hovering)}>
+        <div id={"play-button"} css={classes.imagePlay}>
           <PlayButton
             cssClass={classes.playButton}
             isPlaying={checkPlaying()}

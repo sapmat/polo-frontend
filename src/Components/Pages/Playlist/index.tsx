@@ -31,11 +31,17 @@ const PlaylistPage = () => {
 
   const [showMainHeader, setShowMainHeader] = useState<number>(0);
   const [hovering, setHovering] = useState<boolean>(false);
+  const [dominantColor, setDominantColor] = useState<string>("#3e2050");
 
   const memoizedSongs = useMemo(
     () =>
       playlist?.songs.map((song, index) => (
-        <TableRow key={uuidv4()} index={index} playlistSong={song} />
+        <TableRow
+          key={uuidv4()}
+          index={index}
+          playlistSong={song}
+          playlist={playlist}
+        />
       )),
     [playlist?.songs]
   );
@@ -81,8 +87,6 @@ const PlaylistPage = () => {
   }, [pageRef.current]);
 
   useEffect(() => {
-    // console.log(pageRef.current);
-
     setScrollbar(
       <ScrollBarY
         generalHover={hovering}
@@ -111,8 +115,6 @@ const PlaylistPage = () => {
     if (playlist.id === currentPlaylist?.id) {
       dispatch(togglePlaying());
     } else {
-      console.log(playlist.songs[0].songId);
-
       setCurrentPlaylist(playlist);
       updateCurrentSongId(playlist.songs[0].songId);
       dispatch(setPlaying(true));
@@ -146,8 +148,12 @@ const PlaylistPage = () => {
       </header>
       <div className="page" ref={pageRef} css={classes.page}>
         <div ref={headerRef}>
-          <div css={classes.header}>
-            <PlaylistImage item={playlist} cssClass={classes.image} />
+          <div css={classes.header(dominantColor)}>
+            <PlaylistImage
+              item={playlist}
+              cssClass={classes.image}
+              setDominantColor={setDominantColor}
+            />
             <div css={classes.details}>
               <div>{`${
                 playlist.isPrivate ? "Private" : "Public"
@@ -164,7 +170,7 @@ const PlaylistPage = () => {
           </div>
         </div>
         <div css={classes.content}>
-          <div css={classes.background}></div>
+          <div css={classes.background(dominantColor)}></div>
           <div css={classes.contentTop}>
             <div css={{ display: "flex" }}>
               <PlayButton

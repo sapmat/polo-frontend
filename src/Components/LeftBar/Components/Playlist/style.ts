@@ -11,9 +11,17 @@ const classes = {
     border-radius: 5px;
     padding: 5px;
 
+    #play-button {
+      opacity: 0;
+    }
+
     &:hover {
       background-color: #333;
       cursor: pointer;
+
+      #play-button {
+        opacity: 1;
+      }
     }
   `,
   imageContainer: css`
@@ -26,7 +34,7 @@ const classes = {
   image: css`
     background-color: rebeccapurple;
   `,
-  imagePlay: (show: boolean) => css`
+  imagePlay: css`
     position: absolute;
     display: flex;
     justify-content: center;
@@ -36,7 +44,6 @@ const classes = {
     height: 100%;
     background: rgba(0, 0, 0, 0.41);
     transition: opacity 0.05s ease-in-out;
-    opacity: ${show ? "1" : "0"};
   `,
   playButton: css`
     color: white;

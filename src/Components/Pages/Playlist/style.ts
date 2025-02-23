@@ -48,7 +48,7 @@ const classes = {
     align-items: center;
     width: 100%;
     padding: 0.75em 1em;
-    background: rgb(69, 32, 80);
+    background: #452050;
     gap: 0.5em;
   `,
   headerName: css`
@@ -76,7 +76,7 @@ const classes = {
       background-color: rgb(187, 119, 255);
     }
   `,
-  header: css`
+  header: (dominantColor: string) => css`
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -85,7 +85,7 @@ const classes = {
     height: 19em;
     padding: 1.75em;
     border-radius: 10px 10px 0 0;
-    background-color: rgb(62, 32, 80);
+    background-color: ${dominantColor};
     background-image: linear-gradient(transparent 0, rgba(0, 0, 0, 0.5) 100%),
       url("/Images/noise.svg");
   `,
@@ -124,13 +124,13 @@ const classes = {
     border-radius: 0 0 10px 10px;
     padding: 0 1.75em;
   `,
-  background: css`
+  background:(dominantColor: string) => css`
     position: absolute;
     left: 0;
     height: 232px;
     z-index: -1;
     width: 100%;
-    background-color: rgb(66, 32, 80);
+    background-color: ${dominantColor};
     background-image: linear-gradient(rgba(0, 0, 0, 0.6) 0%, #121212 100%),
       url("/Images/noise.svg");
   `,

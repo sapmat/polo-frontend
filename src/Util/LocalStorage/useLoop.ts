@@ -6,11 +6,7 @@ const useLoop = () => {
   });
 
   const updateState = (): void => {
-    const storedIsLoop: boolean = JSON.parse(
-      localStorage.getItem("isLoop") || "false"
-    );
-
-    setIsLoop(storedIsLoop);
+    localStorage.setItem("isLoop", JSON.stringify(isLoop));
   };
 
   const switchLoop = () => {
