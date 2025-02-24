@@ -10,16 +10,33 @@ import { useDispatch, useSelector } from "react-redux";
 import useSong from "../../../../../Util/LocalStorage/useSong";
 import usePlaylist from "../../../../../Util/LocalStorage/usePlaylist";
 import { setPlaying, togglePlaying } from "../../../../../Store/songSlice";
+import {
+  findPlaylistPointer,
+  shufflePlaylist,
+} from "../../../../../Util/Functions/playlist.util";
+import useShuffle from "../../../../../Util/LocalStorage/useShuffle";
 
-const TableRow = ({ index, playlistSong, playlist }: { index: number; playlistSong: PlaylistSong; playlist: Playlist }) => {
+const TableRow = ({
+  index,
+  playlistSong,
+  playlist,
+}: {
+  index: number;
+  playlistSong: PlaylistSong;
+  playlist: Playlist;
+}) => {
   const dispatch = useDispatch();
-  const isPlaying: boolean = useSelector((state: any) => state.playback.isPlaying);
+  const isPlaying: boolean = useSelector(
+    (state: any) => state.playback.isPlaying
+  );
 
   const [song, setSong] = useState<Song>();
   const [hovering, setHovering] = useState<boolean>(false);
 
-  const { currentPlaylist, setCurrentPlaylist } = usePlaylist();
-  const { updateCurrentSongId } = useSong();
+  const { currentPlaylist, setCurrentPlaylist, setPlaylistPointer } =
+    usePlaylist();
+  const { currentSongId, updateCurrentSongId } = useSong();
+  const { isShuffle } = useShuffle();
 
   useEffect(() => {
     SongService.getSongById(playlistSong.songId).then((song) => setSong(song));
@@ -29,9 +46,24 @@ const TableRow = ({ index, playlistSong, playlist }: { index: number; playlistSo
 
   const handlePlay = () => {
     if (playlist.id === currentPlaylist?.id) {
+      if (currentSongId !== playlistSong.songId) {
+        const pointer: number = findPlaylistPointer(
+          playlist,
+          playlistSong.songId
+        );
+        updateCurrentSongId(playlistSong.songId);
+        setPlaylistPointer(pointer);
+      }
       dispatch(togglePlaying());
     } else {
-      setCurrentPlaylist(playlist);
+      const pointer: number = findPlaylistPointer(
+        playlist,
+        playlistSong.songId
+      );
+      const newPlaylist: Playlist = isShuffle
+        ? shufflePlaylist(playlist)
+        : playlist;
+      setCurrentPlaylist(newPlaylist, pointer);
       updateCurrentSongId(playlist.songs[0].songId);
       dispatch(setPlaying(true));
     }
@@ -42,10 +74,10 @@ const TableRow = ({ index, playlistSong, playlist }: { index: number; playlistSo
   };
 
   const formatDate = () =>
-    new Intl.DateTimeFormat('en-US', {
-      month: 'short',
-      day: '2-digit',
-      year: 'numeric',
+    new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "2-digit",
+      year: "numeric",
     }).format(playlistSong.dateAdded);
 
   return (
@@ -58,7 +90,13 @@ const TableRow = ({ index, playlistSong, playlist }: { index: number; playlistSo
         setHovering(false);
       }}
     >
-      <div css={classes.index}>{hovering ? <PlayButton isPlaying={checkPlaying()} togglePlay={handlePlay} /> : <span>{index + 1}</span>}</div>
+      <div css={classes.index}>
+        {hovering ? (
+          <PlayButton isPlaying={checkPlaying()} togglePlay={handlePlay} />
+        ) : (
+          <span>{index + 1}</span>
+        )}
+      </div>
       <div css={classes.title}>
         <ItemImage item={song} cssClass={classes.image} />
       </div>

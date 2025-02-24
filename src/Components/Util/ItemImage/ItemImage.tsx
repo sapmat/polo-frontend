@@ -18,7 +18,6 @@ const ItemImage = ({
   const imageRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    // Ensure the image is loaded before trying to get the dominant color
     if (setDominantColor) {
       if (imageRef.current) {
         setDominantColor(getDominantColor(imageRef.current));
@@ -32,7 +31,7 @@ const ItemImage = ({
     item.name
       .split(" ")
       .map((word) => word.charAt(0))
-      .slice(0, 4)
+      .slice(0, 3)
       .join("");
 
   return (
