@@ -18,17 +18,21 @@ const VolumeBar = ({
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = volume;
-      if (!mute) changeCurrentVolume(volume);
+      if (!mute) {
+        if (volume === 0) setMute(true);
+        changeCurrentVolume(volume);
+      }
     }
   }, [volume]);
 
   useEffect(() => {
-    mute ? setVolume(0) : setVolume(currentVolume);
+    mute ? setVolume(0) : setVolume(Math.max(currentVolume, 0.1));
     localStorage.setItem("isMute", JSON.stringify(mute));
   }, [mute]);
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setVolume(parseFloat(e.target.value) / 100);
+    setMute(false)
   };
 
   return (
