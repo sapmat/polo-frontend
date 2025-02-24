@@ -6,7 +6,7 @@ export const theme = {
       },
       buttons: {
         default: "#b3b3b3",
-        hover: "#fff",
+        hover: "#3be477",
         selected: "#1ed760",
       },
     },

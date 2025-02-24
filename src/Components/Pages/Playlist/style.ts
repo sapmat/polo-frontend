@@ -74,7 +74,7 @@ const classes = {
 
     &:hover {
       scale: 1.05;
-      background-color: rgb(187, 119, 255);
+      background-color: ${theme.colors["default"].buttons.hover};
     }
   `,
   shuffle: css`

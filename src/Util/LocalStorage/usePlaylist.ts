@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { LocalStoragePlaylist, Playlist } from "../../Model/Playlist/playlist";
+import useLoop from "./useLoop";
+import useSong from "./useSong";
 
 const usePlaylist = () => {
   const [currentPlaylist, setPlaylist] = useState<LocalStoragePlaylist>(() => {
@@ -11,7 +12,9 @@ const usePlaylist = () => {
   const [playlistPointer, setPlaylistPointer] = useState<number>(() => {
     return Number(localStorage.getItem("playlistPointer")) || 0;
   });
-  const isLoop: boolean = useSelector((state: any) => state.playback.isLoop);
+
+  const { updateCurrentSongId } = useSong();
+  const { isLoop } = useLoop();
 
   const updateState = () => {
     setPlaylist(
@@ -40,7 +43,7 @@ const usePlaylist = () => {
 
     const current: number =
       Number(localStorage.getItem("playlistPointer")) || 0;
-    let next;
+    let next: number;
 
     if (isLoop) {
       next = (current + direction) % currentPlaylist.songs.length;
@@ -51,6 +54,8 @@ const usePlaylist = () => {
         Math.min(current + direction, currentPlaylist.songs.length - 1)
       );
     }
+
+    updateCurrentSongId(currentPlaylist.songs[next].songId);
 
     localStorage.setItem("playlistPointer", next.toString());
     window.dispatchEvent(new Event("local-storage-playlist-pointer-changed"));

@@ -1,5 +1,4 @@
 import { Playlist } from "../../Model/Playlist/playlist";
-import { Song } from "../../Model/Song/songs";
 
 export const shufflePlaylist = (playlist: Playlist): Playlist => {
   const newPlaylist = { ...playlist, songs: [...playlist.songs] };
@@ -17,12 +16,12 @@ export const shufflePlaylist = (playlist: Playlist): Playlist => {
 
 export const findPlaylistPointer = (
   playlist: Playlist,
-  song: Song
+  songId: string
 ): number => {
   let index = -1;
 
   for (let i = 0; i < playlist.songs.length; i++) {
-    if (playlist.songs[i].songId === song.id) {
+    if (playlist.songs[i].songId === songId) {
       index = i;
       break;
     }
