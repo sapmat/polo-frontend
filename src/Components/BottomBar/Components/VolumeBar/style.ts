@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { theme } from "../../../../theme";
 
 const classes = {
   volume: css`
@@ -34,8 +35,8 @@ const classes = {
       &:hover {
         background: linear-gradient(
           to right,
-          #663399 0%,
-          #663399 calc(var(--volume) * 1%),
+          ${theme.colors["default"].main.dark} 0%,
+          ${theme.colors["default"].main.dark} calc(var(--volume) * 1%),
           #555 calc(var(--volume) * 1%),
           #555 100%
         );
@@ -54,7 +55,12 @@ const classes = {
     svg {
       height: 100%;
       width: 1em;
-      fill: #b3b3b3;
+      fill: ${theme.colors["default"].svg.default};
+
+      &:hover {
+        fill: ${theme.colors["default"].svg.hover};
+        cursor: pointer;
+      }
     }
   `,
 };

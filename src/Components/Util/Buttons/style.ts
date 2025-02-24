@@ -27,7 +27,7 @@ const classes = {
         
       path { fill: ${theme.colors["default"].buttons.selected}; }`
       : `path {
-                fill: ${theme.colors["default"].buttons.default};
+                fill: ${theme.colors["default"].svg.default};
             }
             
             &:hover {

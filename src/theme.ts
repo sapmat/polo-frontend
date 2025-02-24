@@ -3,11 +3,15 @@ export const theme = {
     default: {
       main: {
         main: "#1ed760",
+        dark: "#1db954",
       },
       buttons: {
-        default: "#b3b3b3",
         hover: "#3be477",
         selected: "#1ed760",
+      },
+      svg: {
+        default: "#b3b3b3",
+        hover: "#fff",
       },
     },
     red: {},

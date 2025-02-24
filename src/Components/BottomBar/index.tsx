@@ -7,7 +7,6 @@ import BottomSongDetails from "./Components/BottomSongDetails/BottomSongDetails"
 import { useEffect, useRef, useState } from "react";
 import SongService from "../../api/songs";
 import useSong from "../../Util/LocalStorage/useSong";
-import VolumeBar from "./Components/VolumeBar/VolumeBar";
 import Extra from "./Components/Extra/Extra";
 
 const BottomBar = () => {

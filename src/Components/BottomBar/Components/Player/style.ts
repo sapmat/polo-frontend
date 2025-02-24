@@ -12,7 +12,7 @@ const classes = {
     flex-direction: row;
     justify-content: center;
     gap: 1em;
-  
+
     button {
       display: flex;
       justify-content: center;
@@ -47,7 +47,7 @@ const classes = {
       width: 1.5em;
 
       path {
-        fill: ${theme.colors.default.buttons.default}
+        fill: ${theme.colors.default.svg.default};
       }
     }
   `,
@@ -73,6 +73,7 @@ const classes = {
     p {
       font-size: small;
       font-weight: 200;
+      width: 2em;
     }
 
     input {
@@ -99,8 +100,8 @@ const classes = {
       &:hover {
         background: linear-gradient(
           to right,
-          #663399 0%,
-          #663399 calc(var(--progress) * 1%),
+          ${theme.colors["default"].main.dark} 0%,
+          ${theme.colors["default"].main.dark} calc(var(--progress) * 1%),
           #555 calc(var(--progress) * 1%),
           #555 100%
         );

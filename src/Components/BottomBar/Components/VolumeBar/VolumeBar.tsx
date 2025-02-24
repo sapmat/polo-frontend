@@ -11,13 +11,21 @@ const VolumeBar = ({
 }) => {
   const { currentVolume, changeCurrentVolume } = useVolume();
   const [volume, setVolume] = useState<number>(currentVolume);
+  const [mute, setMute] = useState<boolean>(
+    JSON.parse(localStorage.getItem("isMute") || "false")
+  );
 
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = volume;
-      changeCurrentVolume(volume);
+      if (!mute) changeCurrentVolume(volume);
     }
   }, [volume]);
+
+  useEffect(() => {
+    mute ? setVolume(0) : setVolume(currentVolume);
+    localStorage.setItem("isMute", JSON.stringify(mute));
+  }, [mute]);
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setVolume(parseFloat(e.target.value) / 100);
@@ -25,7 +33,7 @@ const VolumeBar = ({
 
   return (
     <div css={classes.volume}>
-      <VolumeIcon volume={volume} />
+      <VolumeIcon volume={volume} setMute={setMute} />
       <input
         type="range"
         id="volume"
