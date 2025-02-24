@@ -5,30 +5,23 @@ const useShuffle = () => {
     return JSON.parse(localStorage.getItem("isShuffle") || "false");
   });
 
-  const updateState = (): void => {
-    localStorage.setItem("isShuffle", JSON.stringify(isShuffle));
-  };
-
   const switchShuffle = () => {
-    setIsShuffle((prev) => !prev);
+    const newState = !isShuffle;
+    setIsShuffle(newState);
+    localStorage.setItem("isShuffle", JSON.stringify(newState));
     window.dispatchEvent(new Event("local-storage-shuffle-changed"));
   };
 
   useEffect(() => {
     const handleStorageChange = () => {
-      updateState();
+      const storedValue = JSON.parse(localStorage.getItem("isShuffle") || "false");
+      setIsShuffle(storedValue);
     };
 
-    window.addEventListener(
-      "local-storage-shuffle-changed",
-      handleStorageChange
-    );
+    window.addEventListener("local-storage-shuffle-changed", handleStorageChange);
 
     return () => {
-      window.removeEventListener(
-        "local-storage-shuffle-changed",
-        handleStorageChange
-      );
+      window.removeEventListener("local-storage-shuffle-changed", handleStorageChange);
     };
   }, []);
 

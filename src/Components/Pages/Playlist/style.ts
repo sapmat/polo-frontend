@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { theme } from "../../../theme";
 
 const classes = {
   general: css`
@@ -63,7 +64,7 @@ const classes = {
   `,
   play: css`
     color: black;
-    background-color: rgb(162, 69, 255);
+    background-color: ${theme.colors["default"].buttons.selected};
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
     border-radius: 50em;
     height: 1.5em;
@@ -74,6 +75,12 @@ const classes = {
     &:hover {
       scale: 1.05;
       background-color: rgb(187, 119, 255);
+    }
+  `,
+  shuffle: css`
+    svg {
+      height: 5em;
+      width: 5em;
     }
   `,
   header: (dominantColor: string) => css`
@@ -124,7 +131,7 @@ const classes = {
     border-radius: 0 0 10px 10px;
     padding: 0 1.75em;
   `,
-  background:(dominantColor: string) => css`
+  background: (dominantColor: string) => css`
     position: absolute;
     left: 0;
     height: 232px;
@@ -135,6 +142,8 @@ const classes = {
       url("/Images/noise.svg");
   `,
   contentTop: css`
+    display: flex;
+    flex-direction: row;
     padding: 0.75em 0;
   `,
   contentPlayButton: css`

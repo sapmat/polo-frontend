@@ -10,6 +10,7 @@ import useSong from "../../../../Util/LocalStorage/useSong";
 import { setPlaying, togglePlaying } from "../../../../Store/songSlice";
 import { useDispatch, useSelector } from "react-redux";
 import PlayButton from "../../../Util/Buttons/PlayButton/PlayButton";
+import { theme } from "../../../../theme";
 
 const SidePlaylist = ({
   playlist,
@@ -71,7 +72,7 @@ const SidePlaylist = ({
             css={classes.pin}
             style={{ display: playlist.isPinned ? "" : "none" }}
           >
-            <PushPinIcon sx={{ color: "rgb(153, 0, 255)" }} />
+            <PushPinIcon sx={{ color: theme.colors["default"].main.main }} />
           </div>
           <p css={classes.createdBy}>{playlist.createdBy}</p>
         </div>

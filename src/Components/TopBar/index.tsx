@@ -7,7 +7,7 @@ import classes from "./style";
 const TopBar = () => {
   return (
     <div css={classes.topBar}>
-      <div>
+      <div css={classes.left}>
         <ThreeDots />
       </div>
 
@@ -16,7 +16,7 @@ const TopBar = () => {
         <SearchBar />
       </div>
 
-      <div>dark-light * profile</div>
+      <div css={classes.right}>dark-light * friends * profile</div>
     </div>
   );
 };

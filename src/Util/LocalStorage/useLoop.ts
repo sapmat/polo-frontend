@@ -5,27 +5,23 @@ const useLoop = () => {
     return JSON.parse(localStorage.getItem("isLoop") || "false");
   });
 
-  const updateState = (): void => {
-    localStorage.setItem("isLoop", JSON.stringify(isLoop));
-  };
-
   const switchLoop = () => {
-    setIsLoop((prev) => !prev);
+    const newState = !isLoop;
+    setIsLoop(newState);
+    localStorage.setItem("isLoop", JSON.stringify(newState));
     window.dispatchEvent(new Event("local-storage-loop-changed"));
   };
 
   useEffect(() => {
     const handleStorageChange = () => {
-      updateState();
+      const storedValue = JSON.parse(localStorage.getItem("isLoop") || "false");
+      setIsLoop(storedValue);
     };
 
     window.addEventListener("local-storage-loop-changed", handleStorageChange);
 
     return () => {
-      window.removeEventListener(
-        "local-storage-loop-changed",
-        handleStorageChange
-      );
+      window.removeEventListener("local-storage-loop-changed", handleStorageChange);
     };
   }, []);
 

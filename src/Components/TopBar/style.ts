@@ -4,14 +4,31 @@ import { css } from "@emotion/react";
 const classes = {
   topBar: css`
     box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
     align-items: center;
     width: 100vw;
+    height: 5em;
     padding: 8px 2em;
   `,
-
+  left: css`
+    display: flex;
+    justify-content: left;
+    width: 100%;
+  `,
+  center: css`
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    height: 90%;
+    width: 100%;
+  `,
+  right: css`
+    display: flex;
+    justify-content: right;
+    width: 100%;
+  `,
   threeDots: css`
     position: relative;
 
@@ -49,28 +66,27 @@ const classes = {
       }
     }
   `,
-
-  center: css`
-    display: flex;
-    gap: 1em;
-    height: 3em;
-  `,
-
   homeButton: css`
-    button {
-      border: none;
-      border-radius: 50%;
-      height: 100%;
-      aspect-ratio: 1 / 1;
-      background-color: #333;
-      transition: scale 0.1s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border: none;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    background-color: #333;
+    transition: scale 0.1s ease;
 
-      &:hover {
-        scale: 1.1;
-      }
+    &:hover {
+      scale: 1.1;
+    }
+
+    svg {
+      height: 1.28em;
+      width: 1.5em;
+      fill: white;
     }
   `,
-
   searchBar: css`
     display: flex;
     flex-direction: row;

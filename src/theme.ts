@@ -1,6 +1,9 @@
 export const theme = {
   colors: {
     default: {
+      main: {
+        main: "#1ed760",
+      },
       buttons: {
         default: "#b3b3b3",
         hover: "#fff",

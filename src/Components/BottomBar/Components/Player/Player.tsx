@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import classes from "./style";
 import { Song } from "../../../../Model/Song/songs";
 import { useMovePointer } from "../../../../Util/Hooks/useMovePointer";
@@ -9,15 +9,19 @@ import ShuffleButton from "../../../Util/Buttons/ShuffleButton/ShuffleButton";
 import LoopButton from "../../../Util/Buttons/LoopButton/LoopButton";
 import { togglePlaying } from "../../../../Store/songSlice";
 
-const Player = ({ song }: { song: Song | undefined }) => {
+const Player = ({
+  song,
+  audioRef,
+}: {
+  song: Song | undefined;
+  audioRef: React.RefObject<HTMLAudioElement>;
+}) => {
   const [progress, setProgress] = useState<number>(0);
   const [totalDuration, setTotalDuration] = useState<number>(0);
   const dispatch = useDispatch();
   const isPlaying: boolean = useSelector(
     (state: any) => state.playback.isPlaying
   );
-
-  const audioRef = useRef<HTMLAudioElement>(null);
 
   const { movePlaybackPointer } = useMovePointer();
 
