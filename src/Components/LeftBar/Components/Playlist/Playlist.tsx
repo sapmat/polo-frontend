@@ -4,7 +4,6 @@ import { Playlist } from "../../../../Model/Playlist/playlist";
 import classes from "./style";
 import ItemImage from "../../../Util/ItemImage/ItemImage";
 import { useNavigate } from "react-router";
-import { useState } from "react";
 import usePlaylist from "../../../../Util/LocalStorage/usePlaylist";
 import useSong from "../../../../Util/LocalStorage/useSong";
 import { setPlaying, togglePlaying } from "../../../../Store/songSlice";
@@ -25,7 +24,6 @@ const SidePlaylist = ({
   );
 
   const navigate = useNavigate();
-  const [hovering, setHovering] = useState<boolean>(false);
 
   const { currentPlaylist, setCurrentPlaylist } = usePlaylist();
   const { updateCurrentSongId } = useSong();
@@ -48,12 +46,6 @@ const SidePlaylist = ({
     <div
       css={classes.playlist}
       onClick={() => navigate(`/playlist/${playlist.id}`)}
-      onMouseEnter={() => {
-        setHovering(true);
-      }}
-      onMouseLeave={() => {
-        setHovering(false);
-      }}
     >
       <div css={classes.imageContainer}>
         <ItemImage item={playlist} cssClass={classes.image} />
@@ -69,8 +61,7 @@ const SidePlaylist = ({
         <p>{playlist.name}</p>
         <div css={classes.detailsBottom}>
           <div
-            css={classes.pin}
-            style={{ display: playlist.isPinned ? "" : "none" }}
+            css={classes.pin(playlist.isPinned)}
           >
             <PushPinIcon sx={{ color: theme.colors["default"].main.main }} />
           </div>

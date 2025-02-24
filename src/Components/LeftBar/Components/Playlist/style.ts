@@ -61,9 +61,10 @@ const classes = {
     display: flex;
     gap: 5px;
   `,
-  pin: css`
+  pin: (isPinned: boolean) => css`
     scale: 0.8;
     rotate: 45deg;
+    display: ${isPinned ? "" : "none"};
 
     svg {
       box-sizing: border-box;
