@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import { css } from '@emotion/react';
 
 const classes = {
   scrollButton: (show: boolean, isRight: boolean) => css`
     position: absolute;
-    ${isRight ? "right: 30px;" : "left: 30px;"};
+    ${isRight ? 'right: 30px;' : 'left: 30px;'};
     top: 50%;
     transform: translateY(-50%);
     z-index: 1;
@@ -15,7 +15,7 @@ const classes = {
     border-radius: 50em;
     padding: 5px;
     transition: scale 0.1s ease-in-out, opacity 0.1s ease-in-out;
-    opacity: ${show ? "1" : "0"};
+    opacity: ${show ? '1' : '0'};
     display: flex;
     align-items: center;
     justify-content: center;

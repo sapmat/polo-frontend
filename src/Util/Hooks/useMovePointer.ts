@@ -1,5 +1,5 @@
-import usePlaylist from "../LocalStorage/usePlaylist";
-import useQueue from "../LocalStorage/useQueue";
+import usePlaylist from '../LocalStorage/usePlaylist';
+import useQueue from '../LocalStorage/useQueue';
 
 export const useMovePointer = () => {
   const { movePointer } = usePlaylist();

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { theme } from "../../../theme";
+import { css } from '@emotion/react';
+import { theme } from '../../../theme';
 
 const classes = {
   selectButton: (selected: boolean) => css`
@@ -9,11 +9,16 @@ const classes = {
     align-items: center;
     position: relative;
 
+    &:hover {
+      scale: 1.1;
+      transition: scale 0.05s ease-in-out, fill 0.05s ease-in-out;
+    }
+
     ${selected
       ? `
       &:before {
         position: absolute;
-          background-color: ${theme.colors["default"].buttons.selected};
+          background-color: ${theme.colors['default'].svg.selected};
           border-radius: 50%;
           bottom: 4px;
           content: "";
@@ -25,14 +30,14 @@ const classes = {
           transform: translateX(-50%);
       }
         
-      path { fill: ${theme.colors["default"].buttons.selected}; }`
+      path { fill: ${theme.colors['default'].svg.selected}; }`
       : `path {
-                fill: ${theme.colors["default"].svg.default};
+                fill: ${theme.colors['default'].svg.default};
             }
             
             &:hover {
                 path {
-                    fill: ${theme.colors["default"].buttons.hover};
+                    fill: ${theme.colors['default'].svg.hover};
                 }
             }
       `}

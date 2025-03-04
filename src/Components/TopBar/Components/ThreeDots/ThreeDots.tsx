@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { useState } from "react";
-import ThreeDotOption from "./ThreeDotOption/ThreeDotOption";
-import classes from "../../style";
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { useState } from 'react';
+import classes from '../../style';
+import ThreeDotOption from './ThreeDotOption/ThreeDotOption';
 
 const ThreeDots = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -15,20 +15,15 @@ const ThreeDots = () => {
     <div css={classes.threeDots}>
       <button
         onClick={toggleMenu}
-        style={{
-          background: "none",
-          border: "none",
-          fontSize: "24px",
-          cursor: "pointer",
-        }}
+        css={classes.button}
       >
         <MoreHorizIcon />
       </button>
 
       {isOpen && (
         <ul>
-          <ThreeDotOption title="Import song" />
-          <ThreeDotOption title="Log out" />
+          <ThreeDotOption title='Import song' />
+          <ThreeDotOption title='Log out' />
         </ul>
       )}
     </div>

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import React, { useEffect, useState } from "react";
+import { css } from '@emotion/react';
+import React, { useEffect, useState } from 'react';
 
 const ScrollBarY = ({
   width,
@@ -31,22 +31,13 @@ const ScrollBarY = ({
       setThumbHeight((clientHeight / scrollHeight) * maxHeight);
       setNoScroll(clientHeight / scrollHeight === 1);
     }
-  }, [
-    reload,
-    maxHeight,
-    scrollableElementRef.current,
-    scrollableElementRef.current?.clientHeight,
-    scrollableElementRef.current?.scrollHeight,
-  ]);
+  }, [reload, maxHeight, scrollableElementRef.current, scrollableElementRef.current?.clientHeight, scrollableElementRef.current?.scrollHeight]);
 
   useEffect(() => {
     const handleScroll = () => {
       if (scrollableElementRef.current) {
-        const { scrollTop, clientHeight, scrollHeight } =
-          scrollableElementRef.current;
-        const thumbPosition =
-          (maxHeight - thumbHeight) *
-          (scrollTop / (scrollHeight - clientHeight));
+        const { scrollTop, clientHeight, scrollHeight } = scrollableElementRef.current;
+        const thumbPosition = (maxHeight - thumbHeight) * (scrollTop / (scrollHeight - clientHeight));
 
         setThumbPosition(thumbPosition);
       }
@@ -54,13 +45,13 @@ const ScrollBarY = ({
 
     const element = scrollableElementRef.current;
     if (element) {
-      element.addEventListener("scroll", handleScroll);
+      element.addEventListener('scroll', handleScroll);
       handleScroll();
     }
 
     return () => {
       if (element) {
-        element.removeEventListener("scroll", handleScroll);
+        element.removeEventListener('scroll', handleScroll);
       }
     };
   }, [maxHeight, scrollableElementRef, thumbHeight]);
@@ -82,24 +73,20 @@ const ScrollBarY = ({
         width: ${width}px;
         height: ${thumbHeight}px;
         background-clip: border-box;
-        background: #666;
         transition: background 0.3s ease-in-out, opacity 0.3s ease-in-out;
-        cursor: ${isDragging ? "grabbing" : "pointer"};
+        cursor: ${isDragging ? 'grabbing' : 'pointer'};
 
         ${!noScroll && generalHover
           ? ` 
             display: flex;
-            background: #666;
-            opacity: 0.5;
+            background: hsla(0,0%,100%,.3);
             
             &:hover {
-              background: #888;
-              opacity: 0.5;
+              background: hsla(0,0%,100%,.5);
             }
     
             &:active {
-              background: #aaa;
-              opacity: 0.5;
+              background: hsla(0,0%,100%,.7);
             }
           `
           : `opacity: 0;`}
@@ -109,7 +96,7 @@ const ScrollBarY = ({
 
   const handleMouseDown = () => {
     setIsDragging(true);
-    document.body.style.cursor = "grabbing";
+    document.body.style.cursor = 'grabbing';
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -119,15 +106,10 @@ const ScrollBarY = ({
       const deltaY = e.movementY;
       const newThumbPosition = thumbPosition + deltaY;
 
-      if (
-        newThumbPosition >= 0 &&
-        newThumbPosition <= maxHeight - thumbHeight
-      ) {
+      if (newThumbPosition >= 0 && newThumbPosition <= maxHeight - thumbHeight) {
         setThumbPosition(newThumbPosition);
 
-        const scrollTop =
-          (newThumbPosition / (maxHeight - thumbHeight)) *
-          (scrollHeight - clientHeight);
+        const scrollTop = (newThumbPosition / (maxHeight - thumbHeight)) * (scrollHeight - clientHeight);
         scrollableElementRef.current.scrollTop = scrollTop;
       }
     }
@@ -135,25 +117,18 @@ const ScrollBarY = ({
 
   const handleMouseUp = () => {
     setIsDragging(false);
-    document.body.style.cursor = "auto";
+    document.body.style.cursor = 'auto';
   };
 
   useEffect(() => {
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [
-    isDragging,
-    thumbPosition,
-    maxHeight,
-    thumbHeight,
-    scrollableElementRef,
-    handleMouseMove,
-  ]);
+  }, [isDragging, thumbPosition, maxHeight, thumbHeight, scrollableElementRef, handleMouseMove]);
 
   return (
     <div css={cssClass.general}>

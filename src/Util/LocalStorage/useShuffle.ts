@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
-import usePlaylist from "./usePlaylist";
-import PlaylistService from "../../api/playlists";
-import { shufflePlaylist } from "../Functions/playlist.util";
-import { Playlist } from "../../Model/Playlist/playlist";
+import { useEffect, useState } from 'react';
+import PlaylistService from '../../api/playlists';
+import { Playlist } from '../../Model/Playlist/playlist';
+import { shufflePlaylist } from '../Functions/playlist.util';
+import usePlaylist from './usePlaylist';
 
 const useShuffle = () => {
   const [isShuffle, setIsShuffle] = useState<boolean>(() => {
-    return JSON.parse(localStorage.getItem("isShuffle") || "false");
+    return JSON.parse(localStorage.getItem('isShuffle') || 'false');
   });
 
   const { currentPlaylist, setCurrentPlaylist } = usePlaylist();
@@ -14,7 +14,7 @@ const useShuffle = () => {
   const switchShuffle = () => {
     const newState = !isShuffle;
     setIsShuffle(newState);
-    localStorage.setItem("isShuffle", JSON.stringify(newState));
+    localStorage.setItem('isShuffle', JSON.stringify(newState));
 
     if (currentPlaylist.id)
       PlaylistService.getPlaylist(currentPlaylist.id).then((res) => {
@@ -24,27 +24,19 @@ const useShuffle = () => {
         }
       });
 
-    window.dispatchEvent(new Event("local-storage-shuffle-changed"));
+    window.dispatchEvent(new Event('local-storage-shuffle-changed'));
   };
 
   useEffect(() => {
     const handleStorageChange = () => {
-      const storedValue = JSON.parse(
-        localStorage.getItem("isShuffle") || "false"
-      );
+      const storedValue = JSON.parse(localStorage.getItem('isShuffle') || 'false');
       setIsShuffle(storedValue);
     };
 
-    window.addEventListener(
-      "local-storage-shuffle-changed",
-      handleStorageChange
-    );
+    window.addEventListener('local-storage-shuffle-changed', handleStorageChange);
 
     return () => {
-      window.removeEventListener(
-        "local-storage-shuffle-changed",
-        handleStorageChange
-      );
+      window.removeEventListener('local-storage-shuffle-changed', handleStorageChange);
     };
   }, []);
 

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { theme } from "../../../../theme";
+import { css } from '@emotion/react';
+import { theme } from '../../../../theme';
 
 const classes = {
   player: css`
@@ -36,19 +36,17 @@ const classes = {
   `,
   skipButtons: css`
     padding: 0;
-    opacity: 0.75;
-
-    &:hover {
-      opacity: 1;
-    }
 
     svg {
-      height: 1.5em;
-      width: 1.5em;
+      height: 1.25em;
+      fill: ${theme.colors.default.svg.default};
 
-      path {
-        fill: ${theme.colors.default.svg.default};
+      &:hover {
+        scale: 1.05;
+        fill: ${theme.colors.default.svg.hover};
       }
+
+      transition: scale 0.05s ease-in-out, fill 0.05s ease-in-out;
     }
   `,
   shuffleButton: css`
@@ -81,13 +79,7 @@ const classes = {
       -webkit-appearance: none;
       width: 100%;
       height: 4px;
-      background: linear-gradient(
-        to right,
-        #ccc 0%,
-        #ccc calc(var(--progress) * 1%),
-        #555 calc(var(--progress) * 1%),
-        #555 100%
-      );
+      background: linear-gradient(to right, #ccc 0%, #ccc calc(var(--progress) * 1%), #555 calc(var(--progress) * 1%), #555 100%);
       border-radius: 5px;
       outline: none;
       cursor: pointer;
@@ -100,8 +92,8 @@ const classes = {
       &:hover {
         background: linear-gradient(
           to right,
-          ${theme.colors["default"].main.dark} 0%,
-          ${theme.colors["default"].main.dark} calc(var(--progress) * 1%),
+          ${theme.colors['default'].main.dark} 0%,
+          ${theme.colors['default'].main.dark} calc(var(--progress) * 1%),
           #555 calc(var(--progress) * 1%),
           #555 100%
         );

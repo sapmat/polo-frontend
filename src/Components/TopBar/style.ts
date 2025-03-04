@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import { css } from '@emotion/react';
+import { theme } from '../../theme';
 
 const classes = {
   topBar: css`
@@ -9,8 +10,14 @@ const classes = {
     justify-items: center;
     align-items: center;
     width: 100vw;
-    height: 5em;
+    height: 7vh;
     padding: 8px 2em;
+  `,
+  button: css`
+    background: none;
+    border: none;
+    fontsize: 24px;
+    cursor: pointer;
   `,
   left: css`
     display: flex;
@@ -66,7 +73,7 @@ const classes = {
       }
     }
   `,
-  homeButton: css`
+  homeButton: (isHome: boolean) => css`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,36 +86,15 @@ const classes = {
 
     &:hover {
       scale: 1.1;
-    }
 
-    svg {
-      height: 1.28em;
-      width: 1.5em;
-      fill: white;
-    }
-  `,
-  searchBar: css`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: #333;
-    border-radius: 50em;
-    padding: 0 10px;
-
-    svg {
-      opacity: 0.6;
-      transition: opacity 0.075s ease;
-
-      &:hover {
-        opacity: 0.8;
+      svg {
+        fill: ${theme.colors['default'].svg.hover};
       }
     }
 
-    input {
-      border: none;
-      background-color: transparent;
-      width: 20em;
-      font-size: 1em;
+    svg {
+      height: 1.5em;
+      fill: ${isHome ? theme.colors['default'].svg.hover : theme.colors['default'].svg.default};
     }
   `,
 };

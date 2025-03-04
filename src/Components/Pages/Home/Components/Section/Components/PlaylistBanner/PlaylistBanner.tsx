@@ -1,29 +1,31 @@
 /** @jsxImportSource @emotion/react */
-import classes from "../../style";
-import ItemImage from "../../../../../../Util/ItemImage/ItemImage";
-import PlayButton from "../../../../../../Util/Buttons/PlayButton/PlayButton";
-import usePlaylist from "../../../../../../../Util/LocalStorage/usePlaylist";
-import useSong from "../../../../../../../Util/LocalStorage/useSong";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import { Playlist } from "../../../../../../../Model/Playlist/playlist";
-import {
-  setPlaying,
-  togglePlaying,
-} from "../../../../../../../Store/songSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { Playlist } from '../../../../../../../Model/Playlist/playlist';
+import { setPlaying, togglePlaying } from '../../../../../../../Store/songSlice';
+import usePlaylist from '../../../../../../../Util/LocalStorage/usePlaylist';
+import useSong from '../../../../../../../Util/LocalStorage/useSong';
+import PlayButton from '../../../../../../Util/Buttons/PlayButton/PlayButton';
+import ItemImage from '../../../../../../Util/ItemImage/ItemImage';
+import classes from '../../style';
 
-const PlaylistBanner = ({ playlist }: { playlist: Playlist }) => {
+interface PlaylistBannerProps {
+  playlist: Playlist;
+}
+
+const PlaylistBanner = ({ playlist }: PlaylistBannerProps) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isPlaying: boolean = useSelector(
-    (state: any) => state.playback.isPlaying
-  );
+  const isPlaying: boolean = useSelector((state: any) => state.playback.isPlaying);
 
   const { currentPlaylist, setCurrentPlaylist } = usePlaylist();
   const { updateCurrentSongId } = useSong();
 
+  const isCurrentPlaylist = playlist.id === currentPlaylist?.id;
+  const checkPlaying: boolean = isCurrentPlaylist && isPlaying;
+
   const handlePlay = () => {
-    if (playlist.id === currentPlaylist?.id) {
+    if (isCurrentPlaylist) {
       dispatch(togglePlaying());
     } else {
       setCurrentPlaylist(playlist);
@@ -32,23 +34,12 @@ const PlaylistBanner = ({ playlist }: { playlist: Playlist }) => {
     }
   };
 
-  const checkPlaying = (): boolean => {
-    return currentPlaylist.id === playlist.id && isPlaying;
-  };
-
   return (
-    <div
-      css={classes.playlist}
-      onClick={() => navigate(`/playlist/${playlist.id}`)}
-    >
+    <div css={classes.playlist} onClick={() => navigate(`/playlist/${playlist.id}`)}>
       <div css={classes.imageContainer}>
         <ItemImage item={playlist} cssClass={classes.playlistImage} />
         <button css={classes.button}>
-          <PlayButton
-            isPlaying={checkPlaying()}
-            togglePlay={handlePlay}
-            cssClass={classes.play}
-          />
+          <PlayButton isPlaying={checkPlaying} togglePlay={handlePlay} cssClass={classes.play} />
         </button>
       </div>
       <div css={classes.details}>

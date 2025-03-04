@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
-import { useRef, useState } from "react";
-import { playlists } from "../../data";
-import OpenBarButton from "./Components/OpenBarButton/OpenBarButton";
-import Filter from "./Components/Filter/Filter";
-import SidePlaylist from "./Components/Playlist/Playlist";
-import classes from "./style";
-import ScrollBarY from "../Util/ScrollBar/ScrollBarY";
+import { useRef, useState } from 'react';
+import { playlists } from '../../data';
+import ScrollBarY from '../Util/ScrollBar/ScrollBarY';
+import Filter from './Components/Filter/Filter';
+import OpenBarButton from './Components/OpenBarButton/OpenBarButton';
+import SidePlaylist from './Components/SidePlaylist/SidePlaylist';
+import classes from './style';
 
 const LeftBar = () => {
   const [open, changeOpen] = useState<boolean>(true);
@@ -32,7 +32,7 @@ const LeftBar = () => {
         }}
       >
         <ScrollBarY
-          generalHover={state.hovering}
+          generalHover={hovering}
           width={12}
           maxHeight={playlistsRef.current?.clientHeight || 0}
           scrollableElementRef={playlistsRef}

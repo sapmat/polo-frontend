@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { theme } from "../../../../theme";
+import { css } from '@emotion/react';
+import { theme } from '../../../../theme';
 
 const classes = {
   volume: css`
@@ -16,13 +16,7 @@ const classes = {
       -webkit-appearance: none;
       width: 100%;
       height: 4px;
-      background: linear-gradient(
-        to right,
-        #ccc 0%,
-        #ccc calc(var(--volume) * 1%),
-        #555 calc(var(--volume) * 1%),
-        #555 100%
-      );
+      background: linear-gradient(to right, #ccc 0%, #ccc calc(var(--volume) * 1%), #555 calc(var(--volume) * 1%), #555 100%);
       border-radius: 5px;
       outline: none;
       cursor: pointer;
@@ -35,8 +29,8 @@ const classes = {
       &:hover {
         background: linear-gradient(
           to right,
-          ${theme.colors["default"].main.dark} 0%,
-          ${theme.colors["default"].main.dark} calc(var(--volume) * 1%),
+          ${theme.colors['default'].main.dark} 0%,
+          ${theme.colors['default'].main.dark} calc(var(--volume) * 1%),
           #555 calc(var(--volume) * 1%),
           #555 100%
         );
@@ -51,16 +45,15 @@ const classes = {
         }
       }
     }
+  `,
+  svg: css`
+    height: 100%;
+    fill: ${theme.colors['default'].svg.default};
+    transition: fill 0.1s ease-in-out;
 
-    svg {
-      height: 100%;
-      width: 1em;
-      fill: ${theme.colors["default"].svg.default};
-
-      &:hover {
-        fill: ${theme.colors["default"].svg.hover};
-        cursor: pointer;
-      }
+    &:hover {
+      fill: ${theme.colors['default'].svg.hover};
+      cursor: pointer;
     }
   `,
 };

@@ -1,16 +1,17 @@
 /** @jsxImportSource @emotion/react */
-import { playlists } from "../../../data";
-import HomeSection from "./Components/Section/Section";
-import RecentlyPlayedPlaylists from "./Components/RecentlyPlayedPlaylists/RecentlyPlayedPlaylists";
-import classes from "./style";
-import ScrollBarY from "../../Util/ScrollBar/ScrollBarY";
-import { useRef, useState } from "react";
+import { useRef, useState } from 'react';
+import { playlists } from '../../../data';
+import ScrollBarY from '../../Util/ScrollBar/ScrollBarY';
+import RecentlyPlayedPlaylists from './Components/RecentlyPlayedPlaylists/RecentlyPlayedPlaylists';
+import HomeSection from './Components/Section/Section';
+import classes from './style';
 
 const Home = () => {
   const [hovering, setHovering] = useState<boolean>(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const homeRef = useRef<HTMLDivElement>(null);
+  
 
   return (
     <div
@@ -23,17 +24,12 @@ const Home = () => {
         setHovering(false);
       }}
     >
-      <ScrollBarY
-        generalHover={hovering}
-        width={20}
-        maxHeight={containerRef.current?.clientHeight || 0}
-        scrollableElementRef={homeRef}
-      />
+      <ScrollBarY generalHover={hovering} width={13} maxHeight={containerRef.current?.clientHeight || 0} scrollableElementRef={homeRef} />
       <div ref={homeRef} css={classes.home}>
         <RecentlyPlayedPlaylists />
-        <HomeSection name="POPULAR SONGS" playlists={playlists} />
-        <HomeSection name="POPULAR PLAYLISTS" playlists={playlists} />
-        <HomeSection name="RECENTLY PLAYED" playlists={playlists} />
+        <HomeSection name='POPULAR SONGS' playlists={playlists} />
+        <HomeSection name='POPULAR PLAYLISTS' playlists={playlists} />
+        <HomeSection name='RECENTLY PLAYED' playlists={playlists} />
         //! Credits
       </div>
     </div>

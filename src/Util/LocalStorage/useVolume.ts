@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from 'react';
 
 const useVolume = () => {
   const [currentVolume, setCurrentVolume] = useState<number>(() => {
-    return JSON.parse(localStorage.getItem("volume") || "1");
+    return JSON.parse(localStorage.getItem('volume') || '1');
   });
 
   useEffect(() => {
-    localStorage.setItem("volume", JSON.stringify(currentVolume));
+    localStorage.setItem('volume', JSON.stringify(currentVolume));
   }, [currentVolume]);
 
   const changeCurrentVolume = (vol: number) => {

@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { theme } from "../../../../../../../theme";
 
 const classes = {
   playlists: css`
@@ -45,6 +46,7 @@ const classes = {
     flex-grow: 1;
     border-radius: 0 5px 5px 0;
     padding-left: 10px;
+    font-weight: 600;
   `,
   button: css`
     box-sizing: border-box;
@@ -60,7 +62,7 @@ const classes = {
     width: 1.5em !important;
     height: 1.5em !important;
     color: black;
-    background-color: rgb(162, 69, 255);
+    background-color: ${theme.colors.default.buttons.hover};
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
     border-radius: 50em;
     padding: 5px;

@@ -1,39 +1,45 @@
 /** @jsxImportSource @emotion/react */
-import { useEffect, useState } from "react";
-import classes from "./style";
-import { Song } from "../../../../Model/Song/songs";
-import { useMovePointer } from "../../../../Util/Hooks/useMovePointer";
-import PlayButton from "../../../Util/Buttons/PlayButton/PlayButton";
-import { useDispatch, useSelector } from "react-redux";
-import ShuffleButton from "../../../Util/Buttons/ShuffleButton/ShuffleButton";
-import LoopButton from "../../../Util/Buttons/LoopButton/LoopButton";
-import { togglePlaying } from "../../../../Store/songSlice";
+import { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Song } from '../../../../Model/Song/songs';
+import { togglePlaying } from '../../../../Store/songSlice';
+import { RootState } from '../../../../Store/store';
+import { useMovePointer } from '../../../../Util/Hooks/useMovePointer';
+import LoopButton from '../../../Util/Buttons/LoopButton/LoopButton';
+import PlayButton from '../../../Util/Buttons/PlayButton/PlayButton';
+import ShuffleButton from '../../../Util/Buttons/ShuffleButton/ShuffleButton';
+import classes from './style';
 
-const Player = ({
-  song,
-  audioRef,
-}: {
+interface PlayerProps {
   song: Song | undefined;
   audioRef: React.RefObject<HTMLAudioElement>;
-}) => {
-  const [progress, setProgress] = useState<number>(0);
-  const [totalDuration, setTotalDuration] = useState<number>(0);
-  const dispatch = useDispatch();
-  const isPlaying: boolean = useSelector(
-    (state: any) => state.playback.isPlaying
-  );
+}
 
+const Player = ({ song, audioRef }: PlayerProps) => {
+  const dispatch = useDispatch();
+  const isPlaying: boolean = useSelector((state: RootState) => state.playback.isPlaying);
   const { movePlaybackPointer } = useMovePointer();
 
-  useEffect(() => {
-    handleLoadedMetadata();
-  }, [song]);
+  const [progress, setProgress] = useState<number>(() => {
+    return Number(localStorage.getItem('progress')) || 0;
+  });
+  const [totalDuration, setTotalDuration] = useState<number>(0);
 
   useEffect(() => {
-    if (audioRef.current) {
-      const audio = audioRef.current;
+    localStorage.setItem('progress', JSON.stringify(progress));
+    if (progress === 100) {
+      setTimeout(() => {
+        handleNext();
+      }, 1000);
+    }
+  }, [progress]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      handleLoadedMetadata();
       if (isPlaying) {
-        audio.play();
+        audio.play().catch(console.error);
       } else {
         audio.pause();
       }
@@ -50,7 +56,7 @@ const Player = ({
 
   const handleLoadedMetadata = () => {
     if (audioRef.current) {
-      setProgress(0);
+      setProgress(Number(JSON.parse(localStorage.getItem('progress') || '0')));
       setTotalDuration(audioRef.current.duration);
     }
   };
@@ -64,15 +70,13 @@ const Player = ({
     }
   };
 
-  const formatTime = (seconds: number) => {
+  const formatTime = useCallback((seconds: number) => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = Math.floor(seconds % 60);
-    return `${minutes}:${remainingSeconds < 10 ? "0" : ""}${remainingSeconds}`;
-  };
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+  }, []);
 
-  const handleNext = () => {
-    movePlaybackPointer(1);
-  };
+  const handleNext = useCallback(() => movePlaybackPointer(1), [movePlaybackPointer]);
 
   const handlePrev = () => {
     if (progress > 1) {
@@ -95,25 +99,16 @@ const Player = ({
       <div css={classes.buttons}>
         <ShuffleButton cssClass={classes.shuffleButton} />
         <button css={classes.skipButtons} onClick={handlePrev}>
-          <svg>
-            <path d="M3.3 1a.7.7 0 0 1 .7.7v5.15l9.95-5.744a.7.7 0 0 1 1.05.606v12.575a.7.7 0 0 1-1.05.607L4 9.149V14.3a.7.7 0 0 1-.7.7H1.7a.7.7 0 0 1-.7-.7V1.7a.7.7 0 0 1 .7-.7h1.6z" />
+          <svg viewBox="0 0 16 16">
+            <path d='M3.3 1a.7.7 0 0 1 .7.7v5.15l9.95-5.744a.7.7 0 0 1 1.05.606v12.575a.7.7 0 0 1-1.05.607L4 9.149V14.3a.7.7 0 0 1-.7.7H1.7a.7.7 0 0 1-.7-.7V1.7a.7.7 0 0 1 .7-.7h1.6z' />
           </svg>
         </button>
         <button>
-          <PlayButton
-            cssClass={classes.playButton}
-            isPlaying={isPlaying}
-            togglePlay={togglePlay}
-          />
+          <PlayButton cssClass={classes.playButton} isPlaying={isPlaying} togglePlay={togglePlay} />
         </button>
-        <button
-          css={classes.skipButtons}
-          onClick={() => {
-            handleNext();
-          }}
-        >
-          <svg>
-            <path d="M12.7 1a.7.7 0 0 0-.7.7v5.15L2.05 1.107A.7.7 0 0 0 1 1.712v12.575a.7.7 0 0 0 1.05.607L12 9.149V14.3a.7.7 0 0 0 .7.7h1.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7h-1.6z" />
+        <button css={classes.skipButtons} onClick={handleNext}>
+          <svg viewBox="0 0 16 16">
+            <path d='M12.7 1a.7.7 0 0 0-.7.7v5.15L2.05 1.107A.7.7 0 0 0 1 1.712v12.575a.7.7 0 0 0 1.05.607L12 9.149V14.3a.7.7 0 0 0 .7.7h1.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7h-1.6z' />
           </svg>
         </button>
         <LoopButton cssClass={classes.loopButton} />
@@ -122,24 +117,12 @@ const Player = ({
       <div css={classes.progressBar}>
         <p>{formatTime((progress / 100) * totalDuration)}</p>
 
-        <input
-          type="range"
-          value={progress}
-          min="0"
-          max="100"
-          onChange={handleSeek}
-          style={{ "--progress": `${progress}` } as React.CSSProperties}
-        />
+        <input type='range' value={progress} min='0' max='100' onChange={handleSeek} style={{ '--progress': `${progress}` } as React.CSSProperties} />
 
         <p>{formatTime(totalDuration)}</p>
       </div>
 
-      <audio
-        ref={audioRef}
-        src={song ? song.audioSrc : ""}
-        onTimeUpdate={handleTimeUpdate}
-        onLoadedMetadata={handleLoadedMetadata}
-      />
+      <audio ref={audioRef} src={song ? song.audioSrc : ''} onTimeUpdate={handleTimeUpdate} onLoadedMetadata={handleLoadedMetadata} />
     </div>
   );
 };

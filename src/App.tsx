@@ -1,22 +1,36 @@
 /** @jsxImportSource @emotion/react */
-import BottomBar from "./Components/BottomBar";
-import TopBar from "./Components/TopBar";
-import classes from "./style";
-import LeftBar from "./Components/LeftBar";
-import RoutesComponent from "./Components/Routes/RoutesComponent";
-import { BrowserRouter as Router } from "react-router";
-import { useDispatch } from "react-redux";
-import { initStore } from "./Store/songSlice";
-import { useEffect } from "react";
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router';
+import BottomBar from './Components/BottomBar';
+import LeftBar from './Components/LeftBar';
+import RoutesComponent from './Components/Routes/RoutesComponent';
+import TopBar from './Components/TopBar';
+import { initStore, togglePlaying } from './Store/songSlice';
+import classes from './style';
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.code === 'Space' || event.code === 'Enter') {
+        dispatch(togglePlaying());
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, []);
+
+  useEffect(() => {
     dispatch(
       initStore({
         isPlaying: false,
-      })
+      }),
     );
   }, [dispatch]);
 

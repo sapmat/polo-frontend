@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { IoTimeOutline } from "react-icons/io5";
-import classes from "./style";
+import { IoTimeOutline } from 'react-icons/io5';
+import classes from './style';
 
 const TableHeader = ({ isAtTop }: { isAtTop: boolean }) => {
   return (

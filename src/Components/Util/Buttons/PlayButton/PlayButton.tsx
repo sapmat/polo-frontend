@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import { Interpolation, Theme } from "@emotion/react";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import PauseIcon from "@mui/icons-material/Pause";
-import { Song } from "../../../../Model/Song/songs";
-import { Playlist } from "../../../../Model/Playlist/playlist";
-import classes from "./style";
+import { Interpolation, Theme } from '@emotion/react';
+import PauseIcon from '@mui/icons-material/Pause';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import { Playlist } from '../../../../Model/Playlist/playlist';
+import { Song } from '../../../../Model/Song/songs';
+import classes from './style';
 
 const PlayButton = ({
   cssClass = {},
@@ -29,11 +29,7 @@ const PlayButton = ({
         togglePlay();
       }}
     >
-      {isPlaying ? (
-        <PauseIcon css={cssClass} />
-      ) : (
-        <PlayArrowIcon css={cssClass} />
-      )}
+      {isPlaying ? <PauseIcon css={cssClass} /> : <PlayArrowIcon css={cssClass} />}
     </div>
   );
 };

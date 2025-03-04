@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import { css } from '@emotion/react';
+import { theme } from '../../../../../theme';
 
 const classes = {
   section: css`
@@ -12,15 +13,42 @@ const classes = {
     color: #aaa;
     padding: 0 30px;
   `,
+  space: css`
+    min-width: calc(30px - 1em);
+    content: '';
+  `,
   playlistsContainer: css`
     position: relative;
     display: flex;
     gap: 1em;
-    padding: 0 30px;
     overflow-x: scroll;
 
     &::-webkit-scrollbar {
       display: none;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      bottom: 0;
+      width: 30px;
+      background: linear-gradient(90deg, hsla(0, 0%, 7%, 0.7) 0%, transparent 100%);
+      inset-inline-start: 0;
+      pointer-events: none;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      bottom: 0;
+      width: 30px;
+      background: linear-gradient(-90deg, hsla(0, 0%, 7%, 0.7) 0%, transparent 100%);
+      inset-inline-end: 0;
+      pointer-events: none;
     }
   `,
   playlists: css`
@@ -74,7 +102,7 @@ const classes = {
     width: 1.5em !important;
     height: 1.5em !important;
     color: black;
-    background-color: rgb(162, 69, 255);
+    background-color: ${theme.colors['default'].main.main};
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
     border-radius: 50em;
     padding: 5px;

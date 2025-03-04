@@ -1,18 +1,26 @@
 /** @jsxImportSource @emotion/react */
-import { Song } from "../../../../Model/Song/songs";
-import classes from "./style";
+import { Song } from '../../../../Model/Song/songs';
+import ItemImage from '../../../Util/ItemImage/ItemImage';
+import AddToPlaylistButton from '../AddToPlaylistButton/AddToPlaylistButton';
+import classes from './style';
 
-const BottomSongDetails = ({ song }: { song: Song | undefined }) => {
+interface BottomSongDetailsProps {
+  song: Song | undefined;
+}
+
+const BottomSongDetails = ({ song }: BottomSongDetailsProps) => {
   if (!song) return <></>;
 
   return (
-    <div css={classes.info}>
-      <div css={classes.image}>{song.image}</div>
+    <div css={classes.root}>
+      <div css={classes.image}>
+        <ItemImage item={song} />
+      </div>
       <div css={classes.details}>
         <p css={classes.name}>{song.name}</p>
-        <p css={classes.artists}>{song.artists.join(", ")}</p>
+        <p css={classes.artists}>{song.artists.join(', ')}</p>
       </div>
-      //! ADD TO FAVORITES
+      <AddToPlaylistButton />
     </div>
   );
 };

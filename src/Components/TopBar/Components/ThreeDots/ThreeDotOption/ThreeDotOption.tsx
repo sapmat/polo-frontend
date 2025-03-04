@@ -1,4 +1,4 @@
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 const ThreeDotOption = ({ title }: { title: string }) => {
   return (

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { theme } from "../../../theme";
+import { css } from '@emotion/react';
+import { theme } from '../../../theme';
 
 const classes = {
   general: css`
@@ -9,7 +9,6 @@ const classes = {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
     overflow: hidden;
     border-radius: 10px;
   `,
@@ -43,13 +42,13 @@ const classes = {
     z-index: 10;
     transition: opacity 0.25s ease-in-out;
   `,
-  headerPlay: css`
+  headerPlay: (dominantColor: string) => css`
     box-sizing: border-box;
     display: flex;
     align-items: center;
     width: 100%;
     padding: 0.75em 1em;
-    background: #452050;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), ${dominantColor};
     gap: 0.5em;
   `,
   headerName: css`
@@ -64,7 +63,7 @@ const classes = {
   `,
   play: css`
     color: black;
-    background-color: ${theme.colors["default"].buttons.selected};
+    background-color: ${theme.colors['default'].buttons.main};
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
     border-radius: 50em;
     height: 1.5em;
@@ -74,7 +73,7 @@ const classes = {
 
     &:hover {
       scale: 1.05;
-      background-color: ${theme.colors["default"].buttons.hover};
+      background-color: ${theme.colors['default'].buttons.hover};
     }
   `,
   shuffle: css`
@@ -93,8 +92,7 @@ const classes = {
     padding: 1.75em;
     border-radius: 10px 10px 0 0;
     background-color: ${dominantColor};
-    background-image: linear-gradient(transparent 0, rgba(0, 0, 0, 0.5) 100%),
-      url("/Images/noise.svg");
+    background-image: linear-gradient(transparent 0, rgba(0, 0, 0, 0.5) 100%), url('/Images/noise.svg');
   `,
   image: css`
     border-radius: 5px;
@@ -138,8 +136,7 @@ const classes = {
     z-index: -1;
     width: 100%;
     background-color: ${dominantColor};
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6) 0%, #121212 100%),
-      url("/Images/noise.svg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6) 0%, #121212 100%), url('/Images/noise.svg');
   `,
   contentTop: css`
     display: flex;

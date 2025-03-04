@@ -1,28 +1,20 @@
-import { useState, useEffect } from "react";
-import { Song } from "../../Model/Song/songs";
+import { useEffect, useState } from 'react';
+import { Song } from '../../Model/Song/songs';
 
 const useQueue = () => {
   const [queue, setQueue] = useState<Song[]>(() => {
-    const storedQueue: Song[] = JSON.parse(
-      localStorage.getItem("queue") || "[]"
-    );
-    const queuePointer: number = Number(
-      localStorage.getItem("queuePointer") || "-1"
-    );
+    const storedQueue: Song[] = JSON.parse(localStorage.getItem('queue') || '[]');
+    const queuePointer: number = Number(localStorage.getItem('queuePointer') || '-1');
     return queuePointer < 0 ? [] : storedQueue;
   });
 
   const [queuePointer, setQueuePointer] = useState<number>(() => {
-    return Number(localStorage.getItem("queuePointer") || "-1");
+    return Number(localStorage.getItem('queuePointer') || '-1');
   });
 
   const updateState = (): void => {
-    const storedQueue: Song[] = JSON.parse(
-      localStorage.getItem("queue") || "[]"
-    );
-    const storedPointer: number = Number(
-      localStorage.getItem("queuePointer") || "-1"
-    );
+    const storedQueue: Song[] = JSON.parse(localStorage.getItem('queue') || '[]');
+    const storedPointer: number = Number(localStorage.getItem('queuePointer') || '-1');
 
     if (storedPointer < 0 || storedPointer >= storedQueue.length) {
       setQueue([]);
@@ -35,28 +27,24 @@ const useQueue = () => {
 
   const addToQueue = (song: Song) => {
     const updatedQueue: Song[] = [...queue, song];
-    localStorage.setItem("queue", JSON.stringify(updatedQueue));
-    if (queuePointer === -1) localStorage.setItem("queuePointer", "0");
+    localStorage.setItem('queue', JSON.stringify(updatedQueue));
+    if (queuePointer === -1) localStorage.setItem('queuePointer', '0');
     updateState();
   };
 
   const removeFromQueue = (index: number) => {
     const updatedQueue: Song[] = queue.filter((_, i) => i !== index);
-    localStorage.setItem("queue", JSON.stringify(updatedQueue));
+    localStorage.setItem('queue', JSON.stringify(updatedQueue));
 
-    window.dispatchEvent(new Event("local-storage-queue-changed"));
+    window.dispatchEvent(new Event('local-storage-queue-changed'));
 
     if (updatedQueue.length === 0) {
-      localStorage.setItem("queuePointer", "-1");
+      localStorage.setItem('queuePointer', '-1');
     } else if (queuePointer >= updatedQueue.length) {
-      localStorage.setItem(
-        "queuePointer",
-        (updatedQueue.length - 1).toString()
-      );
+      localStorage.setItem('queuePointer', (updatedQueue.length - 1).toString());
     }
 
-    window.dispatchEvent(new Event("local-storage-queue-pointer-changed"));
-
+    window.dispatchEvent(new Event('local-storage-queue-pointer-changed'));
 
     updateState();
   };
@@ -67,13 +55,13 @@ const useQueue = () => {
     const next: number = queuePointer + direction;
 
     if (next < 0 || next >= queue.length) {
-      localStorage.setItem("queuePointer", "-1");
+      localStorage.setItem('queuePointer', '-1');
       setQueue([]);
     } else {
-      localStorage.setItem("queuePointer", next.toString());
+      localStorage.setItem('queuePointer', next.toString());
     }
 
-    window.dispatchEvent(new Event("local-storage-queue-pointer-changed"));
+    window.dispatchEvent(new Event('local-storage-queue-pointer-changed'));
 
     updateState();
   };
@@ -83,24 +71,12 @@ const useQueue = () => {
       updateState();
     };
 
-    window.addEventListener(
-      "local-storage-queue-changed",
-      handleStorageChange
-    );
-    window.addEventListener(
-      "local-storage-queue-pointer-changed",
-      handleStorageChange
-    );
+    window.addEventListener('local-storage-queue-changed', handleStorageChange);
+    window.addEventListener('local-storage-queue-pointer-changed', handleStorageChange);
 
     return () => {
-      window.removeEventListener(
-        "local-storage-queue-changed",
-        handleStorageChange
-      );
-      window.removeEventListener(
-        "local-storage-queue-pointer-changed",
-        handleStorageChange
-      );
+      window.removeEventListener('local-storage-queue-changed', handleStorageChange);
+      window.removeEventListener('local-storage-queue-pointer-changed', handleStorageChange);
     };
   }, []);
 

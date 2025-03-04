@@ -1,24 +1,26 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import { css } from '@emotion/react';
 
 const classes = {
-  info: css`
+  root: css`
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    justify-content: left;
+    justify-content: flex-start;
     align-items: center;
-    padding: 5px 15px;
+    padding: 10px 15px;
     height: 7vh;
     gap: 0.5em;
   `,
   image: css`
-    background-color: #663399;
-    height: 80%;
+    height: 100%;
     aspect-ratio: 1 / 1;
   `,
   details: css`
-    height: 4vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
   `,
   name: css`
     font-weight: 500;

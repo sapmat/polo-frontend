@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import { css } from '@emotion/react';
 
 const classes = {
   openBarButton: css`
@@ -32,7 +32,7 @@ const classes = {
     }
 
     p {
-      display: ${isOpen ? "" : "none"};
+      display: ${isOpen ? '' : 'none'};
       margin: 0;
       font-size: 1.35em;
       font-weight: 500;

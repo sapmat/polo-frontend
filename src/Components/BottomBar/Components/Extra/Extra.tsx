@@ -1,17 +1,17 @@
 /** @jsxImportSource @emotion/react */
-import VolumeBar from "../VolumeBar/VolumeBar";
-import classes from "./style";
+import VolumeBar from '../VolumeBar/VolumeBar';
+import classes from './style';
 
-const Extra = ({
-  audioRef,
-}: {
+interface ExtraProps {
   audioRef: React.RefObject<HTMLAudioElement>;
-}) => {
-  return (
-    <div css={classes.extra}>
-      <div css={classes.section}>//! view current song</div>
+}
 
-      <div css={classes.section}>//! view queue</div>
+const Extra = ({ audioRef }: ExtraProps) => {
+  return (
+    <div css={classes.root}>
+      {/* <div css={classes.section}>//! view current song</div>
+
+      <div css={classes.section}>//! view queue</div> */}
 
       <div css={classes.section}>
         <VolumeBar audioRef={audioRef} />

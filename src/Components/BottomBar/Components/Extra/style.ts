@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import { css } from '@emotion/react';
 
 const classes = {
-  extra: css`
+  root: css`
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    justify-content: end;
+    justify-content: flex-end;
     gap: 0.5em;
     padding: 5px 15px;
   `,

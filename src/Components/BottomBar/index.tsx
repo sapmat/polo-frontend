@@ -1,27 +1,40 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /** @jsxImportSource @emotion/react */
-import { Song } from "../../Model/Song/songs";
-import classes from "./style";
-import Player from "./Components/Player/Player";
-import BottomSongDetails from "./Components/BottomSongDetails/BottomSongDetails";
-import { useEffect, useRef, useState } from "react";
-import SongService from "../../api/songs";
-import useSong from "../../Util/LocalStorage/useSong";
-import Extra from "./Components/Extra/Extra";
+import { useCallback, useEffect, useRef, useState } from 'react';
+import SongService from '../../api/songs';
+import { Song } from '../../Model/Song/songs';
+import useSong from '../../Util/LocalStorage/useSong';
+import BottomSongDetails from './Components/BottomSongDetails/BottomSongDetails';
+import Extra from './Components/Extra/Extra';
+import Player from './Components/Player/Player';
+import classes from './style';
 
 const BottomBar = () => {
   const { currentSongId } = useSong();
-  const [currentSong, setCurrentSong] = useState<Song>();
+  const [currentSong, setCurrentSong] = useState<Song | undefined>(undefined);
   const audioRef = useRef<HTMLAudioElement>(null);
 
+  const fetchSong = useCallback(
+    (songId: string) => {
+      if (!songId) return;
+
+      SongService.getSongById(songId)
+        .then((res) => {
+          setCurrentSong(res);
+        })
+        .catch((error) => {
+          console.error('Error fetching song:', error);
+        });
+    },
+    [setCurrentSong],
+  );
+
   useEffect(() => {
-    SongService.getSongById(currentSongId || "").then((res) => {
-      setCurrentSong(res);
-    });
-  }, [currentSongId]);
+    fetchSong(currentSongId || '');
+  }, [currentSongId, fetchSong]);
 
   return (
-    <div css={classes.bottomBar}>
+    <div css={classes.root}>
       <div css={classes.section}>
         <BottomSongDetails song={currentSong} />
       </div>

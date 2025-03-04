@@ -1,25 +1,25 @@
 /** @jsxImportSource @emotion/react */
-import { useParams } from "react-router";
-import classes from "./style";
-import PlaylistImage from "../../Util/ItemImage/ItemImage";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import { useEffect, useMemo, useRef, useState } from "react";
-import TableRow from "./Components/Table/TableRow";
-import TableHeader from "./Components/Table/TableHeader";
-import ScrollBarY from "../../Util/ScrollBar/ScrollBarY";
-import PlayButton from "../../Util/Buttons/PlayButton/PlayButton";
-import { useDispatch, useSelector } from "react-redux";
-import { togglePlaying, setPlaying } from "../../../Store/songSlice";
-import usePlaylist from "../../../Util/LocalStorage/usePlaylist";
-import { Playlist } from "../../../Model/Playlist/playlist";
-import PlaylistService from "../../../api/playlists";
-import useSong from "../../../Util/LocalStorage/useSong";
-import { v4 as uuidv4 } from "uuid";
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
+import { v4 as uuidv4 } from 'uuid';
+import PlaylistService from '../../../api/playlists';
+import { Playlist } from '../../../Model/Playlist/playlist';
+import { setPlaying, togglePlaying } from '../../../Store/songSlice';
+import usePlaylist from '../../../Util/LocalStorage/usePlaylist';
+import useSong from '../../../Util/LocalStorage/useSong';
+import PlayButton from '../../Util/Buttons/PlayButton/PlayButton';
+import ItemImage from '../../Util/ItemImage/ItemImage';
+import ScrollBarY from '../../Util/ScrollBar/ScrollBarY';
+import TableHeader from './Components/Table/TableHeader';
+import TableRow from './Components/Table/TableRow';
+import classes from './style';
 
 const PlaylistPage = () => {
   const dispatch = useDispatch();
   const params = useParams();
-  const id: string = params.id || "";
+  const id: string = params.id || '';
   const [playlist, setPlaylist] = useState<Playlist>();
 
   const generalRef = useRef<HTMLDivElement>(null);
@@ -31,27 +31,17 @@ const PlaylistPage = () => {
 
   const [showMainHeader, setShowMainHeader] = useState<number>(0);
   const [hovering, setHovering] = useState<boolean>(false);
-  const [dominantColor, setDominantColor] = useState<string>("#3e2050");
+  const [dominantColor, setDominantColor] = useState<string>('#3e2050');
 
   const memoizedSongs = useMemo(
-    () =>
-      playlist?.songs.map((song, index) => (
-        <TableRow
-          key={uuidv4()}
-          index={index}
-          playlistSong={song}
-          playlist={playlist}
-        />
-      )),
-    [playlist?.songs]
+    () => playlist?.songs.map((song, index) => <TableRow key={uuidv4()} index={index} playlistSong={song} playlist={playlist} />),
+    [playlist?.songs],
   );
 
   const { currentPlaylist, setCurrentPlaylist } = usePlaylist();
   const { updateCurrentSongId } = useSong();
 
-  const isPlaying: boolean = useSelector(
-    (state: any) => state.playback.isPlaying
-  );
+  const isPlaying: boolean = useSelector((state: any) => state.playback.isPlaying);
 
   useEffect(() => {
     PlaylistService.getPlaylist(id).then((res) => setPlaylist(res));
@@ -76,25 +66,19 @@ const PlaylistPage = () => {
 
     const scrollContainer = pageRef.current;
     if (scrollContainer) {
-      scrollContainer.addEventListener("scroll", handleScroll);
+      scrollContainer.addEventListener('scroll', handleScroll);
     }
 
     return () => {
       if (scrollContainer) {
-        scrollContainer.removeEventListener("scroll", handleScroll);
+        scrollContainer.removeEventListener('scroll', handleScroll);
       }
     };
   }, [pageRef.current]);
 
   useEffect(() => {
     setScrollbar(
-      <ScrollBarY
-        generalHover={hovering}
-        width={15}
-        maxHeight={generalRef.current?.clientHeight || 0}
-        scrollableElementRef={pageRef}
-        reload={id}
-      />
+      <ScrollBarY generalHover={hovering} width={15} maxHeight={generalRef.current?.clientHeight || 0} scrollableElementRef={pageRef} reload={id} />,
     );
   }, [id, pageRef.current, hovering]);
 
@@ -103,13 +87,10 @@ const PlaylistPage = () => {
   const formatDuration = (): string => {
     const h = Math.floor(playlist.duration / 60);
     const m = playlist.duration % 60;
-    return `${h > 0 ? `${h} hr ` : ""}${m} min`;
+    return `${h > 0 ? `${h} hr ` : ''}${m} min`;
   };
 
-  const getSongDetails = () =>
-    `• ${playlist.songs.length} song${
-      playlist.songs.length > 1 ? "s" : ""
-    }, ${formatDuration()}`;
+  const getSongDetails = () => `• ${playlist.songs.length} song${playlist.songs.length > 1 ? 's' : ''}, ${formatDuration()}`;
 
   const togglePlay = () => {
     if (playlist.id === currentPlaylist?.id) {
@@ -121,8 +102,7 @@ const PlaylistPage = () => {
     }
   };
 
-  const isPlaylistPlaying = (): boolean =>
-    currentPlaylist.id === playlist.id && isPlaying;
+  const isPlaylistPlaying = (): boolean => currentPlaylist.id === playlist.id && isPlaying;
 
   return (
     <div
@@ -138,7 +118,7 @@ const PlaylistPage = () => {
       {scrollbar}
       <div css={classes.bigBackground} />
       <header ref={mainHeaderRef} css={classes.mainHeader(showMainHeader)}>
-        <div css={classes.headerPlay}>
+        <div css={classes.headerPlay(dominantColor)}>
           <button css={classes.playButton}>
             <PlayArrowIcon css={classes.play} />
           </button>
@@ -146,18 +126,12 @@ const PlaylistPage = () => {
         </div>
         <TableHeader isAtTop />
       </header>
-      <div className="page" ref={pageRef} css={classes.page}>
+      <div className='page' ref={pageRef} css={classes.page}>
         <div ref={headerRef}>
           <div css={classes.header(dominantColor)}>
-            <PlaylistImage
-              item={playlist}
-              cssClass={classes.image}
-              setDominantColor={setDominantColor}
-            />
+            <ItemImage item={playlist} cssClass={classes.image} setDominantColor={setDominantColor} />
             <div css={classes.details}>
-              <div>{`${
-                playlist.isPrivate ? "Private" : "Public"
-              } Playlist`}</div>
+              <div>{`${playlist.isPrivate ? 'Private' : 'Public'} Playlist`}</div>
               <div css={classes.name}>{playlist.name}</div>
               <div css={classes.extra}>
                 <div css={classes.creator}>
@@ -172,12 +146,8 @@ const PlaylistPage = () => {
         <div css={classes.content}>
           <div css={classes.background(dominantColor)}></div>
           <div css={classes.contentTop}>
-            <div css={{ display: "flex" }}>
-              <PlayButton
-                cssClass={classes.play}
-                isPlaying={isPlaylistPlaying()}
-                togglePlay={togglePlay}
-              />
+            <div css={{ display: 'flex' }}>
+              <PlayButton cssClass={classes.play} isPlaying={isPlaylistPlaying()} togglePlay={togglePlay} />
             </div>
           </div>
           <div>

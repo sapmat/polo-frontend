@@ -1,16 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { useEffect, useState } from "react";
-import classes from "./style";
+import { useEffect, useState } from 'react';
+import classes from './style';
 
-const ScrollButton = ({
-  playlistsRef,
-  show,
-  isRight,
-}: {
-  playlistsRef: React.RefObject<HTMLElement>;
-  show: boolean;
-  isRight: boolean;
-}) => {
+const ScrollButton = ({ playlistsRef, show, isRight }: { playlistsRef: React.RefObject<HTMLElement>; show: boolean; isRight: boolean }) => {
   const [visible, setVisible] = useState(show);
 
   const handleScroll = () => {
@@ -19,10 +11,8 @@ const ScrollButton = ({
       const scrollAmount = element.scrollWidth * 0.9;
 
       element.scrollTo({
-        left: isRight
-          ? element.scrollLeft + scrollAmount
-          : element.scrollLeft - scrollAmount,
-        behavior: "smooth",
+        left: element.scrollLeft + (isRight ? scrollAmount : -scrollAmount),
+        behavior: 'smooth',
       });
     }
   };
@@ -32,40 +22,33 @@ const ScrollButton = ({
     if (playlistsRef.current) {
       const element = playlistsRef.current;
 
-      if (isRight) {
-        setVisible(
-          element.scrollLeft + element.clientWidth < element.scrollWidth
-        );
-      } else {
-        setVisible(element.scrollLeft > 0);
-      }
+      setVisible(isRight ? element.scrollLeft + element.clientWidth < element.scrollWidth : element.scrollLeft > 0);
     }
   };
 
   useEffect(() => {
-    if (playlistsRef.current) {
-      const element = playlistsRef.current;
-      element.addEventListener("scroll", checkVisibility);
-
+    const element = playlistsRef.current;
+    if (element) {
+      element.addEventListener('scroll', checkVisibility);
       checkVisibility();
 
       return () => {
-        element.removeEventListener("scroll", checkVisibility);
+        element.removeEventListener('scroll', checkVisibility);
       };
     }
-  }, [playlistsRef, isRight, checkVisibility]);
+  }, [playlistsRef, isRight]);
 
   return (
     visible && (
       <button css={classes.scrollButton(show, isRight)} onClick={handleScroll}>
         <svg
-          viewBox="0 0 16 16"
-          fill="white"
+          viewBox='0 0 16 16'
+          fill='white'
           style={{
-            transform: isRight ? "none" : "rotate(180deg)",
+            transform: isRight ? 'none' : 'rotate(180deg)',
           }}
         >
-          <path d="M4.97.47a.75.75 0 0 0 0 1.06L11.44 8l-6.47 6.47a.75.75 0 1 0 1.06 1.06L13.56 8 6.03.47a.75.75 0 0 0-1.06 0z" />
+          <path d='M4.97.47a.75.75 0 0 0 0 1.06L11.44 8l-6.47 6.47a.75.75 0 1 0 1.06 1.06L13.56 8 6.03.47a.75.75 0 0 0-1.06 0z' />
         </svg>
       </button>
     )

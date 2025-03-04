@@ -1,19 +1,22 @@
 /** @jsxImportSource @emotion/react */
-import { useEffect, useState } from "react";
-import classes from "./style";
-import VolumeIcon from "./VolumeIcon";
-import useVolume from "../../../../Util/LocalStorage/useVolume";
+import { useCallback, useEffect, useState } from 'react';
+import useVolume from '../../../../Util/LocalStorage/useVolume';
+import classes from './style';
+import VolumeIcon from './VolumeIcon';
 
-const VolumeBar = ({
-  audioRef,
-}: {
+interface VolumeBarProps {
   audioRef: React.RefObject<HTMLAudioElement>;
-}) => {
+}
+
+const VolumeBar = ({ audioRef }: VolumeBarProps) => {
   const { currentVolume, changeCurrentVolume } = useVolume();
   const [volume, setVolume] = useState<number>(currentVolume);
-  const [mute, setMute] = useState<boolean>(
-    JSON.parse(localStorage.getItem("isMute") || "false")
-  );
+  const [mute, setMute] = useState<boolean>(false);
+
+  useEffect(() => {
+    const storedMute = JSON.parse(localStorage.getItem('isMute') || 'false');
+    setMute(storedMute);
+  }, []);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -26,26 +29,26 @@ const VolumeBar = ({
   }, [volume]);
 
   useEffect(() => {
-    mute ? setVolume(0) : setVolume(Math.max(currentVolume, 0.1));
-    localStorage.setItem("isMute", JSON.stringify(mute));
+    mute ? setVolume(0) : setVolume(volume === 0 ? Math.max(currentVolume, 0.1) : volume);
+    localStorage.setItem('isMute', JSON.stringify(mute));
   }, [mute]);
 
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setVolume(parseFloat(e.target.value) / 100);
-    setMute(false)
-  };
+  const handleVolumeChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = parseFloat(e.target.value) / 100;
+    setMute(newVolume === 0);
+    setVolume(newVolume);
+  }, []);
 
   return (
     <div css={classes.volume}>
       <VolumeIcon volume={volume} setMute={setMute} />
       <input
-        type="range"
-        id="volume"
+        type='range'
         value={volume * 100}
-        min="0"
-        max="100"
+        min='0'
+        max='100'
         onChange={handleVolumeChange}
-        style={{ "--volume": `${volume * 100}` } as React.CSSProperties}
+        style={{ '--volume': `${volume * 100}` } as React.CSSProperties}
       />
     </div>
   );
