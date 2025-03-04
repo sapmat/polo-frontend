@@ -32,7 +32,7 @@ const LeftBar = () => {
         }}
       >
         <ScrollBarY
-          generalHover={hovering}
+          generalHover={state.hovering}
           width={12}
           maxHeight={playlistsRef.current?.clientHeight || 0}
           scrollableElementRef={playlistsRef}
