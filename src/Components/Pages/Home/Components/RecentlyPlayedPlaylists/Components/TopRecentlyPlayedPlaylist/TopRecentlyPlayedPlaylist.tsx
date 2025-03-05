@@ -6,7 +6,7 @@ import { setPlaying, togglePlaying } from '../../../../../../../Store/songSlice'
 import usePlaylist from '../../../../../../../Util/LocalStorage/usePlaylist';
 import useSong from '../../../../../../../Util/LocalStorage/useSong';
 import PlayButton from '../../../../../../Util/Buttons/PlayButton/PlayButton';
-import PlaylistImage from '../../../../../../Util/ItemImage/ItemImage';
+import ItemImage from '../../../../../../Util/ItemImage/ItemImage';
 import classes from './style';
 
 const TopRecentlyPlayedPlaylist = ({ playlist }: { playlist: Playlist }) => {
@@ -32,7 +32,7 @@ const TopRecentlyPlayedPlaylist = ({ playlist }: { playlist: Playlist }) => {
 
   return (
     <div css={classes.playlist} onClick={() => navigate(`/playlist/${playlist.id}`)}>
-      <PlaylistImage cssClass={classes.image} item={playlist} />
+      <ItemImage cssClass={classes.image} item={playlist} />
       <div css={classes.name}>{playlist.name}</div>
       <button css={classes.button}>
         <PlayButton isPlaying={checkPlaying} togglePlay={handlePlay} cssClass={classes.play} />

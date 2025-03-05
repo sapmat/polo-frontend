@@ -78,6 +78,8 @@ const classes = {
     height: 5em !important;
     border-radius: 5px;
     font-size: 2em;
+    height: 100%;
+    aspect-ratio: 1 / 1;
   `,
   button: css`
     box-sizing: border-box;

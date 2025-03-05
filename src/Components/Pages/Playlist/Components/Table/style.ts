@@ -45,6 +45,8 @@ const classes = {
     width: 2.5em;
     border-radius: 2px;
     color: white;
+    height: 100%;
+    aspect-ratio: 1 / 1;
   `,
   details: css`
     overflow: hidden;

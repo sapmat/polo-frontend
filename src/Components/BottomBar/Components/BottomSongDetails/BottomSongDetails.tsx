@@ -14,7 +14,7 @@ const BottomSongDetails = ({ song }: BottomSongDetailsProps) => {
   return (
     <div css={classes.root}>
       <div css={classes.image}>
-        <ItemImage item={song} />
+        <ItemImage item={song} cssClass={classes.image} />
       </div>
       <div css={classes.details}>
         <p css={classes.name}>{song.name}</p>

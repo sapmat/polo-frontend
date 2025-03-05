@@ -97,6 +97,8 @@ const classes = {
   image: css`
     border-radius: 5px;
     font-size: 4em;
+    height: 100%;
+    aspect-ratio: 1 / 1;
   `,
   details: css`
     display: flex;

@@ -8,8 +8,6 @@ const classes = {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    aspect-ratio: 1 / 1;
     background: linear-gradient(45deg, rgba(0, 0, 0, 0.62), rgba(138, 138, 138, 0.5)), ${theme.colors['default'].main.dark}};
   `,
 };

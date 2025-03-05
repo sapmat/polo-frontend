@@ -33,6 +33,8 @@ const classes = {
   `,
   image: css`
     background-color: rebeccapurple;
+    height: 100%;
+    aspect-ratio: 1 / 1;
   `,
   imagePlay: css`
     position: absolute;

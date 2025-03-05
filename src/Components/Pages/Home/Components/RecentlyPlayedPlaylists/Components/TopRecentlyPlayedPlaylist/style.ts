@@ -38,6 +38,8 @@ const classes = {
   image: css`
     border-radius: 5px 0 0 5px;
     font-size: 1.75em;
+    height: 100%;
+    aspect-ratio: 1 / 1;
   `,
   name: css`
     box-sizing: border-box;
