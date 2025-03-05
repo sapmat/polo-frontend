@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router';
 import BottomBar from './Components/BottomBar';
-import LeftBar from './Components/LeftBar';
+import LeftTab from './Components/LeftTab';
 import RoutesComponent from './Components/Routes/RoutesComponent';
 import TopBar from './Components/TopBar';
 import { initStore, togglePlaying } from './Store/songSlice';
@@ -40,7 +40,7 @@ function App() {
       <div css={classes.app}>
         <TopBar />
         <div css={classes.centerBody}>
-          <LeftBar />
+          <LeftTab />
           <RoutesComponent />
         </div>
         <BottomBar />

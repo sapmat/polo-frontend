@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 
 const classes = {
-  leftBar: (open: boolean) => css`
+  LeftTab: (open: boolean) => css`
     position: relative;
     box-sizing: border-box;
     display: flex;

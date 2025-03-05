@@ -7,7 +7,7 @@ import OpenBarButton from './Components/OpenBarButton/OpenBarButton';
 import SidePlaylist from './Components/SidePlaylist/SidePlaylist';
 import classes from './style';
 
-const LeftBar = () => {
+const LeftTab = () => {
   const [open, changeOpen] = useState<boolean>(true);
   const [hovering, setHovering] = useState<boolean>(false);
 
@@ -18,7 +18,7 @@ const LeftBar = () => {
   };
 
   return (
-    <div css={classes.leftBar(open)}>
+    <div css={classes.LeftTab(open)}>
       <OpenBarButton open={open} setOpen={setOpen} />
       <Filter />
       <div
@@ -46,4 +46,4 @@ const LeftBar = () => {
   );
 };
 
-export default LeftBar;
+export default LeftTab;
