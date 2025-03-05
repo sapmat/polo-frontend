@@ -115,10 +115,10 @@ const classes = {
   details: css`
     box-sizing: border-box;
     height: 3em;
-    overflow: hidden;
-
+    
     p {
       box-sizing: border-box;
+      overflow: hidden;
       text-overflow: ellipsis;
     }
   `,

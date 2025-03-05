@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import { css } from '@emotion/react';
 
 const classes = {
   playlist: css`
@@ -54,7 +54,8 @@ const classes = {
     transition: scale 0.1s ease-in-out;
   `,
   sidePlaylistContent: (open: boolean) => css`
-    display: ${open ? "" : "none"};
+    display: ${open ? '' : 'none'};
+    overflow: hidden;
   `,
   detailsBottom: css`
     box-sizing: border-box;
@@ -64,7 +65,7 @@ const classes = {
   pin: (isPinned: boolean) => css`
     scale: 0.8;
     rotate: 45deg;
-    display: ${isPinned ? "" : "none"};
+    display: ${isPinned ? '' : 'none'};
 
     svg {
       box-sizing: border-box;
@@ -74,7 +75,6 @@ const classes = {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 100%;
   `,
 };
 

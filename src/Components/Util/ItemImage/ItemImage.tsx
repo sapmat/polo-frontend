@@ -5,6 +5,7 @@ import { Playlist } from '../../../Model/Playlist/playlist';
 import { Song } from '../../../Model/Song/songs';
 import { getDominantColor } from '../../../Util/Colors/GetDominantColor';
 import classes from './style';
+import { theme } from '../../../theme';
 
 const ItemImage = ({
   item,
@@ -22,7 +23,7 @@ const ItemImage = ({
       if (imageRef.current) {
         setDominantColor(getDominantColor(imageRef.current));
       } else {
-        setDominantColor('#3e2050');
+        setDominantColor(theme.colors["default"].main.dark);
       }
     }
   }, [item]);

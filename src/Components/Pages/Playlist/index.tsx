@@ -15,6 +15,7 @@ import ScrollBarY from '../../Util/ScrollBar/ScrollBarY';
 import TableHeader from './Components/Table/TableHeader';
 import TableRow from './Components/Table/TableRow';
 import classes from './style';
+import { theme } from '../../../theme';
 
 const PlaylistPage = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const PlaylistPage = () => {
 
   const [showMainHeader, setShowMainHeader] = useState<number>(0);
   const [hovering, setHovering] = useState<boolean>(false);
-  const [dominantColor, setDominantColor] = useState<string>('#3e2050');
+  const [dominantColor, setDominantColor] = useState<string>(theme.colors["default"].main.dark);
 
   const memoizedSongs = useMemo(
     () => playlist?.songs.map((song, index) => <TableRow key={uuidv4()} index={index} playlistSong={song} playlist={playlist} />),
