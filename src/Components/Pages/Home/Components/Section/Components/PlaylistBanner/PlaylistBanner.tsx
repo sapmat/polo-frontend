@@ -7,7 +7,7 @@ import usePlaylist from '../../../../../../../Util/LocalStorage/usePlaylist';
 import useSong from '../../../../../../../Util/LocalStorage/useSong';
 import PlayButton from '../../../../../../Util/Buttons/PlayButton/PlayButton';
 import ItemImage from '../../../../../../Util/ItemImage/ItemImage';
-import classes from '../../style';
+import classes from './style';
 
 interface PlaylistBannerProps {
   playlist: Playlist;
