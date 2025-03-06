@@ -18,7 +18,7 @@ const LeftTab = () => {
   };
 
   return (
-    <div css={classes.LeftTab(open)}>
+    <div css={classes.root(open)}>
       <OpenBarButton open={open} setOpen={setOpen} />
       <Filter />
       <div

@@ -50,7 +50,7 @@ const SidePlaylist = ({ playlist, open }: SidePlaylistProps) => {
         </div>
       </div>
       <div css={classes.sidePlaylistContent(open)}>
-        <p>{playlist.name}</p>
+        <p css={classes.name}>{playlist.name}</p>
         <div css={classes.detailsBottom}>
           <div css={classes.pin(playlist.isPinned)}>
             <PushPinIcon sx={{ color: theme.colors['default'].main.main }} />

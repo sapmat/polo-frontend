@@ -88,11 +88,13 @@ const classes = {
     align-items: center;
     gap: 1em;
     width: 100%;
+    max-width: 100%;
     height: 19em;
     padding: 1.75em;
     border-radius: 10px 10px 0 0;
     background-color: ${dominantColor};
     background-image: linear-gradient(transparent 0, rgba(0, 0, 0, 0.5) 100%), url('/Images/noise.svg');
+    overflow: hidden;
   `,
   image: css`
     border-radius: 5px;
@@ -101,15 +103,23 @@ const classes = {
     aspect-ratio: 1 / 1;
   `,
   details: css`
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: end;
     height: 100%;
+    max-width: 100%;
+    overflow: hidden;
   `,
   name: css`
+    box-sizing: border-box;
     font-size: 4.5em;
     font-weight: 700;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   `,
   extra: css`
     display: flex;

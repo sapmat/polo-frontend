@@ -8,6 +8,7 @@ import RoutesComponent from './Components/Routes/RoutesComponent';
 import TopBar from './Components/TopBar';
 import { initStore, togglePlaying } from './Store/songSlice';
 import classes from './style';
+import RightTab from './Components/RightTab';
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ function App() {
         <div css={classes.centerBody}>
           <LeftTab />
           <RoutesComponent />
+          <RightTab />
         </div>
         <BottomBar />
       </div>

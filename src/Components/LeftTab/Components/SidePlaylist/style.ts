@@ -55,6 +55,11 @@ const classes = {
     padding: 12px;
     transition: scale 0.1s ease-in-out;
   `,
+  name: css`
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  `,
   sidePlaylistContent: (open: boolean) => css`
     display: ${open ? '' : 'none'};
     overflow: hidden;

@@ -17,16 +17,20 @@ const classes = {
     aspect-ratio: 1 / 1;
   `,
   details: css`
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     max-width: 100%;
+    overflow: hidden;
   `,
   name: css`
     font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   `,
   artists: css`
     font-weight: 200;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   `,
 };
 

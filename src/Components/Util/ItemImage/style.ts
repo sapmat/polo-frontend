@@ -5,6 +5,10 @@ import { theme } from '../../../theme';
 const classes = {
   image: css`
     box-sizing: border-box;
+    object-fit: cover;
+  `,
+  text: css`
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -2,13 +2,13 @@
 import { css } from '@emotion/react';
 
 const classes = {
-  LeftTab: (open: boolean) => css`
+  root: (open: boolean) => css`
     position: relative;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    // max-width: ${open ? '15.5vw' : ''};
-    // min-width: ${open ? '15.5vw' : '5em'};
+    max-width: ${open ? '20vw' : ''};
+    min-width: ${open ? '20vw' : '5em'};
     max-height: 100%;
     overflow: hidden;
     padding: 10px 10px 0 10px;

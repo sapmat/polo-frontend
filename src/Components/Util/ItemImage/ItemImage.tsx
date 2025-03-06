@@ -37,7 +37,7 @@ const ItemImage = ({
 
   return (
     <>
-      {item.image ? <img ref={imageRef} css={[cssClass, classes.image]} src={item.image} /> : <div css={[cssClass, classes.image]}>{getImage()}</div>}
+      {item.image ? <img ref={imageRef} css={[cssClass, classes.image]} src={item.image} /> : <div css={[cssClass, classes.text]}>{getImage()}</div>}
     </>
   );
 };
