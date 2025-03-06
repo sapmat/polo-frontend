@@ -65,6 +65,7 @@ const TableRow = ({ index, playlistSong, playlist }: { index: number; playlistSo
       onMouseLeave={() => {
         setHovering(false);
       }}
+      onDoubleClick={handlePlay}
     >
       <div css={classes.index}>{hovering ? <PlayButton isPlaying={checkPlaying} togglePlay={handlePlay} /> : <span>{index + 1}</span>}</div>
       <div css={classes.title}>

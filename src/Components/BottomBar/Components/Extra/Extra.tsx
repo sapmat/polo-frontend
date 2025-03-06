@@ -9,9 +9,9 @@ interface ExtraProps {
 const Extra = ({ audioRef }: ExtraProps) => {
   return (
     <div css={classes.root}>
-      {/* <div css={classes.section}>//! view current song</div>
+      <div css={classes.section}>// TODO VIEW CURRENT SONG </div>
 
-      <div css={classes.section}>//! view queue</div> */}
+      <div css={classes.section}>// TODO VIEW QUEUE </div>
 
       <div css={classes.section}>
         <VolumeBar audioRef={audioRef} />

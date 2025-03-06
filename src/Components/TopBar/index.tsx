@@ -16,7 +16,17 @@ const TopBar = () => {
         <SearchBar />
       </div>
 
-      <div css={classes.right}>dark-light * friends * profile</div>
+      <div css={classes.right}>
+        <div>
+          // TODO THEME
+        </div>
+        <div>
+          // TODO FRIENDS
+        </div>
+        <div>
+          // TODO PROFILE
+        </div>
+      </div>
     </div>
   );
 };

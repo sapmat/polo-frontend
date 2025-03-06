@@ -22,7 +22,7 @@ const classes = {
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    padding: 10px 0;
+    padding: 10px 0 15px;
   `,
   playlistName: css`
     font-size: 1em;
@@ -45,6 +45,10 @@ const classes = {
     box-sizing: border-box;
     height: 100%;
     aspect-ratio: 1 / 1;
+
+    &:hover {
+      cursor: pointer;
+    }
   `,
 };
 

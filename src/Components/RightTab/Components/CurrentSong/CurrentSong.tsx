@@ -22,6 +22,10 @@ const CurrentSong = ({ currentSong, playlist, queue }: CurrentSongProps) => {
     if (currentId !== playlist.id) navigate(`/playlist/${playlist.id}`);
   };
 
+  const handelImageClicked = () => {
+    // TODO NAVIGATE TO ALBUM PAGE
+  };
+
   return (
     <div css={classes.root}>
       <div css={classes.top}>
@@ -29,12 +33,12 @@ const CurrentSong = ({ currentSong, playlist, queue }: CurrentSongProps) => {
           <p>{playlist.name}</p>
         </div>
         <div css={classes.extra}>
-          <div></div>
+          <div> // TODO 3 DOTS </div>
           <div>x</div>
         </div>
       </div>
       <div css={classes.imageContainer}>
-        <ItemImage item={currentSong} cssClass={classes.image} />
+        <ItemImage item={currentSong} cssClass={classes.image} onClick={handelImageClicked} />
       </div>
     </div>
   );

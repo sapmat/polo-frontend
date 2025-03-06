@@ -1,8 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import classes from './style';
 
 const AddToPlaylistButton = () => {
-  return <>//! AddToPlaylistButton</>;
+  return <div>// TODO ADD TO PLAYLIST</div>;
 };
 
 export default AddToPlaylistButton;
