@@ -14,7 +14,7 @@ const classes = {
       background-color: #333;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       z-index: 200;
-      width: 7.25em;
+      width: 7.25rem;
     }
 
     li {
@@ -24,7 +24,7 @@ const classes = {
       font-weight: 100;
       cursor: pointer;
       width: 100%;
-      height: 2em;
+      height: 2rem;
       z-index: 200;
 
       p {
@@ -34,8 +34,8 @@ const classes = {
   `,
   threeDots: (open: boolean) => css`
     cursor: pointer;
-    height: 2em;
-    fill: ${open ? theme.colors['default'].svg.default : theme.colors['default'].svg.hover}
+    height: 2rem;
+    fill: ${open ? theme.colors['default'].svg.default : theme.colors['default'].svg.hover};
   `,
 };
 

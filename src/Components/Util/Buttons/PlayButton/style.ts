@@ -8,7 +8,12 @@ const classes = {
     justify-content: center;
     align-items: center;
     height: 100%;
+    width: 100%;
     aspect-ratio: 1 / 1;
+
+    svg {
+      box-sizing: border-box;
+    }
   `,
 };
 

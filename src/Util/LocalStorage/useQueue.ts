@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Song } from '../../Model/Song/songs';
+import { QueueSong } from '../../Model/Playlist/playlist';
 
 const useQueue = () => {
-  const [queue, setQueue] = useState<Song[]>(() => {
-    const storedQueue: Song[] = JSON.parse(localStorage.getItem('queue') || '[]');
+  const [queue, setQueue] = useState<QueueSong[]>(() => {
+    const storedQueue: QueueSong[] = JSON.parse(localStorage.getItem('queue') || '[]');
     const queuePointer: number = Number(localStorage.getItem('queuePointer') || '-1');
     return queuePointer < 0 ? [] : storedQueue;
   });
@@ -13,7 +13,7 @@ const useQueue = () => {
   });
 
   const updateState = (): void => {
-    const storedQueue: Song[] = JSON.parse(localStorage.getItem('queue') || '[]');
+    const storedQueue: QueueSong[] = JSON.parse(localStorage.getItem('queue') || '[]');
     const storedPointer: number = Number(localStorage.getItem('queuePointer') || '-1');
 
     if (storedPointer < 0 || storedPointer >= storedQueue.length) {
@@ -25,15 +25,15 @@ const useQueue = () => {
     }
   };
 
-  const addToQueue = (song: Song) => {
-    const updatedQueue: Song[] = [...queue, song];
+  const addToQueue = (songId: string) => {
+    const updatedQueue: QueueSong[] = [...queue, { id: songId }];
     localStorage.setItem('queue', JSON.stringify(updatedQueue));
     if (queuePointer === -1) localStorage.setItem('queuePointer', '0');
     updateState();
   };
 
   const removeFromQueue = (index: number) => {
-    const updatedQueue: Song[] = queue.filter((_, i) => i !== index);
+    const updatedQueue: QueueSong[] = queue.filter((_, i) => i !== index);
     localStorage.setItem('queue', JSON.stringify(updatedQueue));
 
     window.dispatchEvent(new Event('local-storage-queue-changed'));
@@ -57,6 +57,7 @@ const useQueue = () => {
     if (next < 0 || next >= queue.length) {
       localStorage.setItem('queuePointer', '-1');
       setQueue([]);
+      setQueuePointer(-1);
     } else {
       localStorage.setItem('queuePointer', next.toString());
     }

@@ -14,7 +14,6 @@ const classes = {
     padding: 10px 10px 0 10px;
     background-color: #111;
     border-radius: 10px;
-    gap: 0.1em;
   `,
   playlists: css`
     box-sizing: border-box;
@@ -23,10 +22,6 @@ const classes = {
     flex-grow: 1;
     overflow-y: scroll;
     overflow-x: hidden;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
   `,
 };
 

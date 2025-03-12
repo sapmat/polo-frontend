@@ -11,7 +11,7 @@ const classes = {
     align-items: center;
     width: 100vw;
     height: 7vh;
-    padding: 8px 2em;
+    padding: 8px 2rem;
   `,
   left: css`
     display: flex;
@@ -21,7 +21,7 @@ const classes = {
   center: css`
     display: flex;
     justify-content: center;
-    gap: 1em;
+    gap: 1rem;
     height: 90%;
     width: 100%;
   `,
@@ -50,7 +50,7 @@ const classes = {
     }
 
     svg {
-      height: 1.5em;
+      height: 1.5rem;
       fill: ${isHome ? theme.colors['default'].svg.hover : theme.colors['default'].svg.default};
     }
   `,

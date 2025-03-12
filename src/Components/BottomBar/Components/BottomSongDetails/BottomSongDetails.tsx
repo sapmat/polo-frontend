@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import { useNavigate } from 'react-router';
 import { Song } from '../../../../Model/Song/songs';
 import ItemImage from '../../../Util/ItemImage/ItemImage';
 import AddToPlaylistButton from '../AddToPlaylistButton/AddToPlaylistButton';
@@ -9,7 +10,17 @@ interface BottomSongDetailsProps {
 }
 
 const BottomSongDetails = ({ song }: BottomSongDetailsProps) => {
+  const navigate = useNavigate();
+
   if (!song) return <></>;
+
+  const clickedName = () => {
+    // TODO NAVIGATE TO ALBUM SONG IS FROM
+  };
+
+  const clickedArtist = (artistId: string) => {
+    // TODO NAVIGATE TO ARTIST PAGE
+  };
 
   return (
     <div css={classes.root}>
@@ -18,7 +29,14 @@ const BottomSongDetails = ({ song }: BottomSongDetailsProps) => {
       </div>
       <div css={classes.details}>
         <p css={classes.name}>{song.name}</p>
-        <p css={classes.artists}>{song.artists.join(', ')}</p>
+        <p css={classes.artists}>
+          {song.artists.map(({ name, id }, index) => (
+            <span key={id}>
+              {index > 0 && ', '}
+              <span css={classes.artist}>{name}</span>
+            </span>
+          ))}
+        </p>
       </div>
       <AddToPlaylistButton />
     </div>

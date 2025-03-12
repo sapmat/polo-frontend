@@ -13,7 +13,15 @@ import PlayButton from '../../../../Util/Buttons/PlayButton/PlayButton';
 import ItemImage from '../../../../Util/ItemImage/ItemImage';
 import classes from './style';
 
-const TableRow = ({ index, playlistSong, playlist }: { index: number; playlistSong: PlaylistSong; playlist: Playlist }) => {
+const TableRow = ({
+  index,
+  playlistSong,
+  playlist,
+}: {
+  index: number;
+  playlistSong: PlaylistSong;
+  playlist: Playlist;
+}) => {
   const dispatch = useDispatch();
   const isPlaying: boolean = useSelector((state: any) => state.playback.isPlaying);
 
@@ -67,12 +75,25 @@ const TableRow = ({ index, playlistSong, playlist }: { index: number; playlistSo
       }}
       onDoubleClick={handlePlay}
     >
-      <div css={classes.index}>{hovering ? <PlayButton isPlaying={checkPlaying} togglePlay={handlePlay} /> : <span>{index + 1}</span>}</div>
+      <div css={classes.index(song.id === currentSongId)}>
+        {hovering ? (
+          <PlayButton cssClass={classes.play} viewBox={'0 0 24 24'} isPlaying={checkPlaying} togglePlay={handlePlay} />
+        ) : (
+          <span>{index + 1}</span>
+        )}
+      </div>
       <div css={classes.title}>
         <ItemImage item={song} cssClass={classes.image} />
         <div css={classes.details}>
-          <p css={classes.name}>{song.name}</p>
-          <p css={classes.artists}>{song.artists.join(', ')}</p>
+          <p css={classes.name(song.id === currentSongId)}>{song.name}</p>
+          <p css={classes.artists}>
+            {song.artists.map(({ name, id }, index) => (
+              <span key={id}>
+                {index > 0 && ', '}
+                <span css={classes.artist}>{name}</span>
+              </span>
+            ))}
+          </p>
         </div>
       </div>
       <div css={classes.album}>{song.album}</div>

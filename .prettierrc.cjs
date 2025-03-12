@@ -4,7 +4,7 @@ module.exports = {
     singleQuote: true,
     jsxSingleQuote: true,
     eslint: true,
-    printWidth: 150,
+    printWidth: 100,
     endOfLine: 'auto',
     tabWidth: 2,
 

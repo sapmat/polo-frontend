@@ -18,10 +18,6 @@ const classes = {
     overflow-y: scroll;
     border-radius: 10px;
     z-index: 0;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
   `,
   bigBackground: css`
     box-sizing: border-box;
@@ -47,58 +43,60 @@ const classes = {
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 0.75em 1em;
+    padding: 0.75em 1rem;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), ${dominantColor};
-    gap: 0.5em;
+    gap: 0.5rem;
   `,
   headerName: css`
-    font-size: 2em;
+    font-size: 2rem;
     font-weight: 700;
   `,
   playButton: css`
     box-sizing: border-box;
+    display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-  `,
-  play: css`
-    color: black;
     background-color: ${theme.colors['default'].buttons.main};
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
-    border-radius: 50em;
-    height: 1.5em;
-    width: 1.5em;
-    padding: 12px;
-    transition: scale 0.1s ease-in-out;
+    border-radius: 50rem;
+    height: 3.5rem;
+    width: 3.5rem;
 
     &:hover {
       scale: 1.05;
       background-color: ${theme.colors['default'].buttons.hover};
     }
   `,
+  play: css`
+    fill: black;
+    height: 2rem;
+    width: 2rem;
+    transition: scale 0.1s ease-in-out;
+  `,
   shuffle: css`
     svg {
-      height: 5em;
-      width: 5em;
+      height: 5rem;
+      width: 5rem;
     }
   `,
   header: (dominantColor: string) => css`
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    gap: 1em;
+    gap: 1rem;
     width: 100%;
     max-width: 100%;
-    height: 19em;
-    padding: 1.75em;
+    height: 19rem;
+    padding: 1.75rem;
     border-radius: 10px 10px 0 0;
     background-color: ${dominantColor};
-    background-image: linear-gradient(transparent 0, rgba(0, 0, 0, 0.5) 100%), url('/Images/noise.svg');
+    background-image: linear-gradient(transparent 0, rgba(0, 0, 0, 0.5) 100%),
+      url('/Images/noise.svg');
     overflow: hidden;
   `,
   image: css`
     border-radius: 5px;
-    font-size: 4em;
+    font-size: 4rem;
     height: 100%;
     aspect-ratio: 1 / 1;
   `,
@@ -114,7 +112,7 @@ const classes = {
   `,
   name: css`
     box-sizing: border-box;
-    font-size: 4.5em;
+    font-size: 4.5rem;
     font-weight: 700;
     max-width: 100%;
     overflow: hidden;
@@ -139,7 +137,7 @@ const classes = {
     flex-direction: column;
     width: 100%;
     border-radius: 0 0 10px 10px;
-    padding: 0 1.75em;
+    padding: 0 1.75rem;
   `,
   background: (dominantColor: string) => css`
     position: absolute;
@@ -154,12 +152,6 @@ const classes = {
     display: flex;
     flex-direction: row;
     padding: 0.75em 0;
-  `,
-  contentPlayButton: css`
-    box-sizing: border-box;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
   `,
 };
 

@@ -5,7 +5,7 @@ import { theme } from '../../../../../../../theme';
 const classes = {
   playlist: css`
     box-sizing: border-box;
-    width: 10em;
+    width: 10rem;
     cursor: pointer;
   `,
   imageContainer: css`
@@ -19,47 +19,43 @@ const classes = {
   playlistImage: css`
     height: 5em !important;
     border-radius: 5px;
-    font-size: 2em;
+    font-size: 2rem;
     height: 100%;
     aspect-ratio: 1 / 1;
   `,
   button: css`
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${theme.colors['default'].buttons.main};
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 50rem;
+    height: 3rem;
+    width: 3rem;
+
     position: absolute;
-    right: 0;
-    bottom: 0;
+    right: 1rem;
+    bottom: 1rem;
     transition: opacity 0.1s ease-in-out;
     opacity: 0;
 
-    div {
-      box-sizing: border-box;
-      display: flex;
-      justify-content: end;
-      align-items: end;
-      padding: 1em;
+    &:hover {
+      scale: 1.05;
     }
   `,
   play: css`
+    box-sizing: border-box;
     position: absolute;
-    right: 10px;
-    bottom: 10px;
-    width: 1.5em !important;
-    height: 1.5em !important;
-    color: black;
-    background-color: ${theme.colors['default'].main.main};
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
-    border-radius: 50em;
-    padding: 5px;
+    fill: black;
+    height: 1.5rem;
+    width: 1.5rem;
     transition: scale 0.1s ease-in-out;
-
-    &:hover {
-      scale: 1.1;
-    }
   `,
   details: css`
     box-sizing: border-box;
-    height: 3em;
-    
+    height: 3rem;
+
     p {
       box-sizing: border-box;
       overflow: hidden;

@@ -5,7 +5,7 @@ import classes from './style';
 const TableHeader = ({ isAtTop }: { isAtTop: boolean }) => {
   return (
     <div css={classes.header(isAtTop)}>
-      <div css={classes.index}>#</div>
+      <div css={classes.index(false)}>#</div>
       <div css={classes.title}>Title</div>
       <div css={classes.album}>Album</div>
       <div css={classes.dateAdded}>Date added</div>

@@ -1,14 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import { theme } from '../../../../../theme';
 
 const classes = {
   section: css`
     display: block;
-    height: 20em;
+    height: 20rem;
   `,
   name: css`
-    font-size: 1.65em;
+    font-size: 1.65rem;
     font-weight: 550;
     color: #aaa;
     padding: 0 30px;
@@ -20,12 +19,8 @@ const classes = {
   playlistsContainer: css`
     position: relative;
     display: flex;
-    gap: 1em;
+    gap: 1rem;
     overflow-x: scroll;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
 
     &::before {
       content: '';
@@ -54,12 +49,8 @@ const classes = {
   playlists: css`
     position: relative;
     display: flex;
-    gap: 1em;
+    gap: 1rem;
     overflow-x: scroll;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
   `,
 };
 

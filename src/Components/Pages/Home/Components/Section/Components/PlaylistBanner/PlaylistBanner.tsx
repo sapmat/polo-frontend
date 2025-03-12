@@ -38,10 +38,12 @@ const PlaylistBanner = ({ playlist }: PlaylistBannerProps) => {
     <div css={classes.playlist} onClick={() => navigate(`/playlist/${playlist.id}`)}>
       <div css={classes.imageContainer}>
         <ItemImage item={playlist} cssClass={classes.playlistImage} />
+        
         <button css={classes.button}>
-          <PlayButton isPlaying={checkPlaying} togglePlay={handlePlay} cssClass={classes.play} />
+          <PlayButton isPlaying={checkPlaying} viewBox={'0 0 24 24'} togglePlay={handlePlay} cssClass={classes.play} />
         </button>
       </div>
+      
       <div css={classes.details}>
         <p>{playlist.createdBy}</p>
       </div>

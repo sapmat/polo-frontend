@@ -4,18 +4,24 @@ import PlaylistService from '../../api/playlists';
 import SongService from '../../api/songs';
 import { Playlist } from '../../Model/Playlist/playlist';
 import { Song } from '../../Model/Song/songs';
+import { RightTabOption } from '../../Util/Enums/RightTabOption';
 import usePlaylist from '../../Util/LocalStorage/usePlaylist';
-import useQueue from '../../Util/LocalStorage/useQueue';
 import useSong from '../../Util/LocalStorage/useSong';
 import CurrentSong from './Components/CurrentSong/CurrentSong';
 import classes from './style';
 
-const RightTab = () => {
-  const { currentSongId } = useSong();
-  const { currentPlaylist } = usePlaylist();
-  const { queue } = useQueue();
+interface RightTabProps {
+  display: RightTabOption;
+  setRightTab: (v: RightTabOption) => void;
+}
+
+const RightTab = ({ display, setRightTab }: RightTabProps) => {
   const [currentSong, setCurrentSong] = useState<Song | undefined>(undefined);
   const [playlist, setPlaylist] = useState<Playlist | undefined>(undefined);
+  const [hovering, setHovering] = useState<boolean>(false);
+
+  const { currentSongId } = useSong();
+  const { currentPlaylist } = usePlaylist();
 
   const fetchSong = useCallback(
     (songId: string, playlistId: string) => {
@@ -42,10 +48,42 @@ const RightTab = () => {
     fetchSong(currentSongId || '', currentPlaylist.id || '');
   }, [currentSongId, fetchSong]);
 
+  const displayComponent = (): JSX.Element => {
+    switch (display) {
+      case RightTabOption.CURRENT_SONG:
+        return (
+          <CurrentSong
+            currentSong={currentSong}
+            playlist={playlist}
+            hovering={hovering}
+            setRightTab={setRightTab}
+          />
+        );
+
+      case RightTabOption.QUEUE:
+        return <>// TODO QUEUE COMPONENT</>;
+
+      default:
+        return <></>;
+    }
+  };
+
   return (
-    <div css={classes.root}>
-      <CurrentSong currentSong={currentSong} playlist={playlist} queue={queue} />
-    </div>
+    <>
+      {display !== RightTabOption.NONE && (
+        <div
+          css={classes.root}
+          onMouseEnter={() => {
+            setHovering(true);
+          }}
+          onMouseLeave={() => {
+            setHovering(false);
+          }}
+        >
+          {displayComponent()}
+        </div>
+      )}
+    </>
   );
 };
 

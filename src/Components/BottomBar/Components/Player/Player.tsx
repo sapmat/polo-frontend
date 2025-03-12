@@ -97,32 +97,63 @@ const Player = ({ song, audioRef }: PlayerProps) => {
   return (
     <div css={classes.player}>
       <div css={classes.buttons}>
-        <ShuffleButton cssClass={classes.shuffleButton} />
-        <button css={classes.skipButtons} onClick={handlePrev}>
-          <svg viewBox="0 0 16 16">
-            <path d='M3.3 1a.7.7 0 0 1 .7.7v5.15l9.95-5.744a.7.7 0 0 1 1.05.606v12.575a.7.7 0 0 1-1.05.607L4 9.149V14.3a.7.7 0 0 1-.7.7H1.7a.7.7 0 0 1-.7-.7V1.7a.7.7 0 0 1 .7-.7h1.6z' />
-          </svg>
+        <button css={classes.button}>
+          <ShuffleButton />
         </button>
-        <button>
-          <PlayButton cssClass={classes.playButton} isPlaying={isPlaying} togglePlay={togglePlay} />
+
+        <button css={classes.button}>
+          <button css={classes.skipButtons} onClick={handlePrev}>
+            <svg viewBox='0 0 16 16'>
+              <path d='M3.3 1a.7.7 0 0 1 .7.7v5.15l9.95-5.744a.7.7 0 0 1 1.05.606v12.575a.7.7 0 0 1-1.05.607L4 9.149V14.3a.7.7 0 0 1-.7.7H1.7a.7.7 0 0 1-.7-.7V1.7a.7.7 0 0 1 .7-.7h1.6z' />
+            </svg>
+          </button>
         </button>
-        <button css={classes.skipButtons} onClick={handleNext}>
-          <svg viewBox="0 0 16 16">
-            <path d='M12.7 1a.7.7 0 0 0-.7.7v5.15L2.05 1.107A.7.7 0 0 0 1 1.712v12.575a.7.7 0 0 0 1.05.607L12 9.149V14.3a.7.7 0 0 0 .7.7h1.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7h-1.6z' />
-          </svg>
+
+        <button css={classes.button}>
+          <button css={classes.playButton}>
+            <PlayButton
+              cssClass={classes.play}
+              viewBox={'0 0 24 24'}
+              isPlaying={isPlaying}
+              togglePlay={togglePlay}
+            />
+          </button>
         </button>
-        <LoopButton cssClass={classes.loopButton} />
+
+        <button css={classes.button}>
+          <button css={classes.skipButtons} onClick={handleNext}>
+            <svg viewBox='0 0 16 16'>
+              <path d='M12.7 1a.7.7 0 0 0-.7.7v5.15L2.05 1.107A.7.7 0 0 0 1 1.712v12.575a.7.7 0 0 0 1.05.607L12 9.149V14.3a.7.7 0 0 0 .7.7h1.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7h-1.6z' />
+            </svg>
+          </button>
+        </button>
+
+        <button css={classes.button}>
+          <LoopButton />
+        </button>
       </div>
 
       <div css={classes.progressBar}>
         <p>{formatTime((progress / 100) * totalDuration)}</p>
 
-        <input type='range' value={progress} min='0' max='100' onChange={handleSeek} style={{ '--progress': `${progress}` } as React.CSSProperties} />
+        <input
+          type='range'
+          value={progress}
+          min='0'
+          max='100'
+          onChange={handleSeek}
+          style={{ '--progress': `${progress}` } as React.CSSProperties}
+        />
 
         <p>{formatTime(totalDuration)}</p>
       </div>
 
-      <audio ref={audioRef} src={song ? song.audioSrc : ''} onTimeUpdate={handleTimeUpdate} onLoadedMetadata={handleLoadedMetadata} />
+      <audio
+        ref={audioRef}
+        src={song ? song.audioSrc : ''}
+        onTimeUpdate={handleTimeUpdate}
+        onLoadedMetadata={handleLoadedMetadata}
+      />
     </div>
   );
 };

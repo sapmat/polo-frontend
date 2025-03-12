@@ -8,7 +8,7 @@ const classes = {
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
     width: 100vw;
-    height: 7vh;
+    height: 6rem;
   `,
   section: css`
     flex: 1;

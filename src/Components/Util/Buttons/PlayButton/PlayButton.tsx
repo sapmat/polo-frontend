@@ -1,26 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import { Interpolation, Theme } from '@emotion/react';
 import PauseIcon from '@mui/icons-material/Pause';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import { Playlist } from '../../../../Model/Playlist/playlist';
-import { Song } from '../../../../Model/Song/songs';
 import classes from './style';
 
-const PlayButton = ({
-  cssClass = {},
-  isPlaying,
-  togglePlay,
-  song,
-  playlist,
-}: {
+interface PlayButtonProps {
   cssClass?: Interpolation<Theme>;
+  viewBox: string;
   isPlaying: boolean;
   togglePlay: () => void;
-  song?: Song;
-  playlist?: Playlist;
-}) => {
-  const pressPlay = () => {};
+}
 
+const PlayButton = ({ cssClass = {}, viewBox, isPlaying, togglePlay }: PlayButtonProps) => {
   return (
     <div
       css={classes.root}
@@ -29,7 +19,13 @@ const PlayButton = ({
         togglePlay();
       }}
     >
-      {isPlaying ? <PauseIcon css={cssClass} /> : <PlayArrowIcon css={cssClass} />}
+      {isPlaying ? (
+        <PauseIcon css={cssClass} />
+      ) : (
+        <svg css={cssClass} viewBox={viewBox}>
+          <path d='m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z' />
+        </svg>
+      )}
     </div>
   );
 };

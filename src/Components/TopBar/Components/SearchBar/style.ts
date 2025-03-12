@@ -6,7 +6,7 @@ const classes = {
   container: css`
     position: relative;
     width: 100%;
-    max-width: 25em;
+    max-width: 25rem;
   `,
   searchButton: css`
     position: absolute;
@@ -15,10 +15,11 @@ const classes = {
     align-items: center;
     z-index: 1;
     height: 100%;
-    width: 4em;
+    width: 3rem;
 
     svg {
-      height: 1.8em;
+      height: 1.8rem;
+      width: 1.5rem;
       transition: fill 0.1s ease-in-out;
       fill: ${theme.colors['default'].svg.default};
 
@@ -32,12 +33,12 @@ const classes = {
     flex-direction: row;
     align-items: center;
     background-color: #333;
-    border-radius: 50em;
+    border-radius: 50rem;
     height: 100%;
     width: 100%;
     border: none;
-    font-size: 1.2em;
-    text-indent: 2.2em;
+    font-size: 1.2rem;
+    text-indent: 2.5rem;
   `,
   eraseButton: css`
     position: absolute;
@@ -46,12 +47,12 @@ const classes = {
     align-items: center;
     z-index: 1;
     height: 100%;
-    width: 4em;
+    width: 4rem;
     bottom: 0;
     right: 0;
 
     svg {
-      height: 1.8em;
+      height: 1.8rem;
       transition: fill 0.1s ease-in-out;
       fill: ${theme.colors['default'].svg.default};
 

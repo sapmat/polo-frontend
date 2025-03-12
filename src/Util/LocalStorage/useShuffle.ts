@@ -3,6 +3,7 @@ import PlaylistService from '../../api/playlists';
 import { Playlist } from '../../Model/Playlist/playlist';
 import { shufflePlaylist } from '../Functions/playlist.util';
 import usePlaylist from './usePlaylist';
+import useSong from './useSong';
 
 const useShuffle = () => {
   const [isShuffle, setIsShuffle] = useState<boolean>(() => {
@@ -10,6 +11,7 @@ const useShuffle = () => {
   });
 
   const { currentPlaylist, setCurrentPlaylist } = usePlaylist();
+  const { currentSongId } = useSong();
 
   const switchShuffle = () => {
     const newState = !isShuffle;
@@ -19,7 +21,7 @@ const useShuffle = () => {
     if (currentPlaylist.id)
       PlaylistService.getPlaylist(currentPlaylist.id).then((res) => {
         if (res) {
-          const newPlaylist: Playlist = newState ? shufflePlaylist(res) : res;
+          const newPlaylist: Playlist = newState ? shufflePlaylist(res, currentSongId) : res;
           setCurrentPlaylist(newPlaylist);
         }
       });

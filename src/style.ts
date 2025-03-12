@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import { css } from '@emotion/react';
 
 const classes = {
   app: css`
@@ -18,7 +18,7 @@ const classes = {
     width: 100%;
     flex-grow: 1;
     overflow: hidden;
-    gap: 0.5em;
+    gap: 0.5rem;
   `,
 };
 

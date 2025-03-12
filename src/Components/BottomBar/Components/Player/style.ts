@@ -11,34 +11,45 @@ const classes = {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 1em;
-
-    button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+    align-items: center;
+    gap: 0.5rem;
+    height: 2.2rem;
+  `,
+  button: css`
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
   `,
   playButton: css`
     box-sizing: border-box;
-    width: 1.4em !important;
-    height: 1.4em !important;
-    color: black;
-    background-color: #ddd;
-    border-radius: 50em;
-    padding: 5px;
-    transition: scale 0.1s ease-in-out;
+    justify-content: center;
+    align-items: center;
+    background-color: ${theme.colors['default'].buttons.none};
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 50rem;
+    padding: 0;
+    height: 2rem;
+    width: 2rem;
 
     &:hover {
       scale: 1.05;
-      background-color: #fff;
     }
   `,
+  play: css`
+    box-sizing: border-box;
+    fill: black;
+    height: 1.25rem;
+    width: 1.25rem;
+    transition: scale 0.1s ease-in-out;
+  `,
   skipButtons: css`
-    padding: 0;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
     svg {
-      height: 1.25em;
+      height: 1.15rem;
       fill: ${theme.colors.default.svg.default};
 
       &:hover {
@@ -49,29 +60,17 @@ const classes = {
       transition: scale 0.05s ease-in-out, fill 0.05s ease-in-out;
     }
   `,
-  shuffleButton: css`
-    svg {
-      height: 1.2em;
-      width: 1.2em;
-    }
-  `,
-  loopButton: css`
-    svg {
-      height: 1.2em;
-      width: 1.2em;
-    }
-  `,
   progressBar: css`
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 1em;
+    gap: 1rem;
     width: 100%;
 
     p {
       font-size: small;
       font-weight: 200;
-      width: 2em;
+      width: 2rem;
     }
 
     input {
@@ -79,7 +78,13 @@ const classes = {
       -webkit-appearance: none;
       width: 100%;
       height: 4px;
-      background: linear-gradient(to right, #ccc 0%, #ccc calc(var(--progress) * 1%), #555 calc(var(--progress) * 1%), #555 100%);
+      background: linear-gradient(
+        to right,
+        #ccc 0%,
+        #ccc calc(var(--progress) * 1%),
+        #555 calc(var(--progress) * 1%),
+        #555 100%
+      );
       border-radius: 5px;
       outline: none;
       cursor: pointer;

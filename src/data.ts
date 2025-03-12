@@ -5,7 +5,7 @@ export const songs: Song[] = [
   {
     id: '1',
     name: 'The Weekend Whip',
-    artists: ['The Fold'],
+    artists: [{ id: '1', name: 'The Fold' }],
     audioSrc: '/Audio/The Fold - The Weekend Whip (Official Audio).mp3',
     image: '',
     album: 'LEGO NINJAGO: For the Spinners',
@@ -14,7 +14,7 @@ export const songs: Song[] = [
   {
     id: 'd1',
     name: 'The Duck Song',
-    artists: ['forrestfire101'],
+    artists: [{ id: '2', name: 'forrestfire101' }],
     audioSrc: '/Audio/The Duck Song.mp3',
     image: '/Images/theDuckSongSongCover.png',
     album: 'The Duck Songs',
@@ -23,7 +23,7 @@ export const songs: Song[] = [
   {
     id: 'd2',
     name: 'The Duck Song 2',
-    artists: ['forrestfire101'],
+    artists: [{ id: '2', name: 'forrestfire101' }],
     audioSrc: '/Audio/The Duck Song 2.mp3',
     image: '/Images/theDuckSongSongCover.png',
     album: 'The Duck Songs',
@@ -32,7 +32,7 @@ export const songs: Song[] = [
   {
     id: 'd3',
     name: 'The Duck Song 3',
-    artists: ['forrestfire101'],
+    artists: [{ id: '2', name: 'forrestfire101' }],
     audioSrc: '/Audio/The Duck Song 3.mp3',
     image: '/Images/theDuckSongSongCover.png',
     album: 'The Duck Songs',
@@ -41,7 +41,7 @@ export const songs: Song[] = [
   {
     id: 'd4',
     name: 'The Duck Song 4',
-    artists: ['forrestfire101'],
+    artists: [{ id: '2', name: 'forrestfire101' }],
     audioSrc: '/Audio/The Duck Song 4.mp3',
     image: '/Images/theDuckSongSongCover.png',
     album: 'The Duck Songs',
@@ -50,7 +50,7 @@ export const songs: Song[] = [
   {
     id: 'd5',
     name: 'The Duck Song 5',
-    artists: ['forrestfire101'],
+    artists: [{ id: '2', name: 'forrestfire101' }],
     audioSrc: '/Audio/The Duck Song 5.mp3',
     image: '/Images/theDuckSongSongCover.png',
     album: 'The Duck Songs',

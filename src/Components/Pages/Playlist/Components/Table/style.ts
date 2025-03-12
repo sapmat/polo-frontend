@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { theme } from '../../../../../theme';
 
 const classes = {
   header: (isAtTop: boolean) => css`
@@ -28,21 +29,27 @@ const classes = {
       background: rgba(179, 179, 179, 0.26);
     }
   `,
-  index: css`
+  index: (current: boolean) => css`
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: 200;
+    color: ${current ? theme.colors['default'].main.main : theme.colors['default'].text.secondary};
+  `,
+  play: css`
+    height: 1rem;
+    width: 1rem;
+    fill: ${theme.colors['default'].svg.hover};
   `,
   title: css`
     display: flex;
     align-items: center;
-    gap: 0.75em;
-    padding-right: 1em;
+    gap: 0.75rem;
+    padding-right: 1rem;
   `,
   image: css`
-    max-height: 2.5em;
-    width: 2.5em;
+    max-height: 2.5rem;
+    width: 2.5rem;
     border-radius: 2px;
     color: white;
     height: 100%;
@@ -54,22 +61,35 @@ const classes = {
     white-space: nowrap;
     width: 100%;
   `,
-  name: css`
+  name: (current: boolean) => css`
     color: white;
-    font-weight: 500;
+    font-weight: 400;
+    color: ${current ? theme.colors['default'].main.main : theme.colors['default'].text.main};
   `,
   artists: css`
+    font-size: 1rem;
     font-weight: 200;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: ${theme.colors['default'].text.secondary};
+  `,
+  artist: css`
+    &:hover {
+      color: ${theme.colors['default'].text.main};
+      cursor: pointer;
+      text-decoration: underline;
+    }
   `,
   album: css`
     display: flex;
     align-items: center;
-    padding-right: 1em;
+    padding-right: 1rem;
   `,
   dateAdded: css`
     display: flex;
     align-items: center;
-    padding-right: 1em;
+    padding-right: 1rem;
   `,
   addToList: css`
     display: flex;

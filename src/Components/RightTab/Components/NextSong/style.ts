@@ -3,11 +3,10 @@ import { css } from '@emotion/react';
 import { theme } from '../../../../theme';
 
 const classes = {
-  playlist: css`
+  root: css`
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    height: 6rem;
     gap: 0.5rem;
     border-radius: 5px;
     padding: 0.5rem;
@@ -56,7 +55,7 @@ const classes = {
     fill: ${theme.colors['default'].svg.hover};
 
     &:hover {
-      scale: 1.1;
+      scale: 1.05;
     }
   `,
   name: css`
@@ -65,8 +64,7 @@ const classes = {
     white-space: nowrap;
     color: ${theme.colors['default'].text.main};
   `,
-  content: (open: boolean) => css`
-    display: ${open ? '' : 'none'};
+  content: css`
     overflow: hidden;
   `,
   detailsBottom: css`
@@ -74,22 +72,20 @@ const classes = {
     display: flex;
     gap: 5px;
   `,
-  pin: (isPinned: boolean) => css`
-    height: 1rem;
-    min-width: 1rem;
-    max-width: 1rem;
-    display: ${isPinned ? '' : 'none'};
-
-    svg {
-      box-sizing: border-box;
-      fill: ${theme.colors['default'].svg.selected};
-    }
-  `,
-  createdBy: css`
+  artists: css`
+    font-size: 1rem;
+    font-weight: 200;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     color: ${theme.colors['default'].text.secondary};
+  `,
+  artist: css`
+    &:hover {
+      color: ${theme.colors['default'].text.main};
+      cursor: pointer;
+      text-decoration: underline;
+    }
   `,
 };
 

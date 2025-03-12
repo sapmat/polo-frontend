@@ -18,3 +18,7 @@ export interface LocalStoragePlaylist {
   id: string | undefined;
   songs: PlaylistSong[];
 }
+
+export interface QueueSong {
+  id: string;
+}

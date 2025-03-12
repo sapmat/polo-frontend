@@ -33,9 +33,11 @@ const TopRecentlyPlayedPlaylist = ({ playlist }: { playlist: Playlist }) => {
   return (
     <div css={classes.playlist} onClick={() => navigate(`/playlist/${playlist.id}`)}>
       <ItemImage cssClass={classes.image} item={playlist} />
+
       <div css={classes.name}>{playlist.name}</div>
+
       <button css={classes.button}>
-        <PlayButton isPlaying={checkPlaying} togglePlay={handlePlay} cssClass={classes.play} />
+        <PlayButton isPlaying={checkPlaying} viewBox={'0 0 24 24'} togglePlay={handlePlay} cssClass={classes.play} />
       </button>
     </div>
   );

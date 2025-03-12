@@ -1,17 +1,24 @@
 /** @jsxImportSource @emotion/react */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router';
 import BottomBar from './Components/BottomBar';
 import LeftTab from './Components/LeftTab';
+import RightTab from './Components/RightTab';
 import RoutesComponent from './Components/Routes/RoutesComponent';
 import TopBar from './Components/TopBar';
 import { initStore, togglePlaying } from './Store/songSlice';
 import classes from './style';
-import RightTab from './Components/RightTab';
+import { RightTabOption } from './Util/Enums/RightTabOption';
+import useSong from './Util/LocalStorage/useSong';
 
 function App() {
   const dispatch = useDispatch();
+  const { currentSongId } = useSong();
+
+  const [rightTab, setRightTab] = useState<RightTabOption>(() =>
+    currentSongId ? RightTabOption.CURRENT_SONG : RightTabOption.NONE,
+  );
 
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
@@ -43,9 +50,9 @@ function App() {
         <div css={classes.centerBody}>
           <LeftTab />
           <RoutesComponent />
-          <RightTab />
+          <RightTab display={rightTab} setRightTab={setRightTab} />
         </div>
-        <BottomBar />
+        <BottomBar rightTab={rightTab} setRightTab={setRightTab} />
       </div>
     </Router>
   );

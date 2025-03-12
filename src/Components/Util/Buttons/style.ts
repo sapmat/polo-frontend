@@ -8,6 +8,7 @@ const classes = {
     justify-content: center;
     align-items: center;
     position: relative;
+    padding: 0;
 
     &:hover {
       scale: 1.1;
@@ -18,16 +19,16 @@ const classes = {
       ? `
       &:before {
         position: absolute;
-          background-color: ${theme.colors['default'].svg.selected};
-          border-radius: 50%;
-          bottom: 4px;
-          content: "";
-          display: block;
-          width: 4px;
-          inline-size: 4px;
-          height: 4px;
-          -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+        background-color: ${theme.colors['default'].svg.selected};
+        border-radius: 50%;
+        bottom: -0.5rem;
+        content: "";
+        display: block;
+        width: 0.25rem;
+        inline-size: 0.25rem;
+        height: 0.25rem;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
       }
         
       path { fill: ${theme.colors['default'].svg.selected}; }`
@@ -41,6 +42,11 @@ const classes = {
                 }
             }
       `}
+
+    svg {
+      height: 1.15rem;
+      width: 1.15rem;
+    }
   `,
 };
 

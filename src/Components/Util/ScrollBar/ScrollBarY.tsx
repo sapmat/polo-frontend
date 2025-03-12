@@ -31,13 +31,20 @@ const ScrollBarY = ({
       setThumbHeight((clientHeight / scrollHeight) * maxHeight);
       setNoScroll(clientHeight / scrollHeight === 1);
     }
-  }, [reload, maxHeight, scrollableElementRef.current, scrollableElementRef.current?.clientHeight, scrollableElementRef.current?.scrollHeight]);
+  }, [
+    reload,
+    maxHeight,
+    scrollableElementRef.current,
+    scrollableElementRef.current?.clientHeight,
+    scrollableElementRef.current?.scrollHeight,
+  ]);
 
   useEffect(() => {
     const handleScroll = () => {
       if (scrollableElementRef.current) {
         const { scrollTop, clientHeight, scrollHeight } = scrollableElementRef.current;
-        const thumbPosition = (maxHeight - thumbHeight) * (scrollTop / (scrollHeight - clientHeight));
+        const thumbPosition =
+          (maxHeight - thumbHeight) * (scrollTop / (scrollHeight - clientHeight));
 
         setThumbPosition(thumbPosition);
       }
@@ -109,7 +116,8 @@ const ScrollBarY = ({
       if (newThumbPosition >= 0 && newThumbPosition <= maxHeight - thumbHeight) {
         setThumbPosition(newThumbPosition);
 
-        const scrollTop = (newThumbPosition / (maxHeight - thumbHeight)) * (scrollHeight - clientHeight);
+        const scrollTop =
+          (newThumbPosition / (maxHeight - thumbHeight)) * (scrollHeight - clientHeight);
         scrollableElementRef.current.scrollTop = scrollTop;
       }
     }

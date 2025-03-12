@@ -7,7 +7,7 @@ const classes = {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 0.5em;
+    gap: 0.5rem;
     height: 100%;
     width: 90%;
 
@@ -16,7 +16,13 @@ const classes = {
       -webkit-appearance: none;
       width: 100%;
       height: 4px;
-      background: linear-gradient(to right, #ccc 0%, #ccc calc(var(--volume) * 1%), #555 calc(var(--volume) * 1%), #555 100%);
+      background: linear-gradient(
+        to right,
+        #ccc 0%,
+        #ccc calc(var(--volume) * 1%),
+        #555 calc(var(--volume) * 1%),
+        #555 100%
+      );
       border-radius: 5px;
       outline: none;
       cursor: pointer;

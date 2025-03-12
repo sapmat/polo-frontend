@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
@@ -35,7 +34,10 @@ const PlaylistPage = () => {
   const [dominantColor, setDominantColor] = useState<string>(theme.colors['default'].main.dark);
 
   const memoizedSongs = useMemo(
-    () => playlist?.songs.map((song, index) => <TableRow key={uuidv4()} index={index} playlistSong={song} playlist={playlist} />),
+    () =>
+      playlist?.songs.map((song, index) => (
+        <TableRow key={uuidv4()} index={index} playlistSong={song} playlist={playlist} />
+      )),
     [playlist?.songs],
   );
 
@@ -79,7 +81,13 @@ const PlaylistPage = () => {
 
   useEffect(() => {
     setScrollbar(
-      <ScrollBarY generalHover={hovering} width={15} maxHeight={generalRef.current?.clientHeight || 0} scrollableElementRef={pageRef} reload={id} />,
+      <ScrollBarY
+        generalHover={hovering}
+        width={15}
+        maxHeight={generalRef.current?.clientHeight || 0}
+        scrollableElementRef={pageRef}
+        reload={id}
+      />,
     );
   }, [id, pageRef.current, hovering]);
 
@@ -94,7 +102,8 @@ const PlaylistPage = () => {
     return `${h > 0 ? `${h} hr ` : ''}${m} min`;
   };
 
-  const getSongDetails = () => `• ${playlist.songs.length} song${playlist.songs.length > 1 ? 's' : ''}, ${formatDuration()}`;
+  const getSongDetails = () =>
+    `• ${playlist.songs.length} song${playlist.songs.length > 1 ? 's' : ''}, ${formatDuration()}`;
 
   const togglePlay = () => {
     if (playlist.id === currentPlaylist?.id) {
@@ -125,9 +134,15 @@ const PlaylistPage = () => {
       <div css={classes.bigBackground} />
       <header ref={mainHeaderRef} css={classes.mainHeader(showMainHeader)}>
         <div css={classes.headerPlay(dominantColor)}>
-          <button css={classes.playButton}>
-            <PlayArrowIcon css={classes.play} />
-          </button>
+          <div css={classes.playButton}>
+            <PlayButton
+              cssClass={classes.play}
+              viewBox={'0 0 24 24'}
+              isPlaying={checkPlaying}
+              togglePlay={togglePlay}
+            />
+          </div>
+
           <span css={classes.headerName}>{playlist.name}</span>
         </div>
         <TableHeader isAtTop />
@@ -135,7 +150,12 @@ const PlaylistPage = () => {
       <div className='page' ref={pageRef} css={classes.page}>
         <div ref={headerRef}>
           <div css={classes.header(dominantColor)}>
-            <ItemImage item={playlist} cssClass={classes.image} setDominantColor={setDominantColor} onClick={handelImageClicked} />
+            <ItemImage
+              item={playlist}
+              cssClass={classes.image}
+              setDominantColor={setDominantColor}
+              onClick={handelImageClicked}
+            />
             <div css={classes.details}>
               <div>{`${playlist.isPrivate ? 'Private' : 'Public'} Playlist`}</div>
               <div css={classes.name}>{playlist.name}</div>
@@ -152,8 +172,13 @@ const PlaylistPage = () => {
         <div css={classes.content}>
           <div css={classes.background(dominantColor)}></div>
           <div css={classes.contentTop}>
-            <div css={{ display: 'flex' }}>
-              <PlayButton cssClass={classes.play} isPlaying={checkPlaying} togglePlay={togglePlay} />
+            <div css={classes.playButton}>
+              <PlayButton
+                cssClass={classes.play}
+                viewBox={'0 0 24 24'}
+                isPlaying={checkPlaying}
+                togglePlay={togglePlay}
+              />
             </div>
           </div>
           <div>
