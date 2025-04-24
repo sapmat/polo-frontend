@@ -25,7 +25,7 @@ const ItemImage = ({ item, cssClass, setDominantColor, onClick }: ItemImageProps
         setDominantColor(theme.colors['default'].main.dark);
       }
     }
-  }, [item]);
+  }, [item, imageRef.current]);
 
   const getImage = () =>
     item.name

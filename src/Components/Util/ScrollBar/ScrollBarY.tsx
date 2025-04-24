@@ -4,13 +4,13 @@ import React, { useEffect, useState } from 'react';
 
 const ScrollBarY = ({
   width,
-  generalHover,
+  hovering,
   maxHeight,
   scrollableElementRef,
   reload,
 }: {
   width: number;
-  generalHover: boolean;
+  hovering: boolean;
   maxHeight: number;
   scrollableElementRef: React.RefObject<HTMLElement>;
   reload?: any;
@@ -40,6 +40,8 @@ const ScrollBarY = ({
   ]);
 
   useEffect(() => {
+    console.log(thumbHeight, maxHeight);
+
     const handleScroll = () => {
       if (scrollableElementRef.current) {
         const { scrollTop, clientHeight, scrollHeight } = scrollableElementRef.current;
@@ -81,12 +83,12 @@ const ScrollBarY = ({
         height: ${thumbHeight}px;
         background-clip: border-box;
         transition: background 0.3s ease-in-out, opacity 0.3s ease-in-out;
-        cursor: ${isDragging ? 'grabbing' : 'pointer'};
 
-        ${!noScroll && generalHover
+        ${!noScroll && hovering
           ? ` 
-            display: flex;
-            background: hsla(0,0%,100%,.3);
+          display: flex;
+          background: hsla(0,0%,100%,.3);
+          cursor: ${isDragging ? 'grabbing' : 'pointer'};
             
             &:hover {
               background: hsla(0,0%,100%,.5);
@@ -99,11 +101,10 @@ const ScrollBarY = ({
           : `opacity: 0;`}
       `,
     });
-  }, [generalHover, isDragging, thumbHeight, thumbPosition, width]);
+  }, [hovering, isDragging, thumbHeight, thumbPosition, width]);
 
   const handleMouseDown = () => {
     setIsDragging(true);
-    document.body.style.cursor = 'grabbing';
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps

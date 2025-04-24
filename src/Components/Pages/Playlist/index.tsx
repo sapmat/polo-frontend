@@ -82,7 +82,7 @@ const PlaylistPage = () => {
   useEffect(() => {
     setScrollbar(
       <ScrollBarY
-        generalHover={hovering}
+        hovering={hovering}
         width={15}
         maxHeight={generalRef.current?.clientHeight || 0}
         scrollableElementRef={pageRef}
@@ -169,6 +169,7 @@ const PlaylistPage = () => {
             </div>
           </div>
         </div>
+
         <div css={classes.content}>
           <div css={classes.background(dominantColor)}></div>
           <div css={classes.contentTop}>

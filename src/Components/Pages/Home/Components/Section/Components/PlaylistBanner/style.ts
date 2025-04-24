@@ -14,6 +14,7 @@ const classes = {
 
     &:hover button {
       opacity: 1;
+      transform: translateY(0);
     }
   `,
   playlistImage: css`
@@ -30,14 +31,15 @@ const classes = {
     align-items: center;
     background-color: ${theme.colors['default'].buttons.main};
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
-    border-radius: 50rem;
+    border-radius: 99999px;
     height: 3rem;
     width: 3rem;
+    transform: translateY(5px);
 
     position: absolute;
     right: 1rem;
     bottom: 1rem;
-    transition: opacity 0.1s ease-in-out;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
     opacity: 0;
 
     &:hover {

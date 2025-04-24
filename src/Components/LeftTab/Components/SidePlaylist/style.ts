@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import { theme } from '../../../../theme';
 
 const classes = {
-  playlist: css`
+  playlist: (isCurrentPlaylist: boolean) => css`
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
@@ -24,6 +24,8 @@ const classes = {
         opacity: 1;
       }
     }
+
+    ${isCurrentPlaylist ?? `background-color: #333;`}
   `,
   imageContainer: css`
     position: relative;
@@ -59,11 +61,13 @@ const classes = {
       scale: 1.1;
     }
   `,
-  name: css`
+  name: (isCurrentPlaylist: boolean) => css`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: ${theme.colors['default'].text.main};
+    color: ${isCurrentPlaylist
+      ? theme.colors['default'].main.main
+      : theme.colors['default'].text.main};
   `,
   content: (open: boolean) => css`
     display: ${open ? '' : 'none'};

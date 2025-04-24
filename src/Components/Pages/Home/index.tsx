@@ -11,7 +11,6 @@ const Home = () => {
 
   const containerRef = useRef<HTMLDivElement>(null);
   const homeRef = useRef<HTMLDivElement>(null);
-  
 
   return (
     <div
@@ -24,7 +23,12 @@ const Home = () => {
         setHovering(false);
       }}
     >
-      <ScrollBarY generalHover={hovering} width={13} maxHeight={containerRef.current?.clientHeight || 0} scrollableElementRef={homeRef} />
+      <ScrollBarY
+        hovering={hovering}
+        width={13}
+        maxHeight={containerRef.current?.clientHeight || 0}
+        scrollableElementRef={homeRef}
+      />
       <div ref={homeRef} css={classes.home}>
         <RecentlyPlayedPlaylists />
         <HomeSection name='POPULAR SONGS' playlists={playlists} />

@@ -77,7 +77,12 @@ const TableRow = ({
     >
       <div css={classes.index(song.id === currentSongId)}>
         {hovering ? (
-          <PlayButton cssClass={classes.play} viewBox={'0 0 24 24'} isPlaying={checkPlaying} togglePlay={handlePlay} />
+          <PlayButton
+            cssClass={classes.play}
+            viewBox={'0 0 24 24'}
+            isPlaying={checkPlaying}
+            togglePlay={handlePlay}
+          />
         ) : (
           <span>{index + 1}</span>
         )}
@@ -85,6 +90,9 @@ const TableRow = ({
       <div css={classes.title}>
         <ItemImage item={song} cssClass={classes.image} />
         <div css={classes.details}>
+          {
+            // TODO UUID FOR EACH SONG IN PLAYLIST TO SEE IF IS THE CURRENT SONG
+          }
           <p css={classes.name(song.id === currentSongId)}>{song.name}</p>
           <p css={classes.artists}>
             {song.artists.map(({ name, id }, index) => (

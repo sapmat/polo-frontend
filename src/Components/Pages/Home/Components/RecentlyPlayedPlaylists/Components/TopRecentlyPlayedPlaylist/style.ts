@@ -59,7 +59,7 @@ const classes = {
     background-color: ${theme.colors['default'].buttons.main};
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
     opacity: 0;
-    border-radius: 50rem;
+    border-radius: 99999px;
     height: 2.5rem;
     width: 2.5rem;
     right: -10px;

@@ -40,7 +40,7 @@ const SidePlaylist = ({ playlist, open }: SidePlaylistProps) => {
   };
 
   return (
-    <div css={classes.playlist} onClick={handleNavigate}>
+    <div css={classes.playlist(isCurrentPlaylist)} onClick={handleNavigate}>
       <div css={classes.imageContainer}>
         <ItemImage item={playlist} cssClass={classes.image} />
 
@@ -55,7 +55,7 @@ const SidePlaylist = ({ playlist, open }: SidePlaylistProps) => {
       </div>
 
       <div css={classes.content(open)}>
-        <p css={classes.name}>{playlist.name}</p>
+        <p css={classes.name(isCurrentPlaylist)}>{playlist.name}</p>
 
         <div css={classes.detailsBottom}>
           <div css={classes.pin(playlist.isPinned)}>

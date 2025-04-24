@@ -1,4 +1,4 @@
-export enum MainSongCredits {
+export enum SongCreditsTypes {
   MAIN_ARTIST = 'Main Artist',
   COMPOSER = 'Composer',
   PRODUCER = 'Producer',
@@ -7,7 +7,7 @@ export enum MainSongCredits {
 export interface CreditsUser {
   id: string;
   name: string;
-  role: MainSongCredits;
+  roles: SongCreditsTypes[];
 }
 
 export interface Song {
@@ -16,6 +16,7 @@ export interface Song {
   audioSrc: string;
   artists: { id: string; name: string }[];
   image: string;
+  // TODO CHANGE TO ALBUM ID
   album: string;
   duration: string;
   credits: CreditsUser[];

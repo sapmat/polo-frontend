@@ -1,27 +1,30 @@
 /** @jsxImportSource @emotion/react */
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { Playlist } from '../../../../Model/Playlist/playlist';
-import { Song } from '../../../../Model/Song/songs';
+import { CreditsUser, Song } from '../../../../Model/Song/songs';
 import { RightTabOption } from '../../../../Util/Enums/RightTabOption';
 import { useNextSong } from '../../../../Util/Hooks/useNextSong';
 import ItemImage from '../../../Util/ItemImage/ItemImage';
 import ScrollBarY from '../../../Util/ScrollBar/ScrollBarY';
+import Credits from '../Credit/Credit';
 import NextSong from '../NextSong/NextSong';
 import classes from './style';
 
 interface CurrentSongProps {
   currentSong: Song | undefined;
   playlist: Playlist | undefined;
-  hovering: boolean;
   setRightTab: (v: RightTabOption) => void;
 }
 
-const CurrentSong = ({ currentSong, playlist, hovering, setRightTab }: CurrentSongProps) => {
+const CurrentSong = ({ currentSong, playlist, setRightTab }: CurrentSongProps) => {
   const navigate = useNavigate();
   const params = useParams();
   const currentId: string = params.id || '';
 
+  const [hovering, setHovering] = useState<boolean>(false);
+
+  const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
   const { nextSong } = useNextSong();
@@ -65,65 +68,95 @@ const CurrentSong = ({ currentSong, playlist, hovering, setRightTab }: CurrentSo
         </div>
       </div>
 
-      <div css={classes.content} ref={contentRef}>
+      <div
+        onMouseEnter={() => {
+          setHovering(true);
+        }}
+        onMouseLeave={() => {
+          setHovering(false);
+        }}
+        css={classes.container}
+        ref={containerRef}
+      >
         <ScrollBarY
-          generalHover={hovering}
+          hovering={hovering}
           maxHeight={contentRef.current?.clientHeight || 0}
           scrollableElementRef={contentRef}
           width={15}
         />
 
-        <div css={classes.imageContainer}>
-          <ItemImage item={currentSong} cssClass={classes.image} onClick={handelNavigateToAlbum} />
-        </div>
+        <div css={classes.content} ref={contentRef}>
+          <div css={classes.imageContainer}>
+            <ItemImage
+              item={currentSong}
+              cssClass={classes.image}
+              onClick={handelNavigateToAlbum}
+            />
+          </div>
 
-        <div css={classes.songDetails}>
-          <div>
-            <div css={classes.songName} onClick={handelNavigateToAlbum}>
-              {currentSong.name}
-            </div>
-            <div css={classes.songArtists}>
-              {currentSong.artists.map(({ name, id }, index) => (
-                <span key={id}>
-                  {index > 0 && ', '}
-                  <span
-                    css={classes.artist}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handelUserClicked(id);
-                    }}
-                  >
-                    {name}
+          <div css={classes.songDetails}>
+            <div>
+              <span css={classes.songName} onClick={handelNavigateToAlbum}>
+                {currentSong.name}
+              </span>
+              <div css={classes.songArtists}>
+                {currentSong.artists.map(({ name, id }, index) => (
+                  <span key={id}>
+                    {index > 0 && ', '}
+                    <span
+                      css={classes.artist}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handelUserClicked(id);
+                      }}
+                    >
+                      {name}
+                    </span>
                   </span>
-                </span>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
 
-        <div css={[classes.section, classes.aboutArtist]} onClick={handleAboutArtistClicked}>
-          <div css={classes.sectionTop}>
-            <p css={classes.sectionName}>About the artist</p>
+          <div css={[classes.section, classes.aboutArtist]} onClick={handleAboutArtistClicked}>
+            <div css={classes.sectionTop}>
+              <p css={classes.sectionName}>About the artist</p>
+            </div>
+            // TODO ABOUT ARTIST
           </div>
-          // TODO ABOUT ARTIST
-        </div>
 
-        <div css={[classes.section, classes.credits]}> // TODO CREDITS </div>
-
-        <div css={[classes.section, classes.nextInQueue]}>
-          {nextSong ? (
+          <div css={[classes.section, classes.credits]}>
             <>
               <div css={classes.sectionTop}>
-                <p css={classes.sectionName}>Next in queue</p>
-                <p css={classes.sectionExtra}>Open queue</p>
+                <p css={classes.sectionName}>Credits</p>
               </div>
-              <NextSong nextSong={nextSong} />
+              <div>
+                {currentSong.credits.slice(0, 3).map((credit: CreditsUser) => {
+                  return (
+                    <div key={credit.id}>
+                      <Credits credit={credit} />
+                    </div>
+                  );
+                })}
+              </div>
             </>
-          ) : (
-            <div css={classes.sectionTop}>
-              <p css={classes.sectionName}>Your queue is empty</p>
-            </div>
-          )}
+          </div>
+
+          <div css={[classes.section, classes.nextInQueue]}>
+            {nextSong ? (
+              <>
+                <div css={classes.sectionTop}>
+                  <p css={classes.sectionName}>Next in queue</p>
+                  <p css={classes.sectionExtra}>Open queue</p>
+                </div>
+                <NextSong nextSong={nextSong} />
+              </>
+            ) : (
+              <div css={classes.sectionTop}>
+                <p css={classes.sectionName}>Your queue is empty</p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

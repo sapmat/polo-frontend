@@ -11,7 +11,7 @@ const classes = {
     max-width: 100%;
     min-width: 100%;
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: hidden;
   `,
   top: css`
     box-sizing: border-box;
@@ -19,7 +19,7 @@ const classes = {
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    padding: 18px 16px;
+    padding: 1rem;
 
     div {
       width: auto;
@@ -27,15 +27,26 @@ const classes = {
       align-items: center;
     }
   `,
+  container: css`
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  `,
   content: css`
     box-sizing: border-box;
     position: relative;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    padding: 0 16px;
+    padding: 0 1rem;
     height: 100%;
     width: 100%;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   `,
   playlistName: css`
     font-size: 1rem;
@@ -69,14 +80,13 @@ const classes = {
   imageContainer: css`
     box-sizing: border-box;
     width: 100%;
-    aspect-ratio: 1/1;
-    overflow: hidden;
-    border-radius: 15px;
+    aspect-ratio: 1 / 1;
   `,
   image: css`
     box-sizing: border-box;
     height: 100%;
     aspect-ratio: 1 / 1;
+    border-radius: 15px;
 
     &:hover {
       cursor: pointer;

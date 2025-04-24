@@ -1,5 +1,5 @@
 import { Playlist } from './Model/Playlist/playlist';
-import { Song } from './Model/Song/songs';
+import { Song, SongCreditsTypes } from './Model/Song/songs';
 
 export const songs: Song[] = [
   {
@@ -10,6 +10,16 @@ export const songs: Song[] = [
     image: '',
     album: 'LEGO NINJAGO: For the Spinners',
     duration: '3:30',
+    credits: [
+      { id: 'u2', name: 'Ninjago Music', roles: [SongCreditsTypes.MAIN_ARTIST] },
+      { id: 'u3', name: 'The Fold', roles: [SongCreditsTypes.MAIN_ARTIST] },
+      { id: 'u4', name: 'Erin Chapman', roles: [SongCreditsTypes.COMPOSER] },
+      {
+        id: 'u5',
+        name: 'Jeppe Riddervold',
+        roles: [SongCreditsTypes.COMPOSER, SongCreditsTypes.PRODUCER],
+      },
+    ],
   },
   {
     id: 'd1',
@@ -19,6 +29,7 @@ export const songs: Song[] = [
     image: '/Images/theDuckSongSongCover.png',
     album: 'The Duck Songs',
     duration: '3:11',
+    credits: [{ id: 'u1', name: 'Bryant Oden', roles: [SongCreditsTypes.MAIN_ARTIST] }],
   },
   {
     id: 'd2',
@@ -28,6 +39,7 @@ export const songs: Song[] = [
     image: '/Images/theDuckSongSongCover.png',
     album: 'The Duck Songs',
     duration: '2:35',
+    credits: [{ id: 'u1', name: 'Bryant Oden', roles: [SongCreditsTypes.MAIN_ARTIST] }],
   },
   {
     id: 'd3',
@@ -37,6 +49,7 @@ export const songs: Song[] = [
     image: '/Images/theDuckSongSongCover.png',
     album: 'The Duck Songs',
     duration: '3:35',
+    credits: [{ id: 'u1', name: 'Bryant Oden', roles: [SongCreditsTypes.MAIN_ARTIST] }],
   },
   {
     id: 'd4',
@@ -46,6 +59,7 @@ export const songs: Song[] = [
     image: '/Images/theDuckSongSongCover.png',
     album: 'The Duck Songs',
     duration: '2:33',
+    credits: [{ id: 'u1', name: 'Bryant Oden', roles: [SongCreditsTypes.MAIN_ARTIST] }],
   },
   {
     id: 'd5',
@@ -55,6 +69,7 @@ export const songs: Song[] = [
     image: '/Images/theDuckSongSongCover.png',
     album: 'The Duck Songs',
     duration: '3:01',
+    credits: [{ id: 'u1', name: 'Bryant Oden', roles: [SongCreditsTypes.MAIN_ARTIST] }],
   },
 ];
 

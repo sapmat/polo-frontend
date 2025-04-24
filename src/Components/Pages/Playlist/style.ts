@@ -69,8 +69,8 @@ const classes = {
   `,
   play: css`
     fill: black;
-    height: 2rem;
-    width: 2rem;
+    height: 1.5rem;
+    width: 1.5rem;
     transition: scale 0.1s ease-in-out;
   `,
   shuffle: css`

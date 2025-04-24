@@ -18,7 +18,7 @@ class SongService {
 
   static async getSongById(id: string): Promise<Song | undefined> {
     // return axios.get(`/${id}`);
-    return songs.find((song) => song.id == id);
+    return songs.find((song) => song.id === id);
   }
 
   static async search(input: string): Promise<Song[]> {

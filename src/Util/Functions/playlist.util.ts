@@ -1,6 +1,9 @@
 import { Playlist } from '../../Model/Playlist/playlist';
 
-export const shufflePlaylist = (playlist: Playlist, currentSongId: string | null): Playlist => {
+export const shufflePlaylist = (
+  playlist: Playlist,
+  currentSongId: string | null = null,
+): Playlist => {
   const newPlaylist = { ...playlist, songs: [...playlist.songs] };
 
   for (let i = newPlaylist.songs.length - 1; i > 0; i--) {
@@ -8,11 +11,13 @@ export const shufflePlaylist = (playlist: Playlist, currentSongId: string | null
     [newPlaylist.songs[i], newPlaylist.songs[j]] = [newPlaylist.songs[j], newPlaylist.songs[i]];
   }
 
-  const currentIndex = newPlaylist.songs.findIndex((song) => song.songId === currentSongId);
-  [newPlaylist.songs[0], newPlaylist.songs[currentIndex]] = [
-    newPlaylist.songs[currentIndex],
-    newPlaylist.songs[0],
-  ];
+  if (currentSongId) {
+    const currentIndex = newPlaylist.songs.findIndex((song) => song.songId === currentSongId);
+    [newPlaylist.songs[0], newPlaylist.songs[currentIndex]] = [
+      newPlaylist.songs[currentIndex],
+      newPlaylist.songs[0],
+    ];
+  }
 
   return newPlaylist;
 };

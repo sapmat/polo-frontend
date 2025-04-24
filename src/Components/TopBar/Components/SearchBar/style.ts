@@ -33,7 +33,7 @@ const classes = {
     flex-direction: row;
     align-items: center;
     background-color: #333;
-    border-radius: 50rem;
+    border-radius: 99999px;
     height: 100%;
     width: 100%;
     border: none;

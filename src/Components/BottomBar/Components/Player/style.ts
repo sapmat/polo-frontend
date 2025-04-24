@@ -28,7 +28,7 @@ const classes = {
     align-items: center;
     background-color: ${theme.colors['default'].buttons.none};
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
-    border-radius: 50rem;
+    border-radius: 99999px;
     padding: 0;
     height: 2rem;
     width: 2rem;
